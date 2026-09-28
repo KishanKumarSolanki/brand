@@ -38,7 +38,7 @@ export default function Home() {
       <Hero />
       {/* <TrustedBy /> */}
       <Capabilities />
-      <Difference />
+      {/* <Difference /> */}
       <Process />
       <FeaturedWork />
       <TestimonialsSection />
@@ -81,7 +81,7 @@ function Hero() {
             Complete branding solutions for
           </p>
 
-          <h1 className="sm:text-[60px] text-5xl font-bold text-white tracking-[-0.03em] leading-[1.07] flex flex-wrap gap-x-3">
+          <h1 className="sm:text-[60px] text-5xl font-bold text-white tracking-[0.05em] leading-[1.5] flex flex-wrap gap-x-3">
             <BlurText
               text="India's Next"
               delay={120}
@@ -104,7 +104,7 @@ function Hero() {
             </span>
           </h1>
 
-          <p className="mt-6 text-white/55 text-[15.5px] max-w-lg leading-relaxed">
+          <p className="mt-6 text-white/55 text-[15.5px] max-w leading-relaxed">
             Strategy, design, and creativity aligned to craft impactful digital solutions.
             Focused on delivering real growth that scales your brand and business.
           </p>
@@ -129,7 +129,12 @@ function Hero() {
           {/* Social proof: avatar stack + rating, more premium than bare stat row */}
           <div className="mt-11 flex items-center gap-4">
             <div className="flex -space-x-2.5">
-              {['from-red-500 to-red-400', 'from-red-400 to-red-300', 'from-red-400 to-red-500', 'from-red-300 to-red-400'].map((g, i) => (
+              {[
+                'from-violet-500 to-purple-500',
+                'from-purple-400 to-pink-400',
+                'from-fuchsia-500 to-violet-500',
+                'from-pink-400 to-purple-400'
+              ].map((g, i) => (
                 <span
                   key={i}
                   className={`w-8 h-8 rounded-full bg-gradient-to-br ${g} border-2 border-[#120000] flex items-center justify-center text-[10px] font-bold text-white`}
@@ -291,7 +296,7 @@ function Capabilities() {
       <div className="max-w-7xl mx-auto relative">
         <div className="mb-10">
           <Reveal>
-            <SectionHeading eyebrow="Capabilities" title="Everything your brand," accent="needs to look serious." align="left" />
+            <SectionHeading eyebrow="What we do" title="Everything your brand," accent="needs to look serious" align="left" />
           </Reveal>
           <Reveal delay={0.1}>
             <p className="text-[#120000]/60 text-[15px] leading-relaxed mt-5 max-w-2xl">
@@ -315,53 +320,52 @@ function Capabilities() {
   )
 }
 
-function Difference() {
-  return (
-    <section className="relative bg-[#120000] pt-10 sm:pt-24 py-24 px-6 overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-red-600/10 blur-[100px]" />
-      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
-        <Reveal>
-          <SectionHeading eyebrow="Why Creative Crew" title="The difference is in the" accent="details" align="left" dark />
-          <p className="text-white/55 text-[15px] leading-relaxed mt-5 mb-8 max-w-md">
-            We're not a service factory. We're a small studio of senior designers, engineers, and
-            marketers who care too much.
-          </p>
+// function Difference() {
+//   return (
+//     <section className="relative bg-[#120000] pt-10 sm:pt-24 py-24 px-6 overflow-hidden">
+//       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full bg-red-600/10 blur-[100px]" />
+//       <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
+//         <Reveal>
+//           <SectionHeading eyebrow="Selected work" title="Design that gives businesses" accent="a stronger presence" align="left" dark />
+//           <p className="text-white/55 text-[15px] leading-relaxed mt-5 mb-8 max-w-md">
+//             A few examples of the visual direction: identity, packaging, digital presence and brand systems.
+//           </p>
 
-          <ul className="space-y-3.5">
-            {['Senior team — no juniors on your project', 'Fixed timelines, no surprises', 'Weekly Loom updates + Slack channel', 'Design that ships, engineering that scales', 'Custom software Tracking'].map((f) => (
-              <li key={f} className="flex items-start gap-3 text-[14px] text-white/70">
-                <span className="w-5 h-5 rounded-full bg-red-500/15 flex items-center justify-center mt-0.5 shrink-0">
-                  <Check size={11} className="text-red-400" />
-                </span>
-                {f}
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="grid grid-cols-2 gap-5">
-            {stats.map((s, i) => {
-              const Icon = statIconMap[i % statIconMap.length]
-              return (
-                <div
-                  key={s.label}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:bg-white/[0.05] hover:border-white/20 transition-colors duration-300"
-                >
-                  <Icon size={16} className="text-red-400 mb-3" />
-                  <p className="text-3xl font-bold bg-gradient-to-r from-red-400 to-red-300 bg-clip-text text-transparent">
-                    {s.value}
-                  </p>
+//           <ul className="space-y-3.5">
+//             {['Senior team — no juniors on your project', 'Fixed timelines, no surprises', 'Weekly Loom updates + Slack channel', 'Design that ships, engineering that scales', 'Custom software Tracking'].map((f) => (
+//               <li key={f} className="flex items-start gap-3 text-[14px] text-white/70">
+//                 <span className="w-5 h-5 rounded-full bg-red-500/15 flex items-center justify-center mt-0.5 shrink-0">
+//                   <Check size={11} className="text-red-400" />
+//                 </span>
+//                 {f}
+//               </li>
+//             ))}
+//           </ul>
+//         </Reveal>
+//         <Reveal delay={0.1}>
+//           <div className="grid grid-cols-2 gap-5">
+//             {stats.map((s, i) => {
+//               const Icon = statIconMap[i % statIconMap.length]
+//               return (
+//                 <div
+//                   key={s.label}
+//                   className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:bg-white/[0.05] hover:border-white/20 transition-colors duration-300"
+//                 >
+//                   <Icon size={16} className="text-red-400 mb-3" />
+//                   <p className="text-3xl font-bold bg-gradient-to-r from-red-400 to-red-300 bg-clip-text text-transparent">
+//                     {s.value}
+//                   </p>
 
-                  <p className="text-xs text-white/50 mt-1 uppercase tracking-wide">{s.label}</p>
-                </div>
-              )
-            })}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  )
-}
+//                   <p className="text-xs text-white/50 mt-1 uppercase tracking-wide">{s.label}</p>
+//                 </div>
+//               )
+//             })}
+//           </div>
+//         </Reveal>
+//       </div>
+//     </section>
+//   )
+// }
 
 'use client'
 function Process() {
@@ -421,7 +425,7 @@ function Process() {
                               : isDone
                                 ? 'bg-red-600 border-red-600'
                                 : 'bg-white border-[#120000]/15 group-hover/dot:border-red-400'
-                            }`}
+                              }`}
                           />
                         </button>
                       </div>
@@ -485,7 +489,7 @@ function Process() {
                         : isDone
                           ? 'border-red-600 bg-red-600'
                           : 'border-[#120000]/15'
-                      }`}
+                        }`}
                     />
                   )
                 })}
@@ -517,7 +521,7 @@ function LottiePanel({ active, lottieFailed, setLottieFailed, activeStep, compac
       className={`relative w-full h-full ${compact
         ? ''
         : 'rounded-3xl bg-gradient-to-br from-red-50 to-red-50 border border-[#120000]/5 p-8 sm:p-10 overflow-hidden max-w-[420px] md:max-w-[560px] mx-auto md:mx-0 aspect-square'
-      }`}
+        }`}
     >
       {!compact && (
         <span className="absolute -top-2 -left-2 text-[140px] font-black text-[#120000]/[0.04] leading-none select-none pointer-events-none">
@@ -637,7 +641,7 @@ function FeaturedWork() {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
           <Reveal>
-            <SectionHeading eyebrow="Selected work" title="Work we're" accent="proud of" align="left" dark />
+            <SectionHeading eyebrow="Selected work" title="Design that gives businesses" accent="a stronger presence" align="left" dark />
           </Reveal>
           <Reveal delay={0.1}>
             <Link
@@ -650,7 +654,7 @@ function FeaturedWork() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {featured.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
               <Link
@@ -677,7 +681,7 @@ function FeaturedWork() {
               </Link>
             </Reveal>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   )

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { Instagram, Youtube } from 'lucide-react'
-import { siteConfig, footerColumns, socialLinks } from '../data/siteData'
-import cc from '../assets/webp/cc.webp'
-
+import { siteConfig,footerColumns, socialLinks } from '../data/siteData'
+// import cc from '../assets/webp/cc.webp'
+import Brand from '../assets/Brands.png'
 // Only these two platforms are shown in the footer.
 const socialIconMap = {
   Instagram,
@@ -20,8 +20,8 @@ export default function Footer() {
           <div>
             <Link to="/" className="flex items-center gap-2 mb-6">
               <img
-                src={cc}
-                alt={`${siteConfig.name || 'Creative Crew'} logo`}
+                src={Brand}
+                alt={`${siteConfig.name || 'Brand Master'} logo`}
                 className="w-8 h-8 object-contain"
               />
               <span className="text-white font-semibold tracking-tight text-[16px]">
@@ -30,7 +30,7 @@ export default function Footer() {
             </Link>
             <h3 className="text-[28px] leading-tight font-bold text-white mb-4">
               Let's build something{' '}
-              <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 to-rose-400 bg-clip-text text-transparent">
                 unforgettable
               </span>
               .

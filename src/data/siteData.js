@@ -36,7 +36,7 @@ import launchLottie from '../assets/LottiFIles/Lounch.lottie?url'
 import growthLottie from '../assets/LottiFIles/Growth.lottie?url'
 
 export const siteConfig = {
-  name: 'Creative Crew',
+  name: 'Brand Master',
   tagline: 'Let\'s build something unforgettable.',
   email: 'crewcreative98@gmail.com',
   phone: '+91 9899669649',
@@ -54,8 +54,8 @@ export const navLinks = [
 ]
 
 export const socialLinks = [
-  { label: 'Instagram', href: 'https://www.instagram.com/creativecrew.co.in_?igsh=MXJ2Y29kczBhaDdzOQ==' },
-  { label: 'YouTube', href: 'https://youtu.be/sd1JXv_644Y?si=wyoFOJihFjp3e6Yh' },
+  { label: 'Instagram', href: '' },
+  { label: 'YouTube', href: '' },
 ]
 
 export const footerColumns = [
@@ -67,23 +67,23 @@ export const footerColumns = [
       { label: 'Contact', to: '/contact' },
     ],
   },
-  {
-    heading: 'Services',
-    links: [
-      { label: 'NCF Funnels', to: '/services' },
-      { label: 'Social Marketing', to: '/services' },
-      { label: 'Web Development', to: '/services' },
-      { label: 'Branding & Video', to: '/services' },
-    ],
-  },
-  {
-    heading: 'Legal',
-    links: [
-      { label: 'Privacy Policy', to: '/privacy-policy' },
-      { label: 'Terms & Conditions', to: '/terms' },
-      { label: 'No Refund Policy', to: '/no-refund-policy' },
-    ],
-  },
+  // {
+  //   heading: 'Services',
+  //   links: [
+  //     { label: 'NCF Funnels', to: '/services' },
+  //     { label: 'Social Marketing', to: '/services' },
+  //     { label: 'Web Development', to: '/services' },
+  //     { label: 'Branding & Video', to: '/services' },
+  //   ],
+  // },
+  // {
+  //   heading: 'Legal',
+  //   links: [
+  //     { label: 'Privacy Policy', to: '/privacy-policy' },
+  //     { label: 'Terms & Conditions', to: '/terms' },
+  //     { label: 'No Refund Policy', to: '/no-refund-policy' },
+  //   ],
+  // },
 ]
 
 export const trustedBrands = [
@@ -180,18 +180,36 @@ export const services = [
 ]
 
 export const faqs = [
-  { q: 'How long does a typical project take?', a: 'Most engagements run 4–10 weeks depending on scope, from discovery through launch. We share a clear timeline before kickoff so there are no surprises.' },
-  { q: 'Do you offer retainers?', a: 'Yes — many clients move to a monthly retainer after their first project for ongoing marketing, development, or growth work.' },
-  { q: 'Which industries do you serve?', a: 'We work primarily with ambitious consumer, SaaS, and retail brands, but our systems adapt well to most industries.' },
-  { q: 'Where are you based?', a: 'We\'re a remote-first team with hubs in San Francisco and Berlin, working with clients across time zones.' },
-  { q: 'How do we start?', a: 'Book a free strategy call. We\'ll audit your current funnel or brand and share concrete next steps — no obligation.' },
-]
+  { 
+    q: 'What services does BrandsMaster offer?', 
+    a: 'BrandsMaster provides complete branding solutions including logo design, brand identity, social media creatives, and pitch deck design to help businesses build a strong and consistent presence.' 
+  },
 
+  { 
+    q: 'Who should work with BrandsMaster?', 
+    a: 'We work with startups, small businesses, and growing brands that want to look professional, build credibility, and scale their presence across digital platforms.' 
+  },
+
+  { 
+    q: 'How long does a branding project take?', 
+    a: 'The timeline depends on the scope. Logo design usually takes a few days, while complete branding (logo, identity, creatives) can take 1–2 weeks or more based on requirements.' 
+  },
+
+  { 
+    q: 'Do you create custom designs or use templates?', 
+    a: 'All our designs are created from scratch based on your business, target audience, and positioning. We do not use generic templates.' 
+  },
+
+  { 
+    q: 'How can I get started with BrandsMaster?', 
+    a: 'You can start by booking a free strategy call or contacting us on WhatsApp. We will understand your business and guide you with the best branding approach.' 
+  }
+];
 export const testimonials = [
-  { quote: 'Creative Crew rebuilt our funnel in 30 days. Revenue doubled the next quarter.', name: 'Sarah Khan', role: 'CEO, Nova Retail' },
-  { quote: 'The most obsessive design team I have ever worked with. Every pixel matters.', name: 'Arjun Singh', role: 'Founder, Orbit Studios' },
-  { quote: 'They shipped a POS and LMS that our team actually enjoys using. Rare.', name: 'Priya Nair', role: 'COO, Kairos' },
-  { quote: 'Best-in-class creative + hard-nosed performance. This is our long-term partner.', name: 'Dinesh', role: 'CMO, Helix Media' },
+  { quote: 'Professional team, understood the requirement and delivered a much stronger brand presence.', name: 'Sarah Khan'},
+  { quote: 'Excellent designs and timely delivery. Our brand looks much more professional now.', name: 'Arjun Singh'},
+  { quote: 'Very creative team. They understood our vision and the process was smooth.', name: 'Priya Nair'},
+  { quote: 'Best-in-class creative + hard-nosed performance. This is our long-term partner.', name: 'Dinesh'},
 ]
 
 export const portfolioItems = [

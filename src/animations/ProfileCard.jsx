@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import cc from '../assets/webp/cc.webp';
+// import cc from '../assets/webp/cc.webp';
+import Brand from"../assets/Brands.png";
 import { siteConfig } from '../data/siteData';
 const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)';
 
@@ -43,7 +44,7 @@ const ProfileCardComponent = ({
     enableMobileTilt = false,
     mobileTiltSensitivity = 5,
     miniAvatarUrl,
-    logoUrl = cc,
+    logoUrl = Brand,
     name = 'Javi A. Torres',
     title = 'Software Engineer',
     handle = '',
@@ -470,7 +471,7 @@ const ProfileCardComponent = ({
                                     <button
                                         type="button"
                                         onClick={goToBooking}
-                                        className="rounded-lg px-4 py-3 text-xs font-semibold text-white cursor-pointer transition-all duration-200 ease-out hover:opacity-90 hover:-translate-y-px bg-violet-600 hover:bg-violet-700 inline-flex items-center justify-center"
+                                        className="rounded-lg px-4 py-3 text-xs font-semibold text-white cursor-pointer transition-all duration-200 ease-out hover:opacity-90 hover:-translate-y-px bg-red-600 hover:bg-red-700 inline-flex items-center justify-center"
                                         style={{ pointerEvents: 'auto', display: 'block', gridArea: 'auto', borderRadius: '8px' }}
                                         aria-label={`Book a call with ${name || 'us'}`}
                                     >

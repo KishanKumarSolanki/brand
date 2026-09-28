@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Phone } from 'lucide-react'
 // import { navLinks } from '../data/siteData'
-import cc from '../assets/webp/cc.webp'
+// import cc from '../assets/webp/cc.webp'
+import Brand from '../assets/Brands.png'
 import StaggeredMenu from '../animations/StaggeredMenu'
 
 const socialItems = [
@@ -34,8 +35,8 @@ export default function Navbar() {
       >
         <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-8 h-[72px]">
           <Link to="/" className="flex items-center gap-2.5 shrink-0">
-            {/* <img src={cc} alt="Creative Crew" className="h-12 w-auto object-contain" draggable={false} /> */}
-            <span className="text-white font-semibold tracking-tight text-base">Brand Master</span>
+            <img src={Brand} alt="Brand Master" className="h-12 w-auto object-contain" draggable={false} />
+            {/* <span className="text-white font-semibold tracking-tight text-base">Brand Master</span> */}
           </Link>
 
           {/* <ul className="flex items-center gap-9 text-[15px] text-white/70">

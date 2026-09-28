@@ -18,13 +18,13 @@ export default function SectionHeading({
   return (
     <div className={`flex flex-col mb-3 ${alignment}`}>
       {eyebrow && (
-        <div className={`flex items-center gap-2.5 mb-6! ${isCenter ? 'justify-center' : ''}`}>
-          <span className="w-6 h-px bg-gradient-to-r from-violet-500 to-fuchsia-400" />
-          <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-violet-400">
-            {eyebrow}
-          </p>
-        </div>
-      )}
+  <div className={`flex items-center gap-2.5 mb-6! ${isCenter ? 'justify-center' : ''}`}>
+    <span className="w-6 h-px bg-gradient-to-r from-red-600 to-rose-500" />
+    <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-red-400">
+      {eyebrow}
+    </p>
+  </div>
+)}
 
       <h2
         className={`text-4xl sm:text-5xl font-bold tracking-[-0.02em] !leading-[1.2] ${titleColor} ${isCenter ? 'text-center' : 'text-left'}`}
@@ -39,8 +39,8 @@ export default function SectionHeading({
         />{' '}
         {accent && (
           <span
-            className={`inline bg-gradient-to-r from-violet-500 via-fuchsia-400 to-violet-400 bg-clip-text text-transparent transition-opacity duration-500 ${accentVisible ? 'opacity-100' : 'opacity-0'}`}
-          >
+  className={`inline bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent transition-opacity duration-500 ${accentVisible ? 'opacity-100' : 'opacity-0'}`}
+>
             {accent}
             <span className={titleColor}>.</span>
           </span>
