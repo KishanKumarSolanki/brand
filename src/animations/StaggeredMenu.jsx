@@ -1,606 +1,755 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { gsap } from 'gsap';
-import cc from '../assets/webp/cc.webp';
+import { useEffect, useRef, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
+import gsap from "gsap";
 
-export const StaggeredMenu = ({
-    position = 'right',
-    colors = ['#B497CF', '#5227FF'],
-    items = [],
-    socialItems = [],
-    displaySocials = true,
-    displayItemNumbering = true,
-    className,
-    logoUrl = './assets/cc.png',
-    menuButtonColor = '#fff',
-    openMenuButtonColor = '#fff',
-    changeMenuColorOnOpen = true,
-    isFixed = false,
-    accentColor = '#5227FF',
-    closeOnClickAway = true,
-    onMenuOpen,
-    onMenuClose,
+const StaggeredMenu = ({
+  items = [],
+  position = "right",
+  isFixed = true,
+  accentColor = "#EF4444",
+  menuButtonColor = "#FFFFFF",
+  openMenuButtonColor = "#FFFFFF",
+  changeMenuColorOnOpen = true,
+  logoUrl = "",
+  logoAlt = "Logo",
+  className = "",
 }) => {
-    const [open, setOpen] = useState(false);
-    const openRef = useRef(false);
+  const [open, setOpen] = useState(false);
 
-    const panelRef = useRef(null);
-    const preLayersRef = useRef(null);
-    const preLayerElsRef = useRef([]);
+  const panelRef = useRef(null);
+  const prelayersRef = useRef(null);
+  const contentRef = useRef(null);
+  const menuItemsRef = useRef(null);
+  const timelineRef = useRef(null);
 
-    const iconBar1Ref = useRef(null);
-    const iconBar2Ref = useRef(null);
-    const iconBar3Ref = useRef(null);
-    const spinTweenRef = useRef(null);
+  const isLeft = position === "left";
+  const getOffset = () => (isLeft ? -100 : 100);
 
-    const textInnerRef = useRef(null);
-    const textWrapRef = useRef(null);
-    const [textLines, setTextLines] = useState(['Menu', 'Close']);
+  useEffect(() => {
+    const panel = panelRef.current;
+    const prelayers = prelayersRef.current;
 
-    const openTlRef = useRef(null);
-    const closeTweenRef = useRef(null);
-    const textCycleAnimRef = useRef(null);
-    const colorTweenRef = useRef(null);
+    if (!panel) return;
 
-    const toggleBtnRef = useRef(null);
-    const busyRef = useRef(false);
+    gsap.set(panel, {
+      xPercent: getOffset(),
+      autoAlpha: 1,
+    });
 
-    const itemEntranceTweenRef = useRef(null);
+    if (prelayers) {
+      gsap.set(prelayers.children, {
+        xPercent: getOffset(),
+      });
+    }
 
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            const panel = panelRef.current;
-            const preContainer = preLayersRef.current;
-            const textInner = textInnerRef.current;
+    if (contentRef.current) {
+      gsap.set(contentRef.current, {
+        autoAlpha: 0,
+        y: 25,
+      });
+    }
 
-            if (!panel || !textInner) return;
+    if (menuItemsRef.current) {
+      gsap.set(menuItemsRef.current.children, {
+        autoAlpha: 0,
+        y: 25,
+      });
+    }
+  }, [position]);
 
-            let preLayers = [];
-            if (preContainer) {
-                preLayers = Array.from(preContainer.querySelectorAll('.sm-prelayer'));
-            }
-            preLayerElsRef.current = preLayers;
+  const openMenu = useCallback(() => {
+    if (!panelRef.current) return;
 
-            const offscreen = position === 'left' ? -100 : 100;
-            gsap.set([panel, ...preLayers], { xPercent: offscreen, opacity: 1 });
-            if (preContainer) {
-                gsap.set(preContainer, { xPercent: 0, opacity: 1 });
-            }
+    timelineRef.current?.kill();
+    setOpen(true);
 
-            gsap.set(textInner, { yPercent: 0 });
+    const panel = panelRef.current;
+    const prelayers = prelayersRef.current;
+    const content = contentRef.current;
+    const menuItems = menuItemsRef.current;
 
-            const bars = [iconBar1Ref.current, iconBar2Ref.current, iconBar3Ref.current].filter(Boolean);
-            if (bars.length) {
-                gsap.set(bars, { y: 0, rotate: 0, opacity: 1, transformOrigin: '50% 50%' });
-            }
+    const tl = gsap.timeline();
+    timelineRef.current = tl;
 
-            if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor });
-        });
-        return () => ctx.revert();
-    }, [menuButtonColor, position]);
-
-    const buildOpenTimeline = useCallback(() => {
-        const panel = panelRef.current;
-        const layers = preLayerElsRef.current;
-        if (!panel) return null;
-
-        openTlRef.current?.kill();
-        if (closeTweenRef.current) {
-            closeTweenRef.current.kill();
-            closeTweenRef.current = null;
-        }
-        itemEntranceTweenRef.current?.kill();
-
-        const itemEls = Array.from(panel.querySelectorAll('.sm-panel-itemLabel'));
-        const numberEls = Array.from(panel.querySelectorAll('.sm-panel-list[data-numbering] .sm-panel-item'));
-        const socialTitle = panel.querySelector('.sm-socials-title');
-        const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link'));
-
-        const offscreen = position === 'left' ? -100 : 100;
-        const layerStates = layers.map((el) => ({ el, start: offscreen }));
-        const panelStart = offscreen;
-
-        if (itemEls.length) gsap.set(itemEls, { yPercent: 140, rotate: 10 });
-        if (numberEls.length) gsap.set(numberEls, { ['--sm-num-opacity']: 0 });
-        if (socialTitle) gsap.set(socialTitle, { opacity: 0 });
-        if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
-
-        const tl = gsap.timeline({ paused: true });
-
-        layerStates.forEach((ls, i) => {
-            tl.fromTo(ls.el, { xPercent: ls.start }, { xPercent: 0, duration: 0.5, ease: 'power4.out' }, i * 0.07);
-        });
-
-        const lastTime = layerStates.length ? (layerStates.length - 1) * 0.07 : 0;
-        const panelInsertTime = lastTime + (layerStates.length ? 0.08 : 0);
-        const panelDuration = 0.65;
-
-        tl.fromTo(panel, { xPercent: panelStart }, { xPercent: 0, duration: panelDuration, ease: 'power4.out' }, panelInsertTime);
-
-        if (itemEls.length) {
-            const itemsStartRatio = 0.15;
-            const itemsStart = panelInsertTime + panelDuration * itemsStartRatio;
-
-            tl.to(
-                itemEls,
-                { yPercent: 0, rotate: 0, duration: 1, ease: 'power4.out', stagger: { each: 0.1, from: 'start' } },
-                itemsStart
-            );
-
-            if (numberEls.length) {
-                tl.to(
-                    numberEls,
-                    { duration: 0.6, ease: 'power2.out', ['--sm-num-opacity']: 1, stagger: { each: 0.08, from: 'start' } },
-                    itemsStart + 0.1
-                );
-            }
-        }
-
-        if (socialTitle || socialLinks.length) {
-            const socialsStart = panelInsertTime + panelDuration * 0.4;
-
-            if (socialTitle) tl.to(socialTitle, { opacity: 1, duration: 0.5, ease: 'power2.out' }, socialsStart);
-            if (socialLinks.length) {
-                tl.to(
-                    socialLinks,
-                    {
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.55,
-                        ease: 'power3.out',
-                        stagger: { each: 0.08, from: 'start' },
-                        onComplete: () => gsap.set(socialLinks, { clearProps: 'opacity' }),
-                    },
-                    socialsStart + 0.04
-                );
-            }
-        }
-
-        openTlRef.current = tl;
-        return tl;
-    }, [position]);
-
-    const playOpen = useCallback(() => {
-        if (busyRef.current) return;
-        busyRef.current = true;
-        const tl = buildOpenTimeline();
-        if (tl) {
-            tl.eventCallback('onComplete', () => {
-                busyRef.current = false;
-            });
-            tl.play(0);
-        } else {
-            busyRef.current = false;
-        }
-    }, [buildOpenTimeline]);
-
-    const playClose = useCallback(() => {
-        openTlRef.current?.kill();
-        openTlRef.current = null;
-        itemEntranceTweenRef.current?.kill();
-
-        const panel = panelRef.current;
-        const layers = preLayerElsRef.current;
-        if (!panel) return;
-
-        const all = [...layers, panel];
-        closeTweenRef.current?.kill();
-
-        const offscreen = position === 'left' ? -100 : 100;
-
-        closeTweenRef.current = gsap.to(all, {
-            xPercent: offscreen,
-            duration: 0.32,
-            ease: 'power3.in',
-            overwrite: 'auto',
-            onComplete: () => {
-                const itemEls = Array.from(panel.querySelectorAll('.sm-panel-itemLabel'));
-                if (itemEls.length) gsap.set(itemEls, { yPercent: 140, rotate: 10 });
-
-                const numberEls = Array.from(panel.querySelectorAll('.sm-panel-list[data-numbering] .sm-panel-item'));
-                if (numberEls.length) gsap.set(numberEls, { ['--sm-num-opacity']: 0 });
-
-                const socialTitle = panel.querySelector('.sm-socials-title');
-                const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link'));
-                if (socialTitle) gsap.set(socialTitle, { opacity: 0 });
-                if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
-
-                busyRef.current = false;
-            },
-        });
-    }, [position]);
-
-    const animateIcon = useCallback((opening) => {
-        const bar1 = iconBar1Ref.current;
-        const bar2 = iconBar2Ref.current;
-        const bar3 = iconBar3Ref.current;
-        if (!bar1 || !bar2 || !bar3) return;
-
-        spinTweenRef.current?.kill();
-
-        if (opening) {
-            spinTweenRef.current = gsap
-                .timeline({ defaults: { ease: 'power4.out' } })
-                .to(bar1, { y: 5.5, rotate: 45, duration: 0.45 }, 0)
-                .to(bar3, { y: -5.5, rotate: -45, duration: 0.45 }, 0)
-                .to(bar2, { opacity: 0, scaleX: 0, duration: 0.25 }, 0);
-        } else {
-            spinTweenRef.current = gsap
-                .timeline({ defaults: { ease: 'power3.inOut' } })
-                .to(bar1, { y: 0, rotate: 0, duration: 0.35 }, 0)
-                .to(bar3, { y: 0, rotate: 0, duration: 0.35 }, 0)
-                .to(bar2, { opacity: 1, scaleX: 1, duration: 0.3 }, 0.08);
-        }
-    }, []);
-
-    const animateColor = useCallback(
-        (opening) => {
-            const btn = toggleBtnRef.current;
-            if (!btn) return;
-            colorTweenRef.current?.kill();
-            if (changeMenuColorOnOpen) {
-                const targetColor = opening ? openMenuButtonColor : menuButtonColor;
-                colorTweenRef.current = gsap.to(btn, { color: targetColor, delay: 0.18, duration: 0.3, ease: 'power2.out' });
-            } else {
-                gsap.set(btn, { color: menuButtonColor });
-            }
+    if (prelayers?.children.length) {
+      tl.to(
+        prelayers.children,
+        {
+          xPercent: 0,
+          duration: 0.65,
+          stagger: 0.08,
+          ease: "power4.out",
         },
-        [openMenuButtonColor, menuButtonColor, changeMenuColorOnOpen]
+        0
+      );
+    }
+
+    tl.to(
+      panel,
+      {
+        xPercent: 0,
+        duration: 0.75,
+        ease: "power4.out",
+      },
+      0.08
     );
 
-    React.useEffect(() => {
-        if (toggleBtnRef.current) {
-            if (changeMenuColorOnOpen) {
-                const targetColor = openRef.current ? openMenuButtonColor : menuButtonColor;
-                gsap.set(toggleBtnRef.current, { color: targetColor });
-            } else {
-                gsap.set(toggleBtnRef.current, { color: menuButtonColor });
-            }
-        }
-    }, [changeMenuColorOnOpen, menuButtonColor, openMenuButtonColor]);
+    if (content) {
+      tl.to(
+        content,
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.45,
+        },
+        0.42
+      );
+    }
 
-    const animateText = useCallback((opening) => {
-        const inner = textInnerRef.current;
-        if (!inner) return;
+    if (menuItems?.children.length) {
+      tl.to(
+        menuItems.children,
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.45,
+          stagger: 0.09,
+        },
+        0.48
+      );
+    }
+  }, []);
 
-        textCycleAnimRef.current?.kill();
+  const closeMenu = useCallback(() => {
+    if (!panelRef.current) return;
 
-        const currentLabel = opening ? 'Menu' : 'Close';
-        const targetLabel = opening ? 'Close' : 'Menu';
-        const cycles = 3;
+    timelineRef.current?.kill();
 
-        const seq = [currentLabel];
-        let last = currentLabel;
-        for (let i = 0; i < cycles; i++) {
-            last = last === 'Menu' ? 'Close' : 'Menu';
-            seq.push(last);
-        }
-        if (last !== targetLabel) seq.push(targetLabel);
-        seq.push(targetLabel);
+    const panel = panelRef.current;
+    const prelayers = prelayersRef.current;
+    const content = contentRef.current;
+    const menuItems = menuItemsRef.current;
 
-        setTextLines(seq);
-        gsap.set(inner, { yPercent: 0 });
+    const tl = gsap.timeline({
+      onComplete: () => setOpen(false),
+    });
 
-        const lineCount = seq.length;
-        const finalShift = ((lineCount - 1) / lineCount) * 100;
+    timelineRef.current = tl;
 
-        textCycleAnimRef.current = gsap.to(inner, {
-            yPercent: -finalShift,
-            duration: 0.5 + lineCount * 0.07,
-            ease: 'power4.out',
-        });
-    }, []);
+    if (menuItems?.children.length) {
+      tl.to(
+        menuItems.children,
+        {
+          autoAlpha: 0,
+          y: 15,
+          duration: 0.2,
+          stagger: 0.035,
+        },
+        0
+      );
+    }
 
-    const toggleMenu = useCallback(() => {
-        const target = !openRef.current;
-        openRef.current = target;
-        setOpen(target);
+    if (content) {
+      tl.to(
+        content,
+        {
+          autoAlpha: 0,
+          y: 15,
+          duration: 0.2,
+        },
+        0
+      );
+    }
 
-        if (target) {
-            onMenuOpen?.();
-            playOpen();
-        } else {
-            onMenuClose?.();
-            playClose();
-        }
+    tl.to(
+      panel,
+      {
+        xPercent: getOffset(),
+        duration: 0.55,
+        ease: "power3.in",
+      },
+      0.15
+    );
 
-        animateIcon(target);
-        animateColor(target);
-        animateText(target);
-    }, [playOpen, playClose, animateIcon, animateColor, animateText, onMenuOpen, onMenuClose]);
+    if (prelayers?.children.length) {
+      tl.to(
+        prelayers.children,
+        {
+          xPercent: getOffset(),
+          duration: 0.45,
+          stagger: 0.06,
+        },
+        0.2
+      );
+    }
+  }, [position]);
 
-    const closeMenu = useCallback(() => {
-        if (openRef.current) {
-            openRef.current = false;
-            setOpen(false);
-            onMenuClose?.();
-            playClose();
-            animateIcon(false);
-            animateColor(false);
-            animateText(false);
-        }
-    }, [playClose, animateIcon, animateColor, animateText, onMenuClose]);
+  const toggleMenu = () => {
+    if (open) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  };
 
-    React.useEffect(() => {
-        if (!closeOnClickAway || !open) return;
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape" && open) {
+        closeMenu();
+      }
+    };
 
-        const handleClickOutside = (event) => {
-            if (
-                panelRef.current &&
-                !panelRef.current.contains(event.target) &&
-                toggleBtnRef.current &&
-                !toggleBtnRef.current.contains(event.target)
-            ) {
-                closeMenu();
-            }
-        };
+    window.addEventListener("keydown", handleKeyDown);
 
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [closeOnClickAway, open, closeMenu]);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open, closeMenu]);
 
-    return (
-        <div
-            className={`sm-scope z-40 pointer-events-none ${isFixed ? 'fixed top-0 left-0 w-screen h-screen overflow-hidden' : 'w-full h-full'}`}
-        >
-            <div
-                className={(className ? className + ' ' : '') + 'staggered-menu-wrapper pointer-events-none relative w-full h-full'}
-                style={accentColor ? { ['--sm-accent']: accentColor } : undefined}
-                data-position={position}
-                data-open={open || undefined}
-            >
-                <div ref={preLayersRef} className="sm-prelayers absolute top-0 right-0 bottom-0 pointer-events-none z-[5]" aria-hidden="true">
-                    {(() => {
-                        const raw = colors && colors.length ? colors.slice(0, 4) : ['#1e1e22', '#35353c'];
-                        let arr = [...raw];
-                        if (arr.length >= 3) {
-                            const mid = Math.floor(arr.length / 2);
-                            arr.splice(mid, 1);
-                        }
-                        return arr.map((c, i) => (
-                            <div key={i} className="sm-prelayer absolute top-0 right-0 h-full w-full translate-x-0" style={{ background: c }} />
-                        ));
-                    })()}
-                </div>
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
 
-                <header
-                    className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] bg-transparent pointer-events-none z-20"
-                    aria-label="Main navigation header"
-                >
-                    <div className="sm-logo flex items-center select-none pointer-events-auto" aria-label="Logo">
-                        <img
-                            src={logoUrl || './assets/cc.png'}
-                            alt="Logo"
-                            className="sm-logo-img block h-8 w-auto object-contain"
-                            draggable={false}
-                            width={110}
-                            height={24}
-                        />
-                    </div>
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
-                    <button
-                        ref={toggleBtnRef}
-                        className="sm-toggle relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer text-[#e9e9ef] font-medium leading-none overflow-visible pointer-events-auto"
-                        aria-label={open ? 'Close menu' : 'Open menu'}
-                        aria-expanded={open}
-                        aria-controls="staggered-menu-panel"
-                        onClick={toggleMenu}
-                        type="button"
-                    >
-                        <span
-                            ref={textWrapRef}
-                            className="sm-toggle-textWrap relative inline-block h-[1em] overflow-hidden whitespace-nowrap w-[var(--sm-toggle-width,auto)] min-w-[var(--sm-toggle-width,auto)]"
-                            aria-hidden="true"
-                        >
-                            <span ref={textInnerRef} className="sm-toggle-textInner flex flex-col leading-none">
-                                {textLines.map((l, i) => (
-                                    <span className="sm-toggle-line block h-[1em] leading-none" key={i}>
-                                        {l}
-                                    </span>
-                                ))}
-                            </span>
-                        </span>
+  useEffect(() => {
+    return () => {
+      timelineRef.current?.kill();
+    };
+  }, []);
 
-                        <span className="sm-icon" aria-hidden="true">
-                            <span ref={iconBar1Ref} className="sm-icon-bar" />
-                            <span ref={iconBar2Ref} className="sm-icon-bar" />
-                            <span ref={iconBar3Ref} className="sm-icon-bar" />
-                        </span>
-                    </button>
-                </header>
+  const handleLinkClick = () => {
+    closeMenu();
+  };
 
-                <aside
-                    id="staggered-menu-panel"
-                    ref={panelRef}
-                    className={`staggered-menu-panel absolute top-0 right-0 h-full flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-10 ${open ? 'pointer-events-auto' : 'pointer-events-none'}`}
-                    style={{ WebkitBackdropFilter: 'blur(12px)' }}
-                    aria-hidden={!open}
-                >
-                    <div className="sm-panel-inner flex-1 flex flex-col gap-5">
-                        <ul
-                            className="sm-panel-list list-none m-0 p-0 flex flex-col gap-2"
-                            role="list"
-                            data-numbering={displayItemNumbering || undefined}
-                        >
-                            {items && items.length ? (
-                                items.map((it, idx) => {
-                                    const isInternal = typeof it.link === 'string' && it.link.startsWith('/');
-                                    return (
-                                        <li className="sm-panel-itemWrap relative overflow-hidden leading-none" key={it.label + idx}>
-                                            {isInternal ? (
-                                                <Link
-                                                    to={it.link}
-                                                    className="sm-panel-item relative text-black font-semibold cursor-pointer leading-none uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
-                                                    aria-label={it.ariaLabel}
-                                                    data-index={idx + 1}
-                                                    onClick={closeMenu}
-                                                >
-                                                    <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
-                                                        {it.label}
-                                                    </span>
-                                                </Link>
-                                            ) : (
-                                                <a
-                                                    className="sm-panel-item relative text-black font-semibold cursor-pointer leading-none uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
-                                                    href={it.link}
-                                                    aria-label={it.ariaLabel}
-                                                    data-index={idx + 1}
-                                                >
-                                                    <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
-                                                        {it.label}
-                                                    </span>
-                                                </a>
-                                            )}
-                                        </li>
-                                    );
-                                })
-                            ) : (
-                                <li className="sm-panel-itemWrap relative overflow-hidden leading-none" aria-hidden="true">
-                                    <span className="sm-panel-item relative text-black font-semibold cursor-pointer leading-none uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]">
-                                        <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">No items</span>
-                                    </span>
-                                </li>
-                            )}
-                        </ul>
-
-                        {displaySocials && socialItems && socialItems.length > 0 && (
-                            <div className="sm-socials mt-auto pt-8 flex flex-col gap-3" aria-label="Social links">
-                                <h3 className="sm-socials-title m-0 text-base font-medium [color:var(--sm-accent,#ff0000)]">Socials</h3>
-                                <ul className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap" role="list">
-                                    {socialItems.map((s, i) => (
-                                        <li key={s.label + i} className="sm-socials-item">
-                                            <a
-                                                href={s.link}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="sm-socials-link text-[1.2rem] font-medium text-[#111] no-underline relative inline-block py-[2px] transition-[color,opacity] duration-300 ease-linear"
-                                            >
-                                                {s.label}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-                    </div>
-                </aside>
-            </div>
-
-            <style>{`
-.sm-scope .staggered-menu-wrapper { position: relative; width: 100%; height: 100%; z-index: 40; pointer-events: none; }
-.sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 2em; background: transparent; pointer-events: none; z-index: 20; }
-@media (max-width: 767px) {
-  .sm-scope .staggered-menu-header {
-    top: 14px;
-    left: 14px;
-    right: 14px;
-    width: auto;
-    padding: 0.6em 1.1em;
-    border-radius: 20px;
-    background: rgba(10, 10, 18, 0.65);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    pointer-events: auto;
-  }
-}
-.sm-scope .staggered-menu-header > * { pointer-events: auto; }
-.sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
-.sm-scope .sm-logo-img { display: block; height: 32px; width: auto; object-fit: contain; }
-.sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 0.3rem; background: transparent; border: none; cursor: pointer; color: #e9e9ef; font-weight: 500; line-height: 1; overflow: visible; }
-.sm-scope .sm-toggle:focus-visible { outline: 2px solid #ffffffaa; outline-offset: 4px; border-radius: 4px; }
-.sm-scope .sm-toggle-textWrap { position: relative; margin-right: 0.5em; display: inline-block; height: 1em; overflow: hidden; white-space: nowrap; width: var(--sm-toggle-width, auto); min-width: var(--sm-toggle-width, auto); }
-.sm-scope .sm-toggle-textInner { display: flex; flex-direction: column; line-height: 1; }
-.sm-scope .sm-toggle-line { display: block; height: 1em; line-height: 1; }
-
-.sm-scope .sm-icon {
-  position: relative;
-  width: 18px;
-  height: 13px;
-  flex: 0 0 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-.sm-scope .sm-icon-bar {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: currentColor;
-  border-radius: 2px;
-}
-.sm-scope .sm-line { display: none !important; }
-
-.sm-scope .staggered-menu-panel {
-  position: absolute; top: 0; right: 0;
-  width: clamp(280px, 86vw, 420px); height: 100%;
-  background:
-    radial-gradient(120% 60% at 100% 0%, rgba(124, 58, 237, 0.35), transparent 60%),
-    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
-    rgba(10, 10, 18, 0.55);
-  border-left: 1px solid rgba(255,255,255,0.14);
-  box-shadow:
-    inset 1px 0 0 rgba(255,255,255,0.06),
-    -20px 0 60px -20px rgba(0,0,0,0.5);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-  display: flex; flex-direction: column; padding: 6em 2em 2em 2em;
-  overflow-y: auto; z-index: 10;
-}
-.sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }
-
-.sm-scope .sm-prelayers { position: absolute; top: 0; right: 0; bottom: 0; width: clamp(280px, 86vw, 420px); pointer-events: none; z-index: 5; }
-.sm-scope [data-position='left'] .sm-prelayers { right: auto; left: 0; }
-.sm-scope .sm-prelayer { position: absolute; top: 0; right: 0; height: 100%; width: 100%; transform: translateX(0); }
-
-.sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
-.sm-scope .sm-panel-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.35rem; }
-.sm-scope .sm-panel-item {
-  position: relative; color: #f5f4fb; font-weight: 600; font-size: 3rem; cursor: pointer;
-  line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase;
-  transition: color 0.25s ease; display: inline-block; text-decoration: none; padding: 0.15em 1.6em 0.15em 0;
-  text-shadow: 0 1px 12px rgba(0,0,0,0.25);
-}
-.sm-scope .sm-panel-itemLabel { display: inline-block; will-change: transform; transform-origin: 50% 100%; }
-.sm-scope .sm-panel-item:hover,
-.sm-scope .sm-panel-item:focus-visible { color: var(--sm-accent, #c4b5fd); }
-.sm-scope .sm-panel-item::before {
-  content: ''; position: absolute; left: 0; bottom: 0.22em; height: 2px; width: 100%;
-  background: var(--sm-accent, #c4b5fd); transform: scaleX(0); transform-origin: left;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); opacity: 0.7;
-}
-.sm-scope .sm-panel-item:hover::before,
-.sm-scope .sm-panel-item:focus-visible::before { transform: scaleX(1); }
-
-.sm-scope .sm-panel-list[data-numbering] { counter-reset: smItem; }
-.sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after {
-  counter-increment: smItem; content: counter(smItem, decimal-leading-zero);
-  position: absolute; top: 0.3em; right: 0; font-size: 12px; font-weight: 500;
-  color: var(--sm-accent, #c4b5fd); letter-spacing: 0.04em; pointer-events: none; user-select: none;
-  opacity: var(--sm-num-opacity, 0);
-}
-
-.sm-scope .sm-socials { padding-top: 1.5rem; margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 0.6rem; }
-.sm-scope .sm-socials-title { margin: 0; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-.sm-scope .sm-socials-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: row; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
-.sm-scope .sm-socials-list .sm-socials-link { opacity: 1; transition: opacity 0.3s ease, color 0.3s ease; }
-.sm-scope .sm-socials-list:hover .sm-socials-link:not(:hover) { opacity: 0.35; }
-.sm-scope .sm-socials-list:focus-within .sm-socials-link:not(:focus-visible) { opacity: 0.35; }
-.sm-scope .sm-socials-link:hover,
-.sm-scope .sm-socials-link:focus-visible { opacity: 1; color: var(--sm-accent, #c4b5fd); }
-.sm-scope .sm-socials-link:focus-visible { outline: 2px solid var(--sm-accent, #c4b5fd); outline-offset: 3px; }
-.sm-scope .sm-socials-link { font-size: 0.95rem; font-weight: 500; color: rgba(255,255,255,0.75); text-decoration: none; position: relative; padding: 2px 0; display: inline-block; transition: color 0.3s ease, opacity 0.3s ease; }
-
-@media (max-width: 480px) { .sm-scope .sm-panel-item { font-size: 2.4rem; } }
-@media (max-width: 1024px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } }
-@media (max-width: 640px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } }
-      `}</style>
+  return (
+    <div
+      className={`sm-root ${isFixed ? "sm-fixed" : ""} ${className}`}
+      style={{
+        "--sm-accent": accentColor,
+        "--sm-menu-color": menuButtonColor,
+        "--sm-open-color": openMenuButtonColor,
+      }}
+    >
+      {/* Navbar */}
+      <header className="sm-header">
+        <div className="sm-logo">
+          {logoUrl && (
+            <Link to="/" onClick={handleLinkClick}>
+              <img src={logoUrl} alt={logoAlt} />
+            </Link>
+          )}
         </div>
-    );
+
+        <button
+          type="button"
+          className={`sm-toggle ${open ? "is-open" : ""}`}
+          onClick={toggleMenu}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="sm-navigation-panel"
+          style={{
+            color:
+              open && changeMenuColorOnOpen
+                ? openMenuButtonColor
+                : menuButtonColor,
+          }}
+        >
+          <span className="sm-toggle-label">
+            {open ? "CLOSE" : "MENU"}
+          </span>
+
+          <span className="sm-toggle-icon">
+            <span />
+            <span />
+          </span>
+        </button>
+      </header>
+
+      {/* Overlay */}
+      {open && (
+        <button
+          type="button"
+          className="sm-backdrop"
+          aria-label="Close navigation menu"
+          onClick={closeMenu}
+        />
+      )}
+
+      {/* Background Layers */}
+      <div
+        ref={prelayersRef}
+        className={`sm-prelayers ${isLeft ? "sm-prelayers-left" : ""}`}
+        aria-hidden="true"
+      >
+        <div className="sm-prelayer sm-prelayer-one" />
+        <div className="sm-prelayer sm-prelayer-two" />
+        <div className="sm-prelayer sm-prelayer-three" />
+      </div>
+
+      {/* Navigation Panel */}
+      <aside
+        ref={panelRef}
+        id="sm-navigation-panel"
+        className={`sm-panel ${isLeft ? "sm-panel-left" : ""}`}
+        aria-hidden={!open}
+        style={{
+          pointerEvents: open ? "auto" : "none",
+        }}
+      >
+        <div ref={contentRef} className="sm-panel-content">
+          <div className="sm-panel-header">
+            {logoUrl ? (
+              <Link
+                to="/"
+                className="sm-panel-logo"
+                onClick={handleLinkClick}
+                tabIndex={open ? 0 : -1}
+              >
+                <img src={logoUrl} alt={logoAlt} />
+              </Link>
+            ) : (
+              <span className="sm-panel-label">NAVIGATION</span>
+            )}
+
+            <span className="sm-panel-index">MENU / 01</span>
+          </div>
+
+          <nav className="sm-navigation" aria-label="Main navigation">
+            <ul ref={menuItemsRef} className="sm-menu-list">
+              {items.map((item, index) => {
+                const label =
+                  item.label || item.name || `Link ${index + 1}`;
+
+                const href =
+                  item.href || item.link || item.path || "/";
+
+                const isExternal =
+                  href.startsWith("http://") ||
+                  href.startsWith("https://");
+
+                return (
+                  <li
+                    className="sm-menu-item"
+                    key={`${label}-${index}`}
+                  >
+                    {isExternal ? (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={handleLinkClick}
+                        tabIndex={open ? 0 : -1}
+                      >
+                        <span className="sm-item-number">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+
+                        <span className="sm-item-label">{label}</span>
+                        <span className="sm-item-arrow">↗</span>
+                      </a>
+                    ) : (
+                      <Link
+                        to={href}
+                        onClick={handleLinkClick}
+                        tabIndex={open ? 0 : -1}
+                      >
+                        <span className="sm-item-number">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+
+                        <span className="sm-item-label">{label}</span>
+                        <span className="sm-item-arrow">↗</span>
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          <div className="sm-panel-footer">
+            <span>LET'S BUILD SOMETHING GREAT</span>
+            <span className="sm-footer-dot" />
+          </div>
+        </div>
+      </aside>
+
+      {/* CSS */}
+      <style>{`
+        .sm-root {
+          --sm-accent: #EF4444;
+          --sm-panel-bg: #0A0A12;
+          --sm-text: #FFFFFF;
+          --sm-muted: #9999A8;
+          --sm-border: rgba(255,255,255,0.12);
+          font-family: inherit;
+        }
+
+        .sm-fixed {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          pointer-events: none;
+        }
+
+        /* NAVBAR BACKGROUND */
+        .sm-header {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 80px;
+          padding: 0 5%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          background: rgba(10,10,18,0.94);
+          backdrop-filter: blur(20px) saturate(150%);
+          -webkit-backdrop-filter: blur(20px) saturate(150%);
+
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+          box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+
+          pointer-events: auto;
+          z-index: 10003;
+          box-sizing: border-box;
+        }
+
+        .sm-logo img,
+        .sm-panel-logo img {
+          display: block;
+          max-width: 150px;
+          max-height: 44px;
+          object-fit: contain;
+        }
+
+        .sm-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 14px;
+          padding: 12px 18px;
+          border: 1px solid rgba(255,255,255,0.16);
+          border-radius: 999px;
+          background: rgba(255,255,255,0.04);
+          backdrop-filter: blur(12px);
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          cursor: pointer;
+          transition: background 0.25s ease, border-color 0.25s ease;
+        }
+
+        .sm-toggle:hover {
+          background: var(--sm-accent);
+          border-color: var(--sm-accent);
+        }
+
+        .sm-toggle-label {
+          line-height: 1;
+        }
+
+        .sm-toggle-icon {
+          width: 20px;
+          height: 16px;
+          position: relative;
+          display: inline-block;
+        }
+
+        .sm-toggle-icon span {
+          position: absolute;
+          left: 0;
+          width: 20px;
+          height: 2px;
+          border-radius: 2px;
+          background: currentColor;
+          transition: transform 0.3s ease, top 0.3s ease;
+        }
+
+        .sm-toggle-icon span:first-child {
+          top: 4px;
+        }
+
+        .sm-toggle-icon span:last-child {
+          top: 11px;
+        }
+
+        .sm-toggle.is-open .sm-toggle-icon span:first-child {
+          top: 8px;
+          transform: rotate(45deg);
+        }
+
+        .sm-toggle.is-open .sm-toggle-icon span:last-child {
+          top: 8px;
+          transform: rotate(-45deg);
+        }
+
+        .sm-backdrop {
+          position: fixed;
+          inset: 0;
+          z-index: 10000;
+          border: 0;
+          background: rgba(0,0,0,0.65);
+          backdrop-filter: blur(3px);
+          cursor: default;
+          pointer-events: auto;
+        }
+
+        .sm-prelayers {
+          position: absolute;
+          inset: 0;
+          z-index: 10001;
+          overflow: hidden;
+          pointer-events: none;
+        }
+
+        .sm-prelayer {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: min(620px, 100%);
+          height: 100%;
+          border-radius: 28px 0 0 28px;
+        }
+
+        .sm-prelayer-one {
+          background: #450A0A;
+        }
+
+        .sm-prelayer-two {
+          background: #991B1B;
+        }
+
+        .sm-prelayer-three {
+          background: var(--sm-accent);
+        }
+
+        .sm-prelayers-left .sm-prelayer {
+          right: auto;
+          left: 0;
+          border-radius: 0 28px 28px 0;
+        }
+
+        .sm-panel {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: min(620px, 100%);
+          height: 100%;
+          z-index: 10002;
+          overflow-y: auto;
+          background:
+            radial-gradient(
+              120% 60% at 100% 0%,
+              rgba(239,68,68,0.3),
+              transparent 60%
+            ),
+            linear-gradient(
+              180deg,
+              rgba(255,255,255,0.06),
+              rgba(255,255,255,0.02)
+            ),
+            #0A0A12;
+          color: var(--sm-text);
+          border-left: 1px solid rgba(255,255,255,0.08);
+          border-radius: 28px 0 0 28px;
+          will-change: transform;
+          pointer-events: none;
+        }
+
+        .sm-panel-left {
+          right: auto;
+          left: 0;
+          border-left: 0;
+          border-right: 1px solid rgba(255,255,255,0.08);
+          border-radius: 0 28px 28px 0;
+        }
+
+        .sm-panel-content {
+          min-height: 100%;
+          display: flex;
+          flex-direction: column;
+          padding: 110px 48px 32px;
+          box-sizing: border-box;
+        }
+
+        .sm-panel-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 20px;
+          padding-bottom: 26px;
+          border-bottom: 1px solid var(--sm-border);
+        }
+
+        .sm-panel-label,
+        .sm-panel-index {
+          color: var(--sm-muted);
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 2px;
+        }
+
+        .sm-navigation {
+          flex: 1;
+          padding: 28px 0;
+        }
+
+        .sm-menu-list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        .sm-menu-item {
+          margin: 0;
+          padding: 0;
+          border-bottom: 1px solid var(--sm-border);
+        }
+
+        .sm-menu-item a {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          padding: 21px 0;
+          color: var(--sm-text);
+          text-decoration: none;
+          transition: color 0.25s ease;
+        }
+
+        .sm-menu-item a:hover {
+          color: var(--sm-accent);
+        }
+
+        .sm-item-number {
+          min-width: 24px;
+          color: var(--sm-accent);
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        .sm-item-label {
+          flex: 1;
+          font-size: clamp(23px, 3.5vw, 34px);
+          font-weight: 700;
+          letter-spacing: -1px;
+          line-height: 1.2;
+          transition: transform 0.25s ease;
+        }
+
+        .sm-menu-item a:hover .sm-item-label {
+          transform: translateX(6px);
+        }
+
+        .sm-item-arrow {
+          font-size: 22px;
+          color: var(--sm-muted);
+          transition: color 0.25s ease, transform 0.25s ease;
+        }
+
+        .sm-menu-item a:hover .sm-item-arrow {
+          color: var(--sm-accent);
+          transform: translate(3px, -3px);
+        }
+
+        .sm-panel-footer {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding-top: 24px;
+          border-top: 1px solid var(--sm-border);
+          color: var(--sm-muted);
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 1.6px;
+        }
+
+        .sm-footer-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: var(--sm-accent);
+          box-shadow: 0 0 12px var(--sm-accent);
+        }
+
+        @media (max-width: 640px) {
+          .sm-header {
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            height: 64px;
+            width: auto;
+            padding: 0 16px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 18px;
+            background: rgba(10,10,18,0.94);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+          }
+
+          .sm-toggle {
+            gap: 10px;
+            padding: 10px 13px;
+            font-size: 11px;
+          }
+
+          .sm-panel,
+          .sm-prelayer {
+            width: 100%;
+            border-radius: 0;
+          }
+
+          .sm-panel-left,
+          .sm-prelayers-left .sm-prelayer {
+            border-radius: 0;
+          }
+
+          .sm-panel-content {
+            padding: 100px 24px 26px;
+          }
+
+          .sm-panel-header {
+            padding-bottom: 20px;
+          }
+
+          .sm-navigation {
+            padding: 20px 0;
+          }
+
+          .sm-menu-item a {
+            gap: 14px;
+            padding: 19px 0;
+          }
+
+          .sm-item-label {
+            font-size: clamp(22px, 6vw, 30px);
+          }
+
+          .sm-item-arrow {
+            font-size: 20px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .sm-toggle,
+          .sm-toggle-icon span,
+          .sm-menu-item a,
+          .sm-item-label,
+          .sm-item-arrow {
+            transition: none !important;
+          }
+        }
+      `}</style>
+    </div>
+  );
 };
 
 export default StaggeredMenu;

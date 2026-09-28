@@ -1,165 +1,285 @@
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
-import {
-  Rocket, Share2, Globe, Code2, GraduationCap, ShoppingBag, ArrowUpRight, ChevronDown,
-} from 'lucide-react'
+import { Rocket, Share2, Globe, Code2 } from 'lucide-react'
+
 import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
-import CtaBanner from '../components/CtaBanner'
-import { services, faqs } from '../data/siteData'
 
-const iconMap = { Rocket, Share2, Globe, Code2, GraduationCap, ShoppingBag }
+/* =========================================================
+   BRAND MASTER SERVICES DATA
+========================================================= */
+
+const brandMasterServices = [
+  {
+    n: '01',
+    title: 'Brand Strategy',
+    tagline: 'Build a brand with direction.',
+    desc: 'Define a clear brand foundation that connects your vision, audience, positioning and long-term business goals.',
+    features: [
+      'Brand Positioning',
+      'Market Research',
+      'Target Audience',
+      'Brand Direction',
+    ],
+    icon: Rocket,
+  },
+  {
+    n: '02',
+    title: 'Brand Identity',
+    tagline: 'Make your brand instantly recognizable.',
+    desc: 'Create a distinctive visual identity that communicates who you are and gives your brand a consistent presence everywhere.',
+    features: [
+      'Logo Design',
+      'Color System',
+      'Typography',
+      'Brand Guidelines',
+    ],
+    icon: Share2,
+  },
+  {
+    n: '03',
+    title: 'Digital Presence',
+    tagline: 'Turn your brand into a digital experience.',
+    desc: 'Design a premium digital presence that builds trust, communicates value and turns visitors into meaningful opportunities.',
+    features: [
+      'Website Design',
+      'Landing Pages',
+      'UI / UX',
+      'Responsive Design',
+    ],
+    icon: Globe,
+  },
+  {
+    n: '04',
+    title: 'Brand Growth',
+    tagline: 'Turn attention into business growth.',
+    desc: 'Build systems and creative assets that help your brand stay consistent, visible and relevant as your business grows.',
+    features: [
+      'Social Media',
+      'Campaign Design',
+      'Creative Strategy',
+      'Growth Assets',
+    ],
+    icon: Code2,
+  },
+]
+
+/* =========================================================
+   MAIN SERVICES PAGE
+========================================================= */
 
 export default function Services() {
   return (
     <PageTransition>
       <Hero />
       <ServiceList />
-      <Faq />
-      <CtaBanner />
     </PageTransition>
   )
 }
 
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
 function Hero() {
   return (
-    <section className="relative pt-24 sm:pt-40 pb-20 px-6 bg-[#0a0a12] overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(124,58,237,0.3),transparent_55%)]" />
-      <Reveal className="relative max-w-3xl mx-auto text-center">
+    <section className="relative overflow-hidden bg-[#0a0a12] px-6 pb-16 pt-28 sm:pb-20 sm:pt-40">
+
+      {/* Background Glow */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(220,38,38,0.22),transparent_58%)]" />
+
+      {/* Secondary Glow */}
+      <div className="pointer-events-none absolute -top-32 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-red-500/[0.06] blur-[120px]" />
+
+      <Reveal className="relative z-10 mx-auto max-w-4xl text-center">
+
         <SectionHeading
           eyebrow="Services"
-          title="Everything a modern brand needs,"
-          accent="crafted in-house"
+          title="Everything your brand needs,"
+          accent="under one roof."
           dark
         />
-        <p className="mt-5 text-white/60 text-[15px] max-w-lg mx-auto leading-relaxed">
-          One studio. Six deep capabilities. Zero handoffs to agencies of agencies.
+
+        <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-white/60 sm:text-base">
+          Brand Master helps ambitious businesses build a powerful brand
+          identity, create a premium digital presence and develop the
+          creative systems they need to grow with confidence.
         </p>
+
       </Reveal>
     </section>
   )
 }
 
+/* =========================================================
+   SERVICES GRID — 4 COLUMNS
+========================================================= */
+
 function ServiceList() {
   return (
-    <section>
-      {services.map((s, i) => {
-        const Icon = iconMap[s.icon]
-        const dark = i % 2 === 1
-        return (
-          <div
-            key={s.n}
-            className={`py-20 sm:py-24 px-6 ${i === 0 ? 'pt-24 sm:pt-32' : ''} ${dark ? 'bg-[#0a0a12]' : 'bg-white'}`}
-          >
-            <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.3fr_1.3fr] gap-12 items-center">
-              <Reveal className={i % 2 === 0 ? 'lg:order-2' : ''}>
-                <p className={`text-xs font-semibold mb-3 flex items-center gap-2 ${dark ? 'text-violet-400' : 'text-violet-500'}`}>
-                  <span className="w-1.5 h-1.5 rounded-full bg-current shrink-0" /> Service · {s.n}
-                </p>
-                <h2 className={`text-3xl sm:text-4xl font-bold tracking-tight mb-3 ${dark ? 'text-white' : 'text-[#0a0a12]'}`}>
-                  {s.title}
-                </h2>
-                <p className={`text-[15px] font-medium mb-2 ${dark ? 'text-violet-300' : 'text-violet-600'}`}>
-                  {s.tagline}
-                </p>
-                <p className={`text-[14px] leading-relaxed mb-6 max-w-md ${dark ? 'text-white/55' : 'text-[#0a0a12]/60'}`}>
-                  {s.desc}
-                </p>
+    <section className="relative overflow-hidden bg-[#0a0a12] px-6 pb-20 sm:pb-28">
 
-                <div className="grid grid-cols-2 gap-x-6 gap-y-2 mb-6 max-w-sm">
-                  {s.features.map((f) => (
-                    <p key={f} className={`text-[13px] flex items-center gap-1.5 ${dark ? 'text-white/70' : 'text-[#0a0a12]/70'}`}>
-                      <span className="w-1 h-1 rounded-full bg-violet-500 shrink-0" /> {f}
-                    </p>
-                  ))}
-                </div>
+      <div className="relative mx-auto max-w-7xl">
 
-                <div className="flex flex-wrap gap-2 mb-7">
-                  {s.stack.map((t) => (
-                    <span
-                      key={t}
-                      className={`text-[11px] px-2.5 py-1 rounded-full border ${dark ? 'border-white/15 text-white/50' : 'border-[#0a0a12]/15 text-[#0a0a12]/50'
-                        }`}
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
-                <div className="flex items-center gap-6">
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white text-[13px] font-semibold px-5 py-2.5 hover:opacity- transition-opacity"
-                  >
-                    Start project <ArrowUpRight size={13} />
-                  </Link>
-                </div>
-              </Reveal>
+          {brandMasterServices.map((service, index) => {
+            const Icon = service.icon
 
-              <Reveal delay={0.1} className={`w-full ${i % 2 === 0 ? 'lg:order-1' : ''}`}>
-                <div
-                  className="w-full max-w-[480px] mx-auto aspect-square rounded-3xl border border-white/10 flex flex-col justify-between p-8 relative overflow-hidden bg-cover bg-center"
-                  style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), url(${s.image})` }}
+            return (
+              <Reveal
+                key={service.n}
+                delay={index * 0.07}
+                className="h-full"
+              >
+
+                <article
+                  className="
+                    group
+                    relative
+                    flex
+                    h-full
+                    min-h-[390px]
+                    flex-col
+                    overflow-hidden
+                    rounded-2xl
+                    border
+                    border-white/10
+                    bg-white/[0.025]
+                    p-6
+                    transition-all
+                    duration-500
+                    hover:-translate-y-1
+                    hover:border-red-500/40
+                    hover:bg-white/[0.045]
+                    hover:shadow-[0_25px_70px_rgba(220,38,38,0.10)]
+                  "
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-black/10 to-black/10" />
 
-                  <span className="relative z-10 w-11 h-11 rounded-xl flex items-center justify-center bg-white/10 backdrop-blur-sm">
-                    <Icon size={18} className="text-white" />
-                  </span>
-                  <div className="relative z-10">
-                    <p className="text-6xl font-bold mb-1 text-white">{s.n}</p>
-                    <p className="text-[11px] uppercase tracking-wide text-white/70">
-                      {s.title}
-                    </p>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        )
-      })}
-    </section>
-  )
-}
-
-function Faq() {
-  const [openIndex, setOpenIndex] = useState(0)
-  return (
-    <section className="bg-white pt-10 sm:pt-24 py-24 px-6">
-      <div className="max-w-3xl mx-auto">
-        <Reveal>
-          <SectionHeading eyebrow="FAQ" title="Questions," accent="answered" />
-        </Reveal>
-        <div className="mt-12 space-y-3">
-          {faqs.map((f, i) => (
-            <Reveal key={f.q} delay={i * 0.04}>
-              <div className="rounded-xl border border-[#0a0a12]/10 overflow-hidden">
-                <button
-                  className="w-full flex items-center justify-between px-5 py-4 text-left"
-                  onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
-                  aria-expanded={openIndex === i}
-                >
-                  <span className="text-[14px] font-medium text-[#0a0a12]">{f.q}</span>
-                  <ChevronDown
-                    size={16}
-                    className={`text-[#0a0a12]/40 transition-transform duration-300 shrink-0 ml-4 ${openIndex === i ? 'rotate-180' : ''
-                      }`}
+                  {/* Hover Glow */}
+                  <div
+                    className="
+                      pointer-events-none
+                      absolute
+                      -right-16
+                      -top-16
+                      h-40
+                      w-40
+                      rounded-full
+                      bg-red-500/0
+                      blur-[55px]
+                      transition-all
+                      duration-500
+                      group-hover:bg-red-500/20
+                    "
                   />
-                </button>
-                <div
-                  className={`grid transition-all duration-300 ease-out ${openIndex === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-100'
-                    }`}
-                >
-                  <div className="overflow-hidden">
-                    <p className="px-5 pb-4 text-[13.5px] text-[#0a0a12]/55 leading-relaxed">{f.a}</p>
+
+                  {/* Top Shine */}
+                  <div
+                    className="
+                      pointer-events-none
+                      absolute
+                      inset-x-0
+                      top-0
+                      h-px
+                      bg-gradient-to-r
+                      from-transparent
+                      via-red-400/60
+                      to-transparent
+                      opacity-0
+                      transition-opacity
+                      duration-500
+                      group-hover:opacity-100
+                    "
+                  />
+
+                  <div className="relative z-10 flex h-full flex-col">
+
+                    {/* Number + Icon */}
+                    <div className="mb-8 flex items-center justify-between">
+
+                      <span className="text-[11px] font-semibold tracking-[0.2em] text-red-400">
+                        SERVICE {service.n}
+                      </span>
+
+                      <div
+                        className="
+                          flex
+                          h-10
+                          w-10
+                          items-center
+                          justify-center
+                          rounded-xl
+                          border
+                          border-red-400/20
+                          bg-red-500/10
+                          transition-all
+                          duration-300
+                          group-hover:border-red-400/40
+                          group-hover:bg-red-500/20
+                        "
+                      >
+                        <Icon
+                          size={18}
+                          strokeWidth={1.8}
+                          className="
+                            text-red-400
+                            transition-transform
+                            duration-300
+                            group-hover:scale-110
+                          "
+                        />
+                      </div>
+
+                    </div>
+
+                    {/* Title */}
+                    <h2 className="mb-3 text-2xl font-bold tracking-tight text-white">
+                      {service.title}
+                    </h2>
+
+                    {/* Tagline */}
+                    <p className="mb-4 text-[13px] font-medium text-red-300">
+                      {service.tagline}
+                    </p>
+
+                    {/* Description */}
+                    <p className="text-[13.5px] leading-relaxed text-white/50">
+                      {service.desc}
+                    </p>
+
+                    {/* Features */}
+                    <div className="mt-auto pt-8">
+
+                      <div className="mb-5 h-px bg-white/10" />
+
+                      <div className="space-y-2.5">
+
+                        {service.features.map((feature) => (
+                          <div
+                            key={feature}
+                            className="flex items-center gap-2 text-[12px] text-white/65"
+                          >
+                            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
+                            {feature}
+                          </div>
+                        ))}
+
+                      </div>
+
+                    </div>
+
                   </div>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+
+                </article>
+
+              </Reveal>
+            )
+          })}
+
         </div>
+
       </div>
+
     </section>
   )
 }

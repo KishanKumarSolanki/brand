@@ -1,39 +1,8 @@
-import { useState } from 'react'
-import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
-import CtaBanner from '../components/CtaBanner'
-import { timeline, teamMembers } from '../data/siteData'
-import { Rocket, Globe, Award, ChevronDown } from 'lucide-react'
+import { Rocket, Globe, Award } from 'lucide-react'
 
-export default function About() {
-  return (
-    <PageTransition>
-      <Hero />
-      <MissionVisionBelief />
-      <Timeline />
-      <Team />
-      <CtaBanner />
-    </PageTransition>
-  )
-}
-
-function Hero() {
-  return (
-    <section className="relative pt-24 sm:pt-40 px-6 bg-[#0a0a12] overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(124,58,237,0.3),transparent_55%)]" />
-      <Reveal className="relative max-w-3xl mx-auto text-center">
-        <SectionHeading eyebrow="About" title="We're a studio for" accent="ambitious brands" dark />
-        <p className="mt-5 text-white/60 text-[15px] max-w-xl mx-auto leading-relaxed">
-          A team  that treats every project like it's our own company. We ship
-          faster, care harder, and design with obsession.
-        </p>
-      </Reveal>
-    </section>
-  )
-}
-
-function MissionVisionBelief() {
+function About() {
   const items = [
     {
       title: 'Our Mission',
@@ -51,103 +20,212 @@ function MissionVisionBelief() {
       icon: Award,
     },
   ]
-  return (
-    <section className="bg-[#0a0a12] py-20 sm:py-24 px-6">
-      <div className="max-w-6xl mx-auto grid sm:grid-cols-3 gap-5">
-        {items.map((it, i) => {
-          const Icon = it.icon
-          return (
-            <Reveal key={it.title} delay={i * 0.08}>
-              <div className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-7 h-full overflow-hidden transition-all duration-300 hover:border-violet-500/40 hover:bg-white/[0.04]">
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-violet-500/0 group-hover:bg-violet-500/20 rounded-full blur-[40px] transition-all duration-500" />
 
-                <div className="relative">
-                  <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 border border-white/10 mb-5">
-                    <Icon size={19} className="text-violet-300" />
-                  </span>
-                  <h3 className="text-lg font-bold text-white mb-2">{it.title}</h3>
-                  <p className="text-[14px] text-white/55 leading-relaxed">{it.desc}</p>
-                </div>
-              </div>
-            </Reveal>
-          )
-        })}
-      </div>
-    </section>
-  )
-}
-
-function Timeline() {
   return (
-    <section className="bg-[#0a0a12] pt-1 sm:pt-24 py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <SectionHeading eyebrow="Timeline" title="The" accent="journey" align="left" dark />
+    <section
+      id="about"
+      className="relative overflow-hidden bg-white px-6 py-16 sm:py-20 lg:py-24"
+    >
+      {/* Background Glow */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(220,38,38,0.04),transparent_55%)]" />
+
+      {/* Bottom Subtle Glow */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-40
+          left-1/2
+          h-[400px]
+          w-[600px]
+          -translate-x-1/2
+          rounded-full
+          bg-red-500/[0.06]
+          blur-[120px]
+        "
+      />
+
+      {/* Content */}
+      <div className="relative z-10 mx-auto max-w-7xl">
+
+        {/* Section Heading */}
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <SectionHeading
+            eyebrow="About"
+            title="We're a studio for"
+            accent="ambitious brands"
+          />
+
+          <p
+            className="
+              mx-auto
+              mt-5
+              max-w-xl
+              text-[15px]
+              leading-relaxed
+              text-gray-700
+              sm:text-base
+            "
+          >
+            A team that treats every project like it's our own company.
+            We ship faster, care harder, and design with obsession.
+          </p>
         </Reveal>
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {timeline.map((t, i) => (
-            <Reveal key={t.year} delay={i * 0.07}>
-              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 h-full">
-                <p className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent mb-2">
-                  {t.year}
-                </p>
-                <h3 className="text-[15px] font-semibold text-white mb-1.5">{t.title}</h3>
-                <p className="text-[13px] text-white/50 leading-relaxed">{t.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
 
-function Team() {
-  const [showAll, setShowAll] = useState(false)
-  const INITIAL_COUNT = 4
-  const visibleMembers = showAll ? teamMembers : teamMembers.slice(0, INITIAL_COUNT)
-  const hasMore = teamMembers.length > INITIAL_COUNT
+        {/* Cards */}
+        <div
+          className="
+            relative
+            mx-auto
+            mt-12
+            grid
+            max-w-6xl
+            grid-cols-1
+            gap-5
+            sm:mt-16
+            sm:grid-cols-2
+            lg:grid-cols-3
+          "
+        >
+          {items.map((item, index) => {
+            const Icon = item.icon
 
-  return (
-    <section className="bg-white pt-10 sm:pt-24 py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <SectionHeading eyebrow="Team" title="Meet the" accent="people" align="left" />
-        </Reveal>
-        <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {visibleMembers.map((m, i) => (
-            <Reveal key={m.name} delay={i * 0.07}>
-              <div>
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden mb-4 bg-[#0a0a12]/5">
-                  <img
-                    src={m.img}
-                    alt={m.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            return (
+              <Reveal
+                key={item.title}
+                delay={index * 0.08}
+                className="h-full"
+              >
+                <article
+                  className="
+                    group
+                    relative
+                    h-full
+                    min-h-[220px]
+                    overflow-hidden
+                    rounded-2xl
+                    border
+                    border-gray-200
+                    bg-white
+                    p-7
+                    transition-all
+                    duration-500
+                    hover:-translate-y-1
+                    hover:border-red-300
+                    hover:bg-red-50/30
+                    hover:shadow-[0_20px_60px_rgba(220,38,38,0.10)]
+                  "
+                >
+                  {/* Card Glow */}
+                  <div
+                    className="
+                      pointer-events-none
+                      absolute
+                      -right-16
+                      -top-16
+                      h-40
+                      w-40
+                      rounded-full
+                      bg-red-500/0
+                      blur-[50px]
+                      transition-all
+                      duration-500
+                      group-hover:bg-red-500/10
+                    "
                   />
-                </div>
-                <p className="font-semibold text-[#0a0a12] text-[15px]">{m.name}</p>
-                <p className="text-[13px] text-[#0a0a12]/50">{m.role}</p>
-              </div>
-            </Reveal>
-          ))}
+
+                  {/* Top Shine */}
+                  <div
+                    className="
+                      pointer-events-none
+                      absolute
+                      inset-x-0
+                      top-0
+                      h-px
+                      bg-gradient-to-r
+                      from-transparent
+                      via-red-400/30
+                      to-transparent
+                      opacity-0
+                      transition-opacity
+                      duration-500
+                      group-hover:opacity-100
+                    "
+                  />
+
+                  <div className="relative z-10">
+
+                    {/* Icon */}
+                    <div
+                      className="
+                        mb-5
+                        inline-flex
+                        h-11
+                        w-11
+                        items-center
+                        justify-center
+                        rounded-xl
+                        border
+                        border-red-200
+                        bg-gradient-to-br
+                        from-red-50
+                        to-rose-100
+                        transition-all
+                        duration-300
+                        group-hover:border-red-300
+                        group-hover:from-red-100
+                        group-hover:to-rose-100
+                      "
+                    >
+                      <Icon
+                        size={19}
+                        strokeWidth={1.8}
+                        className="
+                          text-red-600
+                          transition-transform
+                          duration-300
+                          group-hover:scale-110
+                        "
+                      />
+                    </div>
+
+                    {/* Title */}
+                    <h3
+                      className="
+                        mb-2
+                        text-lg
+                        font-bold
+                        tracking-tight
+                        text-black
+                      "
+                    >
+                      {item.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p
+                      className="
+                        text-[14px]
+                        leading-relaxed
+                        text-gray-700
+                        transition-colors
+                        duration-300
+                        group-hover:text-gray-900
+                      "
+                    >
+                      {item.desc}
+                    </p>
+
+                  </div>
+                </article>
+              </Reveal>
+            )
+          })}
         </div>
 
-        {hasMore && (
-          <div className="mt-10 flex justify-center">
-            <button
-              onClick={() => setShowAll((prev) => !prev)}
-              className="group inline-flex items-center gap-2 rounded-full border border-[#0a0a12]/15 px-6 py-3 text-[14px] font-semibold text-[#0a0a12] transition-all duration-300 hover:border-violet-500/40 hover:bg-violet-500/5"
-            >
-              {showAll ? 'Show less' : 'Show all'}
-              <ChevronDown
-                size={16}
-                className={`transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}
-              />
-            </button>
-          </div>
-        )}
       </div>
     </section>
   )
 }
+
+export default About

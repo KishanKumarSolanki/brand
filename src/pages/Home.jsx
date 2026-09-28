@@ -21,6 +21,8 @@ import ProfileCard from '../animations/ProfileCard'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useScrollPin } from '../data/useScrollPin'
+import About from './About'
+import Services from './Services'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -35,15 +37,50 @@ const statIconMap = [Users, Award, TrendingUp, Headphones]
 export default function Home() {
   return (
     <PageTransition>
-      <Hero />
-      {/* <TrustedBy /> */}
-      <Capabilities />
-      {/* <Difference /> */}
-      <Process />
-      <FeaturedWork />
-      <TestimonialsSection />
-      <Faq />
-      <CtaBanner />
+      {/* Home / Hero */}
+      <div id="home" className="scroll-mt-24">
+        <Hero />
+      </div>
+
+      {/* Capabilities */}
+      <div id="capabilities" className="scroll-mt-24">
+        <Capabilities />
+      </div>
+
+      {/* Services */}
+      <div id="services" className="scroll-mt-24">
+        <Services />
+      </div>
+
+      {/* Process */}
+      <div id="process" className="scroll-mt-24">
+        <Process />
+      </div>
+
+      {/* Portfolio */}
+      <div id="portfolio" className="scroll-mt-24">
+        <FeaturedWork />
+      </div>
+
+      {/* About */}
+      <div id="about" className="scroll-mt-24">
+        <About />
+      </div>
+
+      {/* Testimonials */}
+      <div id="testimonials" className="scroll-mt-24">
+        <TestimonialsSection />
+      </div>
+
+      {/* FAQ */}
+      <div id="faq" className="scroll-mt-24">
+        <Faq />
+      </div>
+
+      {/* Contact */}
+      <div id="contact" className="scroll-mt-24">
+        <CtaBanner />
+      </div>
     </PageTransition>
   )
 }

@@ -1,58 +1,110 @@
+
 import { Link } from 'react-router-dom'
-import { Instagram, Youtube } from 'lucide-react'
-import { siteConfig,footerColumns, socialLinks } from '../data/siteData'
-// import cc from '../assets/webp/cc.webp'
+import { Instagram, Youtube, ArrowUpRight, ArrowRight } from 'lucide-react'
+import { siteConfig, footerColumns, socialLinks } from '../data/siteData'
 import Brand from '../assets/Brands.png'
-// Only these two platforms are shown in the footer.
+
 const socialIconMap = {
   Instagram,
   YouTube: Youtube,
 }
+
+// Footer links ko Home page ke sections se connect karega
+const getFooterLink = (to) => {
+  if (!to) return '/'
+
+  // Already a full route or external link
+  if (to.startsWith('http') || to.startsWith('mailto:') || to.startsWith('tel:')) {
+    return to
+  }
+
+  // Hash links ko Home page ke saath connect karo
+  if (to.startsWith('#')) {
+    return `/${to}`
+  }
+
+  // Home page section links
+  if (to.startsWith('/#')) {
+    return to
+  }
+
+  return to
+}
+
 export default function Footer() {
   return (
-    <footer id="footer" className="relative bg-[#0a0a12] overflow-hidden">
-      {/* Ambient glow, consistent with the dark sections elsewhere on the site */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full bg-violet-600/10 blur-[120px]" />
-      <div className="absolute inset-0 border-t border-white/10" />
+    <footer
+      id="footer"
+      className="relative overflow-hidden bg-[#08080d] text-white"
+    >
+      {/* Background Glow */}
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-[350px] w-[700px] -translate-x-1/2 rounded-full bg-red-600/[0.08] blur-[140px]" />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12">
-          <div>
-            <Link to="/" className="flex items-center gap-2 mb-6">
+      <div className="pointer-events-none absolute inset-0 border-t border-white/[0.08]" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-8 pt-14 sm:pt-20 lg:px-8">
+        {/* Main Footer */}
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-10">
+          {/* Brand Column */}
+          <div className="max-w-md">
+            <Link to="/" className="mb-6 inline-flex items-center gap-3">
               <img
                 src={Brand}
                 alt={`${siteConfig.name || 'Brand Master'} logo`}
-                className="w-8 h-8 object-contain"
+                className="h-10 w-10 object-contain"
               />
-              <span className="text-white font-semibold tracking-tight text-[16px]">
-                {siteConfig.name}.
+
+              <span className="text-lg font-bold tracking-tight text-white">
+                {siteConfig.name || 'Brand Master'}
+                <span className="text-red-500">.</span>
               </span>
             </Link>
-            <h3 className="text-[28px] leading-tight font-bold text-white mb-4">
-              Let's build something{' '}
-              <span className="bg-gradient-to-r from-red-400 to-rose-400 bg-clip-text text-transparent">
-                unforgettable
+
+            <h3 className="mb-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+              Let's build something
+              <br />
+              <span className="bg-gradient-to-r from-red-400 via-rose-400 to-red-500 bg-clip-text text-transparent">
+                unforgettable.
               </span>
-              .
             </h3>
-            <p className="text-white/50 text-sm mb-4">
-              Subscribe for the occasional insight — no spam, ever.
+
+            <p className="max-w-sm text-sm leading-7 text-white/55">
+              We help ambitious businesses build meaningful brands through
+              strategy, design, and digital experiences that make an impact.
             </p>
+
+            <Link
+              to="/#contact"
+              className="group mt-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-red-400/40 hover:bg-red-500/10"
+            >
+              Let's Talk
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </Link>
           </div>
 
+          {/* Navigation Columns */}
           {footerColumns.map((col) => (
             <div key={col.heading}>
-              <p className="text-[11px] font-semibold tracking-wider uppercase text-white/35 mb-4">
+              <p className="mb-6 text-xs font-bold uppercase tracking-[0.18em] text-white/40">
                 {col.heading}
               </p>
-              <ul className="space-y-3">
-                {col.links.map((l) => (
-                  <li key={l.label}>
+
+              <ul className="space-y-4">
+                {col.links.map((link) => (
+                  <li key={link.label}>
                     <Link
-                      to={l.to}
-                      className="text-sm text-white/60 hover:text-white transition-colors"
+                      to={getFooterLink(link.to)}
+                      className="group inline-flex items-center gap-1 text-sm text-white/60 transition-colors duration-300 hover:text-white"
                     >
-                      {l.label}
+                      {link.label}
+
+                      <ArrowUpRight
+                        size={13}
+                        className="opacity-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+                      />
                     </Link>
                   </li>
                 ))}
@@ -61,30 +113,43 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/40">
-            © {new Date().getFullYear()} {siteConfig.name}. Crafted with obsession.
-          </p>
-          <div className="flex items-center gap-3">
-            {socialLinks
-              .filter((s) => socialIconMap[s.label])
-              .map((s) => {
-                const Icon = socialIconMap[s.label]
-                return (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={s.label}
-                    className="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 hover:bg-white/5 transition-colors"
-                  >
-                    <Icon size={14} />
-                  </a>
-                )
-              })}
-          </div>
+        {/* Bottom Footer */}
+        <div className="mt-16 border-t border-white/10 pt-7 sm:mt-20">
+          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+            <p className="text-center text-xs leading-relaxed text-white/40 sm:text-left">
+              © {new Date().getFullYear()} {siteConfig.name || 'Brand Master'}.
+              All rights reserved.
+              <span className="mt-1 block text-white/30 sm:mt-0 sm:inline">
+                {' '}Crafted with obsession.
+              </span>
+            </p>
 
+            {/* Social Links */}
+            <div className="flex items-center gap-3">
+              {socialLinks
+                .filter((social) => socialIconMap[social.label])
+                .map((social) => {
+                  const Icon = socialIconMap[social.label]
+
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.label}
+                      className="group flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/55 transition-all duration-300 hover:-translate-y-1 hover:border-red-400/40 hover:bg-red-500/10 hover:text-white"
+                    >
+                      <Icon
+                        size={17}
+                        strokeWidth={1.7}
+                        className="transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </a>
+                  )
+                })}
+            </div>
+          </div>
         </div>
       </div>
     </footer>

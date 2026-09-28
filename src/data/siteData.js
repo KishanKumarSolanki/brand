@@ -46,11 +46,11 @@ export const siteConfig = {
 
 // Top nav + footer both read from this so links always match routes
 export const navLinks = [
-  { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Services', to: '/services' },
-  { label: 'Portfolio', to: '/portfolio' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Home', to: '/#home' },
+  { label: 'About', to: '/#about' },
+  { label: 'Services', to: '/#services' },
+  { label: 'Portfolio', to: '/#portfolio' },
+  { label: 'Contact', to: '/#contact' },
 ]
 
 export const socialLinks = [
@@ -62,9 +62,11 @@ export const footerColumns = [
   {
     heading: 'Company',
     links: [
-      { label: 'About', to: '/about' },
-      { label: 'Portfolio', to: '/portfolio' },
-      { label: 'Contact', to: '/contact' },
+      { label: 'Home', to: '/#home' },
+      { label: 'About', to: '/#about' },
+      { label: 'Services', to: '/#services' },
+      { label: 'Portfolio', to: '/#portfolio' },
+      { label: 'Contact', to: '/#contact' },
     ],
   },
   // {
@@ -250,3 +252,22 @@ export const values = [
 ]
 
 export const budgetOptions = ['< $5k', '5-10k', '10-25k', '25-50k', '50k+']
+
+
+export const aboutItems = [
+  {
+    title: 'Our Mission',
+    desc: 'To make premium design and engineering accessible to founders who care about craft.',
+    icon: 'Rocket',
+  },
+  {
+    title: 'Our Vision',
+    desc: 'A world where every ambitious brand looks and performs like a category leader.',
+    icon: 'Globe',
+  },
+  {
+    title: 'Our Belief',
+    desc: 'Great work happens at the intersection of taste, systems, and speed.',
+    icon: 'Award',
+  },
+]
