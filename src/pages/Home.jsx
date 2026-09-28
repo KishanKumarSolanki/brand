@@ -1275,98 +1275,760 @@ function FallbackVisual({ label }) {
 }
 function FeaturedWork() {
   const featured = portfolioItems.slice(0, 4)
+
   return (
-    <section className="relative z-20 bg-[#120000] pt-10 sm:pt-24 py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
+    <section
+      className="
+        relative
+        z-20
+        isolate
+        overflow-hidden
+        bg-[#220003]
+        px-5
+        pb-16
+        pt-16
+        sm:px-6
+        sm:pb-24
+        sm:pt-24
+        lg:pb-28
+        lg:pt-28
+      "
+    >
+
+      {/* =========================================
+          MAIN DEEP RED BACKGROUND
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-[radial-gradient(circle_at_75%_20%,#D61521_0%,#9C050C_30%,#500006_65%,#220003_100%)]
+        "
+      />
+
+      {/* =========================================
+          DARK OVERLAY
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-[linear-gradient(135deg,rgba(0,0,0,0.10)_0%,transparent_45%,rgba(0,0,0,0.25)_100%)]
+        "
+      />
+
+      {/* =========================================
+          TOP RED GLOW
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-[160px]
+          -top-[150px]
+          h-[500px]
+          w-[500px]
+          rounded-full
+          bg-[#D61521]/40
+          blur-[130px]
+        "
+      />
+
+      {/* =========================================
+          BOTTOM DARK GLOW
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-[220px]
+          left-1/2
+          h-[500px]
+          w-[800px]
+          -translate-x-1/2
+          rounded-full
+          bg-black/35
+          blur-[130px]
+        "
+      />
+
+      {/* =========================================
+          DIAGONAL SHINE
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-[-20%_-10%]
+          opacity-100
+          bg-[linear-gradient(135deg,transparent_45%,rgba(255,255,255,0.045)_45%,rgba(255,255,255,0.045)_56%,transparent_56%)]
+        "
+      />
+
+      {/* =========================================
+          DOT GRID
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          opacity-[0.055]
+          bg-[radial-gradient(circle,rgba(255,255,255,0.9)_1px,transparent_1px)]
+          bg-[length:28px_28px]
+        "
+        style={{
+          maskImage:
+            'radial-gradient(ellipse at center, black 0%, transparent 75%)',
+          WebkitMaskImage:
+            'radial-gradient(ellipse at center, black 0%, transparent 75%)',
+        }}
+      />
+
+      {/* =========================================
+          CONTENT
+      ========================================= */}
+
+      <div className="relative z-10 mx-auto w-full max-w-[1180px]">
+
+        {/* =========================================
+            SECTION HEADER
+        ========================================= */}
+
+        <div
+          className="
+            mb-10
+            flex
+            flex-wrap
+            items-end
+            justify-between
+            gap-5
+            sm:mb-12
+          "
+        >
+
           <Reveal>
-            <SectionHeading eyebrow="Selected work" title="Design that gives businesses" accent="a stronger presence" align="left" dark />
+            <SectionHeading
+              eyebrow="Selected Work"
+              title="Design that gives businesses"
+              accent="a stronger presence"
+              align="left"
+              dark
+            />
           </Reveal>
-          {/* <Reveal delay={0.1}>
-            <Link
-              to="/portfolio"
-              className="group inline-flex items-center gap-1.5 text-white/70 text-[13px] font-medium hover:text-white transition-colors"
-            >
-              View all
-              <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </Reveal> */}
+
         </div>
 
-        {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {/* =========================================
+            PORTFOLIO GRID
+        ========================================= */}
+
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
           {featured.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.08}>
+            <Reveal
+              key={p.title}
+              delay={i * 0.08}
+            >
+
               <Link
                 to="/portfolio"
-                className="group block relative rounded-2xl overflow-hidden aspect-[4/3] bg-[#120000]"
+                className="
+                  group
+                  relative
+                  block
+                  aspect-[4/3]
+                  overflow-hidden
+                  rounded-[24px]
+                  border
+                  border-white/10
+                  bg-[#120000]
+                  shadow-[0_20px_60px_rgba(0,0,0,0.25)]
+                  transition-all
+                  duration-500
+                  hover:-translate-y-1
+                  hover:border-white/20
+                  hover:shadow-[0_30px_80px_rgba(0,0,0,0.35)]
+                "
               >
+
+                {/* =====================================
+                    IMAGE
+                ===================================== */}
+
                 <img
                   src={p.img}
                   alt={p.title}
                   loading="lazy"
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  className="
+                    h-full
+                    w-full
+                    object-contain
+                    transition-transform
+                    duration-700
+                    ease-out
+                    group-hover:scale-[1.05]
+                  "
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/5 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-4 sm:p-5">
-                  <p className="inline-block text-[10px] sm:text-[10.5px] uppercase tracking-wide text-red-200 bg-white/10 backdrop-blur-sm rounded-full px-2.5 py-1 mb-2">
+
+                {/* =====================================
+                    DARK IMAGE OVERLAY
+                ===================================== */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-black/90
+                    via-black/20
+                    to-transparent
+                    opacity-90
+                  "
+                />
+
+                {/* =====================================
+                    RED HOVER GLOW
+                ===================================== */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    -bottom-24
+                    left-1/2
+                    h-48
+                    w-72
+                    -translate-x-1/2
+                    rounded-full
+                    bg-[#CF1B28]/0
+                    blur-[80px]
+                    transition-all
+                    duration-500
+                    group-hover:bg-[#CF1B28]/30
+                  "
+                />
+
+                {/* =====================================
+                    TOP SHINE
+                ===================================== */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    left-1/2
+                    top-0
+                    h-[2px]
+                    w-0
+                    -translate-x-1/2
+                    bg-gradient-to-r
+                    from-transparent
+                    via-[#FFD800]
+                    to-transparent
+                    transition-all
+                    duration-500
+                    group-hover:w-[65%]
+                  "
+                />
+
+                {/* =====================================
+                    CATEGORY
+                ===================================== */}
+
+                <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6">
+
+                  <span
+                    className="
+                      mb-2
+                      inline-flex
+                      rounded-full
+                      border
+                      border-white/15
+                      bg-black/25
+                      px-3
+                      py-1.5
+                      text-[10px]
+                      font-[800]
+                      uppercase
+                      tracking-[1.5px]
+                      text-[#FFD800]
+                      backdrop-blur-md
+                    "
+                  >
                     {p.category}
+                  </span>
+
+                  {/* =================================
+                      TITLE
+                  ================================= */}
+
+                  <p
+                    className="
+                      max-w-[85%]
+                      text-[18px]
+                      font-[900]
+                      leading-[1.15]
+                      tracking-[-0.3px]
+                      text-white
+                      sm:text-[21px]
+                    "
+                  >
+                    {p.title}
                   </p>
 
-                  <p className="text-white text-base font-semibold leading-snug">{p.title}</p>
                 </div>
-                <span className="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-white transition-all">
-                  <ArrowUpRight size={13} className="text-white group-hover:text-[#120000] transition-colors sm:w-[14px] sm:h-[14px]" />
+
+                {/* =====================================
+                    ARROW
+                ===================================== */}
+
+                <span
+                  className="
+                    absolute
+                    right-4
+                    top-4
+                    flex
+                    h-10
+                    w-10
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-white/15
+                    bg-black/25
+                    opacity-0
+                    backdrop-blur-md
+                    transition-all
+                    duration-300
+                    group-hover:translate-x-0
+                    group-hover:opacity-100
+                    sm:right-5
+                    sm:top-5
+                  "
+                >
+                  <ArrowUpRight
+                    size={16}
+                    strokeWidth={2.2}
+                    className="
+                      text-white
+                      transition-transform
+                      duration-300
+                      group-hover:translate-x-0.5
+                      group-hover:-translate-y-0.5
+                    "
+                  />
                 </span>
+
               </Link>
+
             </Reveal>
           ))}
-        </div> */}
+
+        </div>
+
+        {/* =========================================
+            BOTTOM BRAND LINE
+        ========================================= */}
+
+        <Reveal delay={0.35}>
+
+          <div className="mt-10 flex items-center gap-3 sm:mt-12">
+
+            <div className="h-[2px] w-10 bg-[#FFD800]" />
+
+            <span
+              className="
+                text-[10px]
+                font-[800]
+                uppercase
+                tracking-[3px]
+                text-white/45
+              "
+            >
+              Strategy meets creativity
+            </span>
+
+          </div>
+
+        </Reveal>
+
       </div>
+
+      {/* =========================================
+          BOTTOM FADE
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          bottom-0
+          left-0
+          right-0
+          h-24
+          bg-gradient-to-t
+          from-[#120000]/40
+          to-transparent
+        "
+      />
+
     </section>
   )
 }
 
 function Faq() {
   const [openIndex, setOpenIndex] = useState(0)
+
   return (
-    <section className="bg-[#120000] pt-10 sm:pt-24 py-24 px-6">
-      <div className="max-w-3xl mx-auto">
+    <section
+      className="
+        relative
+        overflow-hidden
+        bg-white
+        px-5
+        py-16
+        font-['Inter',Arial,Helvetica,sans-serif]
+        sm:px-6
+        sm:py-24
+        lg:py-28
+      "
+    >
+      {/* =========================================
+          BACKGROUND
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-[radial-gradient(ellipse_at_top,rgba(207,27,40,0.045),transparent_58%)]
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-[180px]
+          top-[10%]
+          h-[420px]
+          w-[420px]
+          rounded-full
+          bg-red-100/50
+          blur-[120px]
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -left-[180px]
+          bottom-[5%]
+          h-[400px]
+          w-[400px]
+          rounded-full
+          bg-red-50
+          blur-[110px]
+        "
+      />
+
+      {/* Subtle diagonal texture */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-[-20%]
+          opacity-50
+          bg-[linear-gradient(135deg,transparent_45%,rgba(207,27,40,0.018)_45%,rgba(207,27,40,0.018)_56%,transparent_56%)]
+        "
+      />
+
+      {/* =========================================
+          CONTENT
+      ========================================= */}
+
+      <div className="relative z-10 mx-auto w-full max-w-[900px]">
+
+        {/* Heading */}
         <Reveal>
-          <SectionHeading eyebrow="FAQ" title="Questions," accent="answered" dark />
+          <div className="text-center">
+            <SectionHeading
+              eyebrow="FAQ"
+              title="Questions,"
+              accent="answered"
+              align="center"
+            />
+
+            <p
+              className="
+                mx-auto
+                mt-5
+                max-w-[620px]
+                text-[15px]
+                font-normal
+                leading-[1.7]
+                text-[#101010]/55
+                sm:text-[16px]
+              "
+            >
+              Everything you need to know before getting started with
+              BrandsMaster.
+            </p>
+          </div>
         </Reveal>
-        <div className="mt-12 space-y-3">
+
+        {/* FAQ List */}
+        <div className="mt-10 space-y-3 sm:mt-12">
+
           {faqs.map((f, i) => {
             const isOpen = openIndex === i
+
             return (
-              <Reveal key={f.q} delay={i * 0.04}>
-                <div className={`rounded-xl border overflow-hidden transition-colors duration-300 ${isOpen ? 'border-red-400/40 bg-white/[0.05]' : 'border-white/10 bg-white/[0.03]'}`}>
+              <Reveal
+                key={f.q}
+                delay={i * 0.04}
+              >
+                <div
+                  className={`
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-[18px]
+                    border
+                    bg-white
+                    transition-all
+                    duration-300
+                    ${
+                      isOpen
+                        ? 'border-[#CF1B28]/30 shadow-[0_15px_45px_rgba(207,27,40,0.08)]'
+                        : 'border-[#101010]/[0.10] shadow-[0_5px_20px_rgba(0,0,0,0.025)] hover:border-[#CF1B28]/25 hover:shadow-[0_12px_35px_rgba(207,27,40,0.06)]'
+                    }
+                  `}
+                >
+
+                  {/* Top Accent */}
+                  <div
+                    className={`
+                      absolute
+                      left-1/2
+                      top-0
+                      h-[2px]
+                      -translate-x-1/2
+                      bg-gradient-to-r
+                      from-transparent
+                      via-[#CF1B28]
+                      to-transparent
+                      transition-all
+                      duration-500
+                      ${
+                        isOpen
+                          ? 'w-[55%] opacity-100'
+                          : 'w-0 opacity-0 group-hover:w-[35%] group-hover:opacity-60'
+                      }
+                    `}
+                  />
+
+                  {/* Question Button */}
                   <button
-                    className="w-full flex items-center justify-between px-5 py-4 text-left"
-                    onClick={() => setOpenIndex(isOpen ? -1 : i)}
+                    type="button"
+                    className="
+                      flex
+                      w-full
+                      items-center
+                      justify-between
+                      gap-5
+                      px-5
+                      py-5
+                      text-left
+                      sm:px-6
+                      sm:py-[22px]
+                    "
+                    onClick={() =>
+                      setOpenIndex(isOpen ? -1 : i)
+                    }
                     aria-expanded={isOpen}
                   >
-                    <span className="text-[14px] font-medium text-white">{f.q}</span>
-                    <span className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ml-4 transition-colors duration-300 ${isOpen ? 'bg-gradient-to-br from-red-600 to-red-400' : 'bg-white/10'}`}>
-                      <ChevronDown
-                        size={13}
-                        className={`text-white transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-                      />
+
+                    {/* Question */}
+                    <span
+                      className={`
+                        text-[14px]
+                        font-[800]
+                        leading-[1.45]
+                        tracking-[-0.15px]
+                        transition-colors
+                        duration-300
+                        sm:text-[15px]
+                        ${
+                          isOpen
+                            ? 'text-[#CF1B28]'
+                            : 'text-[#101010] group-hover:text-[#CF1B28]'
+                        }
+                      `}
+                    >
+                      {f.q}
+                    </span>
+
+                    {/* Number + Arrow */}
+                    <span className="flex shrink-0 items-center gap-3">
+
+                      <span
+                        className={`
+                          hidden
+                          text-[10px]
+                          font-[800]
+                          tracking-[1.5px]
+                          sm:block
+                          ${
+                            isOpen
+                              ? 'text-[#CF1B28]'
+                              : 'text-[#101010]/25'
+                          }
+                        `}
+                      >
+                        0{i + 1}
+                      </span>
+
+                      <span
+                        className={`
+                          flex
+                          h-9
+                          w-9
+                          items-center
+                          justify-center
+                          rounded-full
+                          border
+                          transition-all
+                          duration-300
+                          ${
+                            isOpen
+                              ? 'border-[#CF1B28] bg-[#CF1B28] shadow-[0_6px_18px_rgba(207,27,40,0.22)]'
+                              : 'border-[#101010]/10 bg-[#F8F8F8] group-hover:border-[#CF1B28]/30 group-hover:bg-[#FFF4F4]'
+                          }
+                        `}
+                      >
+                        <ChevronDown
+                          size={15}
+                          strokeWidth={2.2}
+                          className={`
+                            transition-all
+                            duration-300
+                            ${
+                              isOpen
+                                ? 'rotate-180 text-white'
+                                : 'text-[#101010]/50 group-hover:text-[#CF1B28]'
+                            }
+                          `}
+                        />
+                      </span>
+
                     </span>
                   </button>
+
+                  {/* Answer */}
                   <div
-                    className={`grid transition-all duration-300 ease-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-                      }`}
+                    className={`
+                      grid
+                      transition-all
+                      duration-300
+                      ease-out
+                      ${
+                        isOpen
+                          ? 'grid-rows-[1fr] opacity-100'
+                          : 'grid-rows-[0fr] opacity-0'
+                      }
+                    `}
                   >
                     <div className="overflow-hidden">
-                      <p className="px-5 pb-4 text-[13.5px] text-white/55 leading-relaxed">{f.a}</p>
+                      <div className="px-5 pb-5 sm:px-6 sm:pb-6">
+
+                        <div
+                          className="
+                            mb-4
+                            h-px
+                            w-full
+                            bg-gradient-to-r
+                            from-[#CF1B28]/15
+                            via-[#CF1B28]/5
+                            to-transparent
+                          "
+                        />
+
+                        <p
+                          className="
+                            max-w-[760px]
+                            text-[13.5px]
+                            font-normal
+                            leading-[1.75]
+                            text-[#101010]/55
+                            sm:text-[14px]
+                          "
+                        >
+                          {f.a}
+                        </p>
+
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </Reveal>
             )
           })}
+
         </div>
+
+        {/* Bottom Brand Line */}
+        <Reveal delay={0.25}>
+          <div className="mt-10 flex items-center justify-center gap-3 sm:mt-12">
+
+            <div className="h-[2px] w-10 bg-[#CF1B28]" />
+
+            <span
+              className="
+                text-[10px]
+                font-[800]
+                uppercase
+                tracking-[3px]
+                text-[#101010]/35
+              "
+            >
+              Still have questions? Let's talk.
+            </span>
+
+            <div className="h-[2px] w-10 bg-[#CF1B28]" />
+
+          </div>
+        </Reveal>
+
       </div>
+
+      {/* Bottom Fade */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          bottom-0
+          left-0
+          right-0
+          h-20
+          bg-gradient-to-t
+          from-[#fffaf2]/40
+          to-transparent
+        "
+      />
     </section>
   )
 }
