@@ -100,29 +100,196 @@ function Hero() {
   }, [])
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#120000] px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-32 lg:pb-16 lg:pt-40">
-      {/* Ambient background */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(185,28,28,0.28),transparent_55%)]" />
-      <div
-        className="pointer-events-none absolute inset-0 bg-dot-grid bg-[length:28px_28px] opacity-[0.12]"
-        style={{ maskImage: 'radial-gradient(ellipse at top, black, transparent 70%)' }}
-      />
-      <div className="pointer-events-none absolute -right-28 -top-24 h-[280px] w-[280px] rounded-full bg-red-600/20 blur-[100px] sm:h-[420px] sm:w-[420px] sm:blur-[120px]" />
+    <section
+      className="
+        relative isolate overflow-hidden
+        min-h-[820px]
+        bg-[#CF1B28]
+        px-4
+        pb-12
+        pt-[110px]
+        sm:px-6
+        sm:pt-[130px]
+        lg:pt-[130px]
+      "
+    >
+      {/* =====================================================
+          PREMIUM HERO BACKGROUND
+      ====================================================== */}
 
-      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 sm:gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.9fr)] lg:gap-6 xl:gap-10">
-        {/* Hero copy */}
+      {/* Main Red → Deep Red → Black Gradient */}
+      <div
+        className="
+          pointer-events-none
+          absolute inset-0
+          bg-[radial-gradient(circle_at_78%_25%,#D61521_0%,#9C050C_33%,#500006_68%,#220003_100%)]
+        "
+      />
+
+      {/* Subtle Black Overlay */}
+      <div
+        className="
+          pointer-events-none
+          absolute inset-0
+          bg-[linear-gradient(135deg,rgba(0,0,0,0.12)_0%,transparent_42%,rgba(0,0,0,0.18)_100%)]
+        "
+      />
+
+      {/* Soft Red Glow */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-[120px]
+          -top-[120px]
+          h-[420px]
+          w-[420px]
+          rounded-full
+          bg-[#D61521]/40
+          blur-[120px]
+        "
+      />
+
+      {/* Dark Bottom Glow */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-[180px]
+          left-1/2
+          h-[420px]
+          w-[700px]
+          -translate-x-1/2
+          rounded-full
+          bg-black/25
+          blur-[120px]
+        "
+      />
+
+      {/* Diagonal Premium Shine */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-[-20%_-10%]
+          bg-[linear-gradient(135deg,transparent_45%,rgba(255,255,255,0.045)_45%,rgba(255,255,255,0.045)_56%,transparent_56%)]
+        "
+      />
+
+      {/* Subtle Dot Pattern */}
+      <div
+        className="
+          pointer-events-none
+          absolute inset-0
+          opacity-[0.08]
+          bg-dot-grid
+          bg-[length:28px_28px]
+        "
+        style={{
+          maskImage:
+            'radial-gradient(ellipse at center, black 0%, transparent 72%)',
+          WebkitMaskImage:
+            'radial-gradient(ellipse at center, black 0%, transparent 72%)',
+        }}
+      />
+
+      {/* =====================================================
+          HERO CONTENT
+      ====================================================== */}
+
+      <div
+        className="
+          relative z-10
+          mx-auto
+          grid
+          w-full
+          max-w-[1180px]
+          grid-cols-1
+          items-center
+          gap-12
+          lg:grid-cols-[1.02fr_.98fr]
+          lg:gap-8
+        "
+      >
+
+        {/* =================================================
+            LEFT CONTENT
+        ================================================== */}
+
         <Reveal>
           <div className="flex min-w-0 flex-col items-center text-center lg:items-start lg:text-left">
-            <p className="mb-5 mt-1 inline-flex max-w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-2 text-center text-[11px] leading-snug text-white/65 sm:mb-6 sm:text-xs lg:justify-start">
-              <span className="relative flex h-1.5 w-1.5 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-red-400" />
-              </span>
-              Complete branding solutions for
-            </p>
 
-            <h1 className="flex w-full flex-col items-center text-[clamp(2.35rem,8.5vw,4.5rem)] font-bold leading-[1.25] tracking-[-0.045em] text-white sm:text-6xl sm:leading-[1.08] lg:items-start lg:leading-[1.08] lg:text-[clamp(3.5rem,5.2vw,5rem)]">
-              <span className="block max-w-full">
+            {/* EYEBROW */}
+            <div
+              className="
+                mb-[18px]
+                inline-flex
+                items-center
+                gap-2
+                text-[12px]
+                font-medium
+                uppercase
+                tracking-[4px]
+                text-white/90
+                sm:text-[14px]
+                sm:tracking-[5px]
+              "
+            >
+              <span
+                className="
+                  relative
+                  flex
+                  h-2
+                  w-2
+                  shrink-0
+                "
+              >
+                <span
+                  className="
+                    absolute
+                    inline-flex
+                    h-full
+                    w-full
+                    animate-ping
+                    rounded-full
+                    bg-[#FFD800]
+                    opacity-40
+                  "
+                />
+
+                <span
+                  className="
+                    relative
+                    inline-flex
+                    h-2
+                    w-2
+                    rounded-full
+                    bg-[#FFD800]
+                  "
+                />
+              </span>
+
+              Complete Branding Solutions
+            </div>
+
+            {/* =================================================
+                MAIN HEADING
+            ================================================== */}
+
+            <h1
+              className="
+                m-0
+                w-full
+                max-w-[850px]
+                text-[clamp(54px,7vw,92px)]
+                font-[950]
+                leading-[0.9]
+                tracking-[-5px]
+                text-white
+              "
+            >
+              {/* Line 1 */}
+              <span className="block">
                 <BlurText
                   text="India's Next"
                   delay={120}
@@ -131,66 +298,245 @@ function Hero() {
                   className="text-white"
                 />
               </span>
-              <span className="mt-1 flex flex-wrap items-center justify-center gap-x-3 sm:mt-2 lg:justify-start">
+
+              {/* Line 2 */}
+              <span className="mt-2 block sm:mt-3">
                 <span
-                  className={`bg-gradient-to-r from-red-500 via-red-300 to-red-400 bg-clip-text text-transparent transition-opacity duration-500 ${
-                    accentVisible ? 'opacity-100' : 'opacity-0'
-                  }`}
+                  className={`
+                    inline-block
+                    text-[#FFD800]
+                    transition-all
+                    duration-700
+                    ${
+                      accentVisible
+                        ? 'translate-y-0 opacity-100'
+                        : 'translate-y-4 opacity-0'
+                    }
+                  `}
                 >
                   Big
                 </span>
+
                 <span
-                  className={`text-white transition-opacity duration-500 ${
-                    tailVisible ? 'opacity-100' : 'opacity-0'
-                  }`}
+                  className={`
+                    ml-3
+                    inline-block
+                    text-white
+                    transition-all
+                    duration-700
+                    ${
+                      tailVisible
+                        ? 'translate-y-0 opacity-100'
+                        : 'translate-y-4 opacity-0'
+                    }
+                  `}
                 >
                   Brands
                 </span>
               </span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-[14px] leading-6 text-white/60 sm:mt-6 sm:text-base sm:leading-7 lg:leading-[1.65]">
-              Strategy, design, and creativity aligned to craft impactful digital solutions.
-              Focused on delivering real growth that scales your brand and business.
+            {/* =================================================
+                DESCRIPTION
+            ================================================== */}
+
+            <p
+              className="
+                mt-6
+                max-w-[620px]
+                text-[18px]
+                font-normal
+                leading-[1.6]
+                text-[#F5DDDD]
+                sm:text-[20px]
+                lg:text-[22px]
+                lg:leading-[1.45]
+              "
+            >
+              Strategy, design, and creativity aligned to craft
+              impactful digital solutions. Focused on delivering
+              real growth that scales your brand and business.
             </p>
 
-            <div className="mt-7 flex w-full flex-col items-center gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
+            {/* =================================================
+                CTA BUTTONS
+            ================================================== */}
+
+            <div
+              className="
+                mt-8
+                flex
+                w-full
+                flex-col
+                items-center
+                gap-[14px]
+                sm:w-auto
+                sm:flex-row
+                sm:flex-wrap
+                lg:mt-8
+              "
+            >
+              {/* Primary */}
               <Link
                 to="/contact"
-                className="group inline-flex min-h-12 w-full max-w-[340px] items-center justify-center gap-2 rounded-full bg-gradient-to-r from-red-600 to-red-400 px-5 py-3.5 text-center text-[13px] font-semibold leading-snug text-white shadow-glow transition-shadow hover:shadow-[0_0_70px_-10px_rgba(185,28,28,0.7)] sm:w-auto sm:max-w-none sm:px-6 sm:text-sm"
+                className="
+                  group
+                  inline-flex
+                  min-h-[54px]
+                  w-full
+                  max-w-[340px]
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-full
+                  bg-white
+                  px-[25px]
+                  py-[17px]
+                  text-[14px]
+                  font-[900]
+                  text-[#CF1B28]
+                  shadow-[0_15px_40px_rgba(0,0,0,0.20)]
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-[0_20px_50px_rgba(0,0,0,0.30)]
+                  sm:w-auto
+                  sm:max-w-none
+                "
               >
-                Book free Brand Strategy Call
-                <ArrowUpRight size={16} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                Book Free Brand Strategy Call
+
+                <ArrowUpRight
+                  size={17}
+                  strokeWidth={2.5}
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-1
+                    group-hover:-translate-y-1
+                  "
+                />
+              </Link>
+
+              {/* Secondary */}
+              <Link
+                to="/services"
+                className="
+                  group
+                  inline-flex
+                  min-h-[54px]
+                  w-full
+                  max-w-[340px]
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-full
+                  border
+                  border-white/45
+                  bg-white/[0.03]
+                  px-[25px]
+                  py-[17px]
+                  text-[14px]
+                  font-[900]
+                  text-white
+                  backdrop-blur-sm
+                  transition-all
+                  duration-300
+                  hover:border-white
+                  hover:bg-white/[0.10]
+                  sm:w-auto
+                  sm:max-w-none
+                "
+              >
+                Explore Services
+
+                <ArrowUpRight
+                  size={17}
+                  strokeWidth={2.5}
+                  className="
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-1
+                    group-hover:-translate-y-1
+                  "
+                />
               </Link>
             </div>
 
-            {/* Social proof */}
-            <div className="mt-8 flex items-center justify-center gap-3 sm:mt-10 sm:gap-4 lg:justify-start">
+            {/* =================================================
+                SOCIAL PROOF
+            ================================================== */}
+
+            <div
+              className="
+                mt-9
+                flex
+                items-center
+                justify-center
+                gap-3
+                sm:mt-10
+                sm:gap-4
+                lg:justify-start
+              "
+            >
+              {/* Avatars */}
               <div className="flex shrink-0 -space-x-2.5">
                 {[
                   'from-violet-500 to-purple-500',
                   'from-purple-400 to-pink-400',
                   'from-fuchsia-500 to-violet-500',
                   'from-pink-400 to-purple-400',
-                ].map((g, i) => (
+                ].map((gradient, i) => (
                   <span
                     key={i}
-                    className={`flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#120000] bg-gradient-to-br ${g} text-[10px] font-bold text-white`}
+                    className={`
+                      flex
+                      h-9
+                      w-9
+                      items-center
+                      justify-center
+                      rounded-full
+                      border-2
+                      border-[#760006]
+                      bg-gradient-to-br
+                      ${gradient}
+                      text-[10px]
+                      font-[900]
+                      text-white
+                      shadow-sm
+                    `}
                   >
                     {['SC', 'MW', 'PN', 'DS'][i]}
                   </span>
                 ))}
               </div>
 
+              {/* Rating */}
               <div className="text-left">
-                <div className="flex gap-0.5">
+                <div className="flex gap-[2px]">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <svg key={i} width="12" height="12" viewBox="0 0 20 20" className="fill-red-400">
+                    <svg
+                      key={i}
+                      width="13"
+                      height="13"
+                      viewBox="0 0 20 20"
+                      className="fill-[#FFD800]"
+                    >
                       <path d="M10 1l2.7 6.3 6.8.6-5.2 4.5 1.6 6.6L10 15.7 4.1 19l1.6-6.6L.5 7.9l6.8-.6L10 1z" />
                     </svg>
                   ))}
                 </div>
-                <p className="mt-1 text-[11px] leading-4 text-white/50 sm:text-xs">
+
+                <p
+                  className="
+                    mt-1
+                    text-[11px]
+                    font-medium
+                    leading-4
+                    text-white/75
+                    sm:text-xs
+                  "
+                >
                   Trusted by 250+ founders
                 </p>
               </div>
@@ -198,28 +544,102 @@ function Hero() {
           </div>
         </Reveal>
 
-        {/* Profile card */}
+        {/* =================================================
+            RIGHT — PROFILE CARD
+        ================================================== */}
+
         <Reveal delay={0.15}>
-          <div className="mx-auto w-full max-w-[280px] sm:max-w-sm lg:max-w-md">
-            <ProfileCard
-              name="Brand Master"
-              title="Brand Master"
-              contactText="Book a call"
-              // avatarUrl={yourPhoto}
-              showUserInfo={true}
-              enableTilt={true}
-              enableMobileTilt={false}
-              behindGlowEnabled
-              behindGlowColor="rgba(239,68,68,0.55)"
-              innerGradient="linear-gradient(145deg,#b91c1c55 0%,#ef444455 100%)"
+          <div
+            className="
+              relative
+              mx-auto
+              flex
+              w-full
+              max-w-[570px]
+              items-center
+              justify-center
+              lg:justify-end
+            "
+          >
+
+            {/* Background Red Glow */}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                right-[5%]
+                top-[10%]
+                h-[280px]
+                w-[280px]
+                rounded-full
+                bg-[#D61521]/50
+                blur-[90px]
+                sm:h-[380px]
+                sm:w-[380px]
+              "
             />
+
+            {/* Black Glow */}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                bottom-[5%]
+                left-[20%]
+                h-[180px]
+                w-[280px]
+                rounded-full
+                bg-black/30
+                blur-[80px]
+              "
+            />
+
+            <div
+              className="
+                relative
+                z-10
+                w-full
+                max-w-[280px]
+                sm:max-w-[380px]
+                lg:max-w-[500px]
+              "
+            >
+              <ProfileCard
+                name="Brand Master"
+                title="Brand Master"
+                contactText="Book a call"
+                showUserInfo={true}
+                enableTilt={true}
+                enableMobileTilt={false}
+                behindGlowEnabled
+                behindGlowColor="rgba(0,0,0,0.38)"
+                innerGradient="linear-gradient(145deg,#CF1B2855 0%,#76000670 55%,#00000050 100%)"
+              />
+            </div>
           </div>
         </Reveal>
       </div>
+
+      {/* =====================================================
+          BOTTOM FADE
+      ====================================================== */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          bottom-0
+          left-0
+          right-0
+          h-24
+          bg-gradient-to-t
+          from-[#220003]/35
+          to-transparent
+        "
+      />
     </section>
   )
 }
-
 // Animated "growth dashboard" mockup — a smooth SVG line chart with a
 // drawing-in animation, replacing a plain bar chart for a more premium feel.
 
@@ -298,11 +718,97 @@ function CapabilityCard({ c, i, Icon }) {
 
 function Capabilities() {
   return (
-    <section className="relative bg-white pt-10 sm:pt-24 pb-6 sm:pb-10 px-6 overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-red-200/25 blur-[110px] rounded-full" />
+    <section
+      className="
+        relative overflow-hidden
+        bg-white
+        px-5
+        pb-12
+        pt-16
+        sm:px-6
+        sm:pb-16
+        sm:pt-24
+        lg:pb-20
+        lg:pt-28
+      "
+    >
+      {/* =========================================
+          PREMIUM BACKGROUND GLOW
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-[-120px]
+          h-[420px]
+          w-[700px]
+          -translate-x-1/2
+          rounded-full
+          bg-red-100/70
+          blur-[120px]
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -left-[180px]
+          top-[35%]
+          h-[400px]
+          w-[400px]
+          rounded-full
+          bg-red-50
+          blur-[110px]
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-[180px]
+          bottom-[-100px]
+          h-[420px]
+          w-[420px]
+          rounded-full
+          bg-red-100/50
+          blur-[120px]
+        "
+      />
+
+      {/* =========================================
+          SUBTLE DIAGONAL SHINE
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-[-20%]
+          opacity-40
+          bg-[linear-gradient(135deg,transparent_44%,rgba(207,27,40,0.025)_44%,rgba(207,27,40,0.025)_55%,transparent_55%)]
+        "
+      />
+
+      {/* =========================================
+          NETWORK DECORATION
+      ========================================= */}
 
       <svg
-        className="absolute top-8 right-0 w-[440px] h-[300px] opacity-60 pointer-events-none hidden lg:block"
+        className="
+          pointer-events-none
+          absolute
+          right-[-20px]
+          top-8
+          hidden
+          h-[320px]
+          w-[480px]
+          opacity-50
+          lg:block
+        "
         viewBox="0 0 420 280"
         fill="none"
       >
@@ -317,7 +823,8 @@ function Capabilities() {
           <line x1="300" y1="150" x2="380" y2="180" />
           <line x1="90" y1="150" x2="60" y2="220" />
         </g>
-        <g fill="#f87171">
+
+        <g fill="#CF1B28">
           <circle cx="40" cy="60" r="2.5" />
           <circle cx="150" cy="20" r="3.5" />
           <circle cx="260" cy="70" r="2.5" />
@@ -328,37 +835,126 @@ function Capabilities() {
           <circle cx="380" cy="180" r="2.5" />
           <circle cx="60" cy="220" r="2.5" />
         </g>
+
         <defs>
-          <linearGradient id="netGrad" x1="0" y1="0" x2="420" y2="280">
-            <stop offset="0%" stopColor="#f87171" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#fca5a5" stopOpacity="0.15" />
+          <linearGradient
+            id="netGrad"
+            x1="0"
+            y1="0"
+            x2="420"
+            y2="280"
+          >
+            <stop
+              offset="0%"
+              stopColor="#CF1B28"
+              stopOpacity="0.45"
+            />
+            <stop
+              offset="100%"
+              stopColor="#FCA5A5"
+              stopOpacity="0.08"
+            />
           </linearGradient>
         </defs>
       </svg>
 
-      <div className="max-w-7xl mx-auto relative">
-        <div className="mb-10">
+      {/* =========================================
+          MAIN CONTAINER
+      ========================================= */}
+
+      <div className="relative z-10 mx-auto w-full max-w-[1180px]">
+
+        {/* =========================================
+            SECTION HEADING
+        ========================================= */}
+
+        <div className="mb-10 max-w-[800px] sm:mb-12">
+
           <Reveal>
-            <SectionHeading eyebrow="What we do" title="Everything your brand," accent="needs to look serious" align="left" />
+            <SectionHeading
+              eyebrow="What we do"
+              title="Everything your brand,"
+              accent="needs to look serious"
+              align="left"
+            />
           </Reveal>
+
           <Reveal delay={0.1}>
-            <p className="text-[#120000]/60 text-[15px] leading-relaxed mt-5 max-w-2xl">
-              From a sharp logo to a complete visual system, BrandsMaster handles the design work that makes a business look credible and consistent.
+            <p
+              className="
+                mt-5
+                max-w-2xl
+                text-[15px]
+                leading-[1.7]
+                text-[#101010]/60
+                sm:text-[16px]
+              "
+            >
+              From a sharp logo to a complete visual system, BrandsMaster
+              handles the design work that makes a business look credible,
+              memorable, and consistent.
             </p>
           </Reveal>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* =========================================
+            CAPABILITY CARDS
+        ========================================= */}
+
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
           {capabilities.map((c, i) => {
             const Icon = iconMap[c.icon]
+
             return (
-              <Reveal key={c.title} delay={i * 0.05}>
-                <CapabilityCard c={c} i={i} Icon={Icon} />
+              <Reveal
+                key={c.title}
+                delay={i * 0.06}
+              >
+                <CapabilityCard
+                  c={c}
+                  i={i}
+                  Icon={Icon}
+                />
               </Reveal>
             )
           })}
+
         </div>
+
+        {/* =========================================
+            BOTTOM ACCENT
+        ========================================= */}
+
+        <Reveal delay={0.25}>
+          <div className="mt-10 flex items-center gap-3 sm:mt-12">
+            <div className="h-[2px] w-10 bg-[#CF1B28]" />
+
+            <span className="text-[11px] font-[800] uppercase tracking-[3px] text-[#101010]/40">
+              Built for brands that mean business
+            </span>
+          </div>
+        </Reveal>
+
       </div>
+
+      {/* =========================================
+          BOTTOM FADE
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          bottom-0
+          left-0
+          right-0
+          h-20
+          bg-gradient-to-t
+          from-[#fffaf2]/40
+          to-transparent
+        "
+      />
     </section>
   )
 }

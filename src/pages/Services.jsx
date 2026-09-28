@@ -1,4 +1,11 @@
-import { Rocket, Share2, Globe, Code2 } from 'lucide-react'
+import {
+  Rocket,
+  Share2,
+  Globe,
+  Code2,
+  ArrowUpRight,
+  Check,
+} from 'lucide-react'
 
 import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
@@ -77,48 +84,220 @@ export default function Services() {
 }
 
 /* =========================================================
-   HERO SECTION
+   SERVICES HERO
 ========================================================= */
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#0a0a12] px-6 pb-16 pt-28 sm:pb-20 sm:pt-40">
+    <section
+      className="
+        relative
+        isolate
+        overflow-hidden
+        bg-white
+        px-5
+        pb-14
+        pt-28
+        sm:px-6
+        sm:pb-20
+        sm:pt-36
+        lg:pb-24
+        lg:pt-40
+      "
+    >
+      {/* =========================================
+          BACKGROUND GLOWS
+      ========================================= */}
 
-      {/* Background Glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(220,38,38,0.22),transparent_58%)]" />
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-[-180px]
+          h-[500px]
+          w-[800px]
+          -translate-x-1/2
+          rounded-full
+          bg-red-100/70
+          blur-[130px]
+        "
+      />
 
-      {/* Secondary Glow */}
-      <div className="pointer-events-none absolute -top-32 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-red-500/[0.06] blur-[120px]" />
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-[180px]
+          top-[20%]
+          h-[420px]
+          w-[420px]
+          rounded-full
+          bg-red-50
+          blur-[110px]
+        "
+      />
 
-      <Reveal className="relative z-10 mx-auto max-w-4xl text-center">
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -left-[180px]
+          bottom-[-150px]
+          h-[420px]
+          w-[420px]
+          rounded-full
+          bg-red-100/40
+          blur-[120px]
+        "
+      />
+
+      {/* =========================================
+          DIAGONAL SHINE
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-[-20%]
+          opacity-50
+          bg-[linear-gradient(135deg,transparent_44%,rgba(207,27,40,0.025)_44%,rgba(207,27,40,0.025)_55%,transparent_55%)]
+        "
+      />
+
+      {/* =========================================
+          DECORATIVE RED CIRCLE
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          right-[7%]
+          top-[25%]
+          hidden
+          h-3
+          w-3
+          rounded-full
+          bg-[#CF1B28]
+          shadow-[0_0_0_8px_rgba(207,27,40,0.08),0_0_35px_rgba(207,27,40,0.35)]
+          lg:block
+        "
+      />
+
+      {/* =========================================
+          CONTENT
+      ========================================= */}
+
+      <Reveal className="relative z-10 mx-auto max-w-[820px] text-center">
 
         <SectionHeading
-          eyebrow="Services"
+          eyebrow="Our Services"
           title="Everything your brand needs,"
           accent="under one roof."
-          dark
+          align="center"
         />
 
-        <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-white/60 sm:text-base">
-          Brand Master helps ambitious businesses build a powerful brand
-          identity, create a premium digital presence and develop the
-          creative systems they need to grow with confidence.
+        <p
+          className="
+            mx-auto
+            mt-6
+            max-w-[680px]
+            text-[15px]
+            leading-[1.7]
+            text-[#101010]/60
+            sm:text-[17px]
+          "
+        >
+          Brand Master helps ambitious businesses build a powerful
+          brand identity, create a premium digital presence and develop
+          the creative systems they need to grow with confidence.
         </p>
 
+        {/* Small Trust Indicator */}
+
+        <div className="mt-8 flex items-center justify-center gap-3">
+          <span className="h-[1px] w-8 bg-[#CF1B28]/40" />
+
+          <span
+            className="
+              text-[10px]
+              font-[800]
+              uppercase
+              tracking-[3px]
+              text-[#101010]/40
+            "
+          >
+            Strategy · Design · Growth
+          </span>
+
+          <span className="h-[1px] w-8 bg-[#CF1B28]/40" />
+        </div>
+
       </Reveal>
+
     </section>
   )
 }
 
 /* =========================================================
-   SERVICES GRID — 4 COLUMNS
+   SERVICE LIST
 ========================================================= */
 
 function ServiceList() {
   return (
-    <section className="relative overflow-hidden bg-[#0a0a12] px-6 pb-20 sm:pb-28">
+    <section
+      className="
+        relative
+        overflow-hidden
+        bg-white
+        px-5
+        pb-16
+        sm:px-6
+        sm:pb-24
+        lg:pb-28
+      "
+    >
 
-      <div className="relative mx-auto max-w-7xl">
+      {/* =========================================
+          BACKGROUND
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-0
+          h-[500px]
+          w-[900px]
+          -translate-x-1/2
+          rounded-full
+          bg-red-50/60
+          blur-[130px]
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          bottom-0
+          left-[-180px]
+          h-[350px]
+          w-[350px]
+          rounded-full
+          bg-red-50
+          blur-[100px]
+        "
+      />
+
+      {/* =========================================
+          CONTAINER
+      ========================================= */}
+
+      <div className="relative z-10 mx-auto max-w-[1180px]">
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
@@ -138,133 +317,296 @@ function ServiceList() {
                     relative
                     flex
                     h-full
-                    min-h-[390px]
+                    min-h-[430px]
                     flex-col
                     overflow-hidden
-                    rounded-2xl
+                    rounded-[24px]
                     border
-                    border-white/10
-                    bg-white/[0.025]
+                    border-[#EAEAEA]
+                    bg-white
                     p-6
+                    shadow-[0_12px_40px_rgba(16,16,16,0.05)]
                     transition-all
                     duration-500
-                    hover:-translate-y-1
-                    hover:border-red-500/40
-                    hover:bg-white/[0.045]
-                    hover:shadow-[0_25px_70px_rgba(220,38,38,0.10)]
+                    hover:-translate-y-2
+                    hover:border-[#CF1B28]/30
+                    hover:shadow-[0_25px_70px_rgba(207,27,40,0.12)]
+                    sm:p-7
                   "
                 >
 
-                  {/* Hover Glow */}
+                  {/* =========================================
+                      CARD HOVER GLOW
+                  ========================================= */}
+
                   <div
                     className="
                       pointer-events-none
                       absolute
-                      -right-16
-                      -top-16
-                      h-40
-                      w-40
+                      -right-20
+                      -top-20
+                      h-48
+                      w-48
                       rounded-full
-                      bg-red-500/0
-                      blur-[55px]
+                      bg-[#CF1B28]/0
+                      blur-[65px]
                       transition-all
                       duration-500
-                      group-hover:bg-red-500/20
+                      group-hover:bg-[#CF1B28]/15
                     "
                   />
 
-                  {/* Top Shine */}
+                  {/* =========================================
+                      TOP SHINE
+                  ========================================= */}
+
                   <div
                     className="
                       pointer-events-none
                       absolute
-                      inset-x-0
+                      left-1/2
                       top-0
-                      h-px
+                      h-[2px]
+                      w-0
+                      -translate-x-1/2
                       bg-gradient-to-r
                       from-transparent
-                      via-red-400/60
+                      via-[#CF1B28]
                       to-transparent
-                      opacity-0
-                      transition-opacity
+                      transition-all
                       duration-500
-                      group-hover:opacity-100
+                      group-hover:w-[75%]
                     "
                   />
+
+                  {/* =========================================
+                      CONTENT
+                  ========================================= */}
 
                   <div className="relative z-10 flex h-full flex-col">
 
-                    {/* Number + Icon */}
-                    <div className="mb-8 flex items-center justify-between">
+                    {/* =====================================
+                        TOP ROW
+                    ===================================== */}
 
-                      <span className="text-[11px] font-semibold tracking-[0.2em] text-red-400">
-                        SERVICE {service.n}
+                    <div className="mb-9 flex items-center justify-between">
+
+                      <span
+                        className="
+                          text-[10px]
+                          font-[900]
+                          uppercase
+                          tracking-[2.5px]
+                          text-[#CF1B28]
+                        "
+                      >
+                        Service {service.n}
                       </span>
+
+                      {/* Icon */}
 
                       <div
                         className="
+                          relative
                           flex
-                          h-10
-                          w-10
+                          h-12
+                          w-12
                           items-center
                           justify-center
-                          rounded-xl
+                          rounded-[15px]
                           border
-                          border-red-400/20
-                          bg-red-500/10
+                          border-[#F0D5D7]
+                          bg-[#FFF4F4]
                           transition-all
-                          duration-300
-                          group-hover:border-red-400/40
-                          group-hover:bg-red-500/20
+                          duration-500
+                          group-hover:scale-105
+                          group-hover:border-[#CF1B28]/30
+                          group-hover:bg-[#CF1B28]
                         "
                       >
                         <Icon
-                          size={18}
+                          size={20}
                           strokeWidth={1.8}
                           className="
-                            text-red-400
-                            transition-transform
-                            duration-300
+                            text-[#CF1B28]
+                            transition-all
+                            duration-500
                             group-hover:scale-110
+                            group-hover:text-white
                           "
                         />
                       </div>
 
                     </div>
 
-                    {/* Title */}
-                    <h2 className="mb-3 text-2xl font-bold tracking-tight text-white">
+                    {/* =====================================
+                        TITLE
+                    ===================================== */}
+
+                    <h2
+                      className="
+                        mb-3
+                        text-[24px]
+                        font-[900]
+                        leading-[1.05]
+                        tracking-[-0.8px]
+                        text-[#101010]
+                        transition-colors
+                        duration-300
+                        group-hover:text-[#CF1B28]
+                      "
+                    >
                       {service.title}
                     </h2>
 
-                    {/* Tagline */}
-                    <p className="mb-4 text-[13px] font-medium text-red-300">
+                    {/* =====================================
+                        TAGLINE
+                    ===================================== */}
+
+                    <p
+                      className="
+                        mb-4
+                        text-[13px]
+                        font-[700]
+                        leading-[1.5]
+                        text-[#CF1B28]
+                      "
+                    >
                       {service.tagline}
                     </p>
 
-                    {/* Description */}
-                    <p className="text-[13.5px] leading-relaxed text-white/50">
+                    {/* =====================================
+                        DESCRIPTION
+                    ===================================== */}
+
+                    <p
+                      className="
+                        text-[13.5px]
+                        leading-[1.7]
+                        text-[#101010]/55
+                      "
+                    >
                       {service.desc}
                     </p>
 
-                    {/* Features */}
+                    {/* =====================================
+                        FEATURES
+                    ===================================== */}
+
                     <div className="mt-auto pt-8">
 
-                      <div className="mb-5 h-px bg-white/10" />
+                      <div
+                        className="
+                          mb-5
+                          h-px
+                          bg-[#101010]/[0.08]
+                          transition-colors
+                          duration-300
+                          group-hover:bg-[#CF1B28]/20
+                        "
+                      />
 
-                      <div className="space-y-2.5">
+                      <div className="space-y-3">
 
                         {service.features.map((feature) => (
                           <div
                             key={feature}
-                            className="flex items-center gap-2 text-[12px] text-white/65"
+                            className="
+                              flex
+                              items-center
+                              gap-2.5
+                              text-[12px]
+                              font-medium
+                              text-[#101010]/60
+                              transition-colors
+                              duration-300
+                              group-hover:text-[#101010]/80
+                            "
                           >
-                            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
+
+                            <span
+                              className="
+                                flex
+                                h-5
+                                w-5
+                                shrink-0
+                                items-center
+                                justify-center
+                                rounded-full
+                                bg-[#FFF0F0]
+                                text-[#CF1B28]
+                                transition-all
+                                duration-300
+                                group-hover:bg-[#CF1B28]
+                                group-hover:text-white
+                              "
+                            >
+                              <Check
+                                size={11}
+                                strokeWidth={3}
+                              />
+                            </span>
+
                             {feature}
+
                           </div>
                         ))}
 
                       </div>
+
+                    </div>
+
+                    {/* =====================================
+                        BOTTOM ARROW
+                    ===================================== */}
+
+                    <div
+                      className="
+                        mt-7
+                        flex
+                        items-center
+                        justify-between
+                        border-t
+                        border-[#101010]/[0.07]
+                        pt-5
+                      "
+                    >
+
+                      <span
+                        className="
+                          text-[10px]
+                          font-[800]
+                          uppercase
+                          tracking-[2px]
+                          text-[#101010]/35
+                        "
+                      >
+                        Explore
+                      </span>
+
+                      <span
+                        className="
+                          flex
+                          h-8
+                          w-8
+                          items-center
+                          justify-center
+                          rounded-full
+                          border
+                          border-[#101010]/10
+                          text-[#101010]/45
+                          transition-all
+                          duration-300
+                          group-hover:border-[#CF1B28]
+                          group-hover:bg-[#CF1B28]
+                          group-hover:text-white
+                        "
+                      >
+                        <ArrowUpRight
+                          size={15}
+                          strokeWidth={2.2}
+                        />
+                      </span>
 
                     </div>
 
@@ -277,6 +619,78 @@ function ServiceList() {
           })}
 
         </div>
+
+        {/* =========================================
+            BOTTOM BRAND STATEMENT
+        ========================================= */}
+
+        <Reveal delay={0.3}>
+
+          <div
+            className="
+              mt-10
+              flex
+              flex-col
+              items-start
+              gap-4
+              rounded-[22px]
+              border
+              border-[#EAEAEA]
+              bg-[#FFFDFB]
+              px-6
+              py-5
+              sm:flex-row
+              sm:items-center
+              sm:justify-between
+              sm:px-7
+            "
+          >
+
+            <div className="flex items-center gap-3">
+
+              <span
+                className="
+                  flex
+                  h-9
+                  w-9
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-[#CF1B28]
+                  text-white
+                  shadow-[0_8px_25px_rgba(207,27,40,0.22)]
+                "
+              >
+                <Rocket size={16} strokeWidth={2} />
+              </span>
+
+              <div>
+                <p className="text-[12px] font-[800] text-[#101010]">
+                  One brand. One clear direction.
+                </p>
+
+                <p className="mt-0.5 text-[11px] text-[#101010]/45">
+                  Strategy, identity, digital & growth.
+                </p>
+              </div>
+
+            </div>
+
+            <div
+              className="
+                text-[10px]
+                font-[800]
+                uppercase
+                tracking-[2px]
+                text-[#CF1B28]
+              "
+            >
+              Built to grow
+            </div>
+
+          </div>
+
+        </Reveal>
 
       </div>
 
