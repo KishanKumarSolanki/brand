@@ -72,7 +72,7 @@ function Hero() {
       />
       <div className="pointer-events-none absolute -right-28 -top-24 h-[280px] w-[280px] rounded-full bg-red-600/20 blur-[100px] sm:h-[420px] sm:w-[420px] sm:blur-[120px]" />
 
-      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 sm:gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:gap-14">
+      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 sm:gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.9fr)] lg:gap-6 xl:gap-10">
         {/* Hero copy */}
         <Reveal>
           <div className="flex min-w-0 flex-col items-center text-center lg:items-start lg:text-left">
@@ -84,7 +84,7 @@ function Hero() {
               Complete branding solutions for
             </p>
 
-            <h1 className="flex w-full flex-col items-center text-[clamp(2.35rem,8.5vw,4.5rem)] font-bold leading-[1.25] tracking-[-0.045em] text-white sm:text-6xl lg:items-start lg:text-[clamp(3.5rem,5.2vw,5rem)]">
+            <h1 className="flex w-full flex-col items-center text-[clamp(2.35rem,8.5vw,4.5rem)] font-bold leading-[1.25] tracking-[-0.045em] text-white sm:text-6xl sm:leading-[1.08] lg:items-start lg:leading-[1.08] lg:text-[clamp(3.5rem,5.2vw,5rem)]">
               <span className="block max-w-full">
                 <BlurText
                   text="India's Next"
@@ -112,7 +112,7 @@ function Hero() {
               </span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-[14px] leading-7 text-white/60 sm:mt-6 sm:text-base sm:leading-7">
+            <p className="mt-5 max-w-xl text-[14px] leading-6 text-white/60 sm:mt-6 sm:text-base sm:leading-7 lg:leading-[1.65]">
               Strategy, design, and creativity aligned to craft impactful digital solutions.
               Focused on delivering real growth that scales your brand and business.
             </p>
