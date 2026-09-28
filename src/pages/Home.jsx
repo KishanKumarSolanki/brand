@@ -649,7 +649,7 @@ function FeaturedWork() {
           <Reveal>
             <SectionHeading eyebrow="Selected work" title="Design that gives businesses" accent="a stronger presence" align="left" dark />
           </Reveal>
-          <Reveal delay={0.1}>
+          {/* <Reveal delay={0.1}>
             <Link
               to="/portfolio"
               className="group inline-flex items-center gap-1.5 text-white/70 text-[13px] font-medium hover:text-white transition-colors"
@@ -657,7 +657,7 @@ function FeaturedWork() {
               View all
               <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-          </Reveal>
+          </Reveal> */}
         </div>
 
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
