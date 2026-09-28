@@ -55,6 +55,7 @@ function Hero() {
   useEffect(() => {
     const t1 = setTimeout(() => setAccentVisible(true), 700)
     const t2 = setTimeout(() => setTailVisible(true), 1000)
+
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)
@@ -62,102 +63,107 @@ function Hero() {
   }, [])
 
   return (
-    <section className="relative pt-24 sm:pt-40 pb-12 px-6 overflow-hidden bg-[#120000]">
-      {/* Ambient background: radial glow + faint dot grid, masked to fade at edges */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(185,28,28,0.28),transparent_55%)]" />
+    <section className="relative isolate overflow-hidden bg-[#120000] px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-32 lg:pb-16 lg:pt-40">
+      {/* Ambient background */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(185,28,28,0.28),transparent_55%)]" />
       <div
-        className="absolute inset-0 bg-dot-grid bg-[length:28px_28px] opacity-[0.15]"
+        className="pointer-events-none absolute inset-0 bg-dot-grid bg-[length:28px_28px] opacity-[0.12]"
         style={{ maskImage: 'radial-gradient(ellipse at top, black, transparent 70%)' }}
       />
-      <div className="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full bg-red-600/20 blur-[120px]" />
+      <div className="pointer-events-none absolute -right-28 -top-24 h-[280px] w-[280px] rounded-full bg-red-600/20 blur-[100px] sm:h-[420px] sm:w-[420px] sm:blur-[120px]" />
 
-      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[60%_40%] gap-16 items-center">
+      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 sm:gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:gap-14">
+        {/* Hero copy */}
         <Reveal>
-          <p className="inline-flex items-center gap-2 text-[12px] text-white/60 border border-white/10 bg-white/[0.03] rounded-full px-3.5 py-1.5 mb-5 mt-5">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-400" />
-            </span>
-            Complete branding solutions for
-          </p>
+          <div className="flex min-w-0 flex-col items-center text-center lg:items-start lg:text-left">
+            <p className="mb-5 mt-1 inline-flex max-w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-2 text-center text-[11px] leading-snug text-white/65 sm:mb-6 sm:text-xs lg:justify-start">
+              <span className="relative flex h-1.5 w-1.5 shrink-0">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-red-400" />
+              </span>
+              Complete branding solutions for
+            </p>
 
-          <h1 className="sm:text-[60px] text-5xl font-bold text-white tracking-[0.05em] leading-[1.5] flex flex-wrap gap-x-3">
-            <BlurText
-              text="India's Next"
-              delay={120}
-              animateBy="words"
-              direction="top"
-              className="text-white"
-            />
-            <br />
-            <span
-              className={`bg-gradient-to-r from-red-500 via-red-300 to-red-400 bg-clip-text text-transparent transition-opacity duration-500 ${accentVisible ? 'opacity-100' : 'opacity-0'
-                }`}
-            >
-              Big
-            </span>
-            <span
-              className={`text-white transition-opacity duration-500 ${tailVisible ? 'opacity-100' : 'opacity-0'
-                }`}
-            >
-              Brands
-            </span>
-          </h1>
-
-          <p className="mt-6 text-white/55 text-[15.5px] max-w leading-relaxed">
-            Strategy, design, and creativity aligned to craft impactful digital solutions.
-            Focused on delivering real growth that scales your brand and business.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-600 to-red-400 text-white text-[14px] font-semibold px-6 py-3.5 shadow-glow hover:shadow-[0_0_70px_-10px_rgba(185,28,28,0.7)] transition-shadow"
-            >
-              Book free Brand Strategy Call
-              <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-            {/* <Link
-              to="/portfolio"
-              className="group inline-flex items-center gap-1.5 text-red-300 text-[14px] font-medium px-4 py-2 rounded-full border border-red-400/30 hover:text-red-200 hover:border-red-400/60 transition-colors"
-            >
-              Explore portfolio
-              <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link> */}
-          </div>
-
-          {/* Social proof: avatar stack + rating, more premium than bare stat row */}
-          <div className="mt-11 flex items-center gap-4">
-            <div className="flex -space-x-2.5">
-              {[
-                'from-violet-500 to-purple-500',
-                'from-purple-400 to-pink-400',
-                'from-fuchsia-500 to-violet-500',
-                'from-pink-400 to-purple-400'
-              ].map((g, i) => (
+            <h1 className="flex w-full flex-col items-center text-[clamp(2.35rem,8.5vw,4.5rem)] font-bold leading-[1.25] tracking-[-0.045em] text-white sm:text-6xl lg:items-start lg:text-[clamp(3.5rem,5.2vw,5rem)]">
+              <span className="block max-w-full">
+                <BlurText
+                  text="India's Next"
+                  delay={120}
+                  animateBy="words"
+                  direction="top"
+                  className="text-white"
+                />
+              </span>
+              <span className="mt-1 flex flex-wrap items-center justify-center gap-x-3 sm:mt-2 lg:justify-start">
                 <span
-                  key={i}
-                  className={`w-8 h-8 rounded-full bg-gradient-to-br ${g} border-2 border-[#120000] flex items-center justify-center text-[10px] font-bold text-white`}
+                  className={`bg-gradient-to-r from-red-500 via-red-300 to-red-400 bg-clip-text text-transparent transition-opacity duration-500 ${
+                    accentVisible ? 'opacity-100' : 'opacity-0'
+                  }`}
                 >
-                  {['SC', 'MW', 'PN', 'DS'][i]}
+                  Big
                 </span>
-              ))}
+                <span
+                  className={`text-white transition-opacity duration-500 ${
+                    tailVisible ? 'opacity-100' : 'opacity-0'
+                  }`}
+                >
+                  Brands
+                </span>
+              </span>
+            </h1>
+
+            <p className="mt-5 max-w-xl text-[14px] leading-7 text-white/60 sm:mt-6 sm:text-base sm:leading-7">
+              Strategy, design, and creativity aligned to craft impactful digital solutions.
+              Focused on delivering real growth that scales your brand and business.
+            </p>
+
+            <div className="mt-7 flex w-full flex-col items-center gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
+              <Link
+                to="/contact"
+                className="group inline-flex min-h-12 w-full max-w-[340px] items-center justify-center gap-2 rounded-full bg-gradient-to-r from-red-600 to-red-400 px-5 py-3.5 text-center text-[13px] font-semibold leading-snug text-white shadow-glow transition-shadow hover:shadow-[0_0_70px_-10px_rgba(185,28,28,0.7)] sm:w-auto sm:max-w-none sm:px-6 sm:text-sm"
+              >
+                Book free Brand Strategy Call
+                <ArrowUpRight size={16} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
             </div>
-            <div>
-              <div className="flex gap-0.5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <svg key={i} width="11" height="11" viewBox="0 0 20 20" className="fill-red-400">
-                    <path d="M10 1l2.7 6.3 6.8.6-5.2 4.5 1.6 6.6L10 15.7 4.1 19l1.6-6.6L.5 7.9l6.8-.6L10 1z" />
-                  </svg>
+
+            {/* Social proof */}
+            <div className="mt-8 flex items-center justify-center gap-3 sm:mt-10 sm:gap-4 lg:justify-start">
+              <div className="flex shrink-0 -space-x-2.5">
+                {[
+                  'from-violet-500 to-purple-500',
+                  'from-purple-400 to-pink-400',
+                  'from-fuchsia-500 to-violet-500',
+                  'from-pink-400 to-purple-400',
+                ].map((g, i) => (
+                  <span
+                    key={i}
+                    className={`flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#120000] bg-gradient-to-br ${g} text-[10px] font-bold text-white`}
+                  >
+                    {['SC', 'MW', 'PN', 'DS'][i]}
+                  </span>
                 ))}
               </div>
-              <p className="text-[12px] text-white/45 mt-0.5">Trusted by 250+ founders</p>
+
+              <div className="text-left">
+                <div className="flex gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} width="12" height="12" viewBox="0 0 20 20" className="fill-red-400">
+                      <path d="M10 1l2.7 6.3 6.8.6-5.2 4.5 1.6 6.6L10 15.7 4.1 19l1.6-6.6L.5 7.9l6.8-.6L10 1z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="mt-1 text-[11px] leading-4 text-white/50 sm:text-xs">
+                  Trusted by 250+ founders
+                </p>
+              </div>
             </div>
           </div>
         </Reveal>
 
+        {/* Profile card */}
         <Reveal delay={0.15}>
-          <div className="max-w-sm mx-auto w-full">
+          <div className="mx-auto w-full max-w-[280px] sm:max-w-sm lg:max-w-md">
             <ProfileCard
               name="Brand Master"
               title="Brand Master"
