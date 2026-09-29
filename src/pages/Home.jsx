@@ -1464,7 +1464,7 @@ function FeaturedWork() {
                     IMAGE
                 ===================================== */}
 
-                <img
+                {/* <img
                   src={p.img}
                   alt={p.title}
                   loading="lazy"
@@ -1477,7 +1477,7 @@ function FeaturedWork() {
                     ease-out
                     group-hover:scale-[1.05]
                   "
-                />
+                /> */}
 
                 {/* =====================================
                     DARK IMAGE OVERLAY
