@@ -307,10 +307,9 @@ function Hero() {
                     text-[#FFD800]
                     transition-all
                     duration-700
-                    ${
-                      accentVisible
-                        ? 'translate-y-0 opacity-100'
-                        : 'translate-y-4 opacity-0'
+                    ${accentVisible
+                      ? 'translate-y-0 opacity-100'
+                      : 'translate-y-4 opacity-0'
                     }
                   `}
                 >
@@ -324,10 +323,9 @@ function Hero() {
                     text-white
                     transition-all
                     duration-700
-                    ${
-                      tailVisible
-                        ? 'translate-y-0 opacity-100'
-                        : 'translate-y-4 opacity-0'
+                    ${tailVisible
+                      ? 'translate-y-0 opacity-100'
+                      : 'translate-y-4 opacity-0'
                     }
                   `}
                 >
@@ -596,13 +594,14 @@ function Hero() {
 
             <div
               className="
-                relative
-                z-10
-                w-full
-                max-w-[280px]
-                sm:max-w-[380px]
-                lg:max-w-[500px]
-              "
+    relative
+    z-10
+    w-[min(88vw,340px)]
+    max-w-[340px]
+    sm:w-full
+    sm:max-w-[380px]
+    lg:max-w-[500px]
+  "
             >
               <ProfileCard
                 name="Brand Master"
@@ -1810,10 +1809,9 @@ function Faq() {
                     bg-white
                     transition-all
                     duration-300
-                    ${
-                      isOpen
-                        ? 'border-[#CF1B28]/30 shadow-[0_15px_45px_rgba(207,27,40,0.08)]'
-                        : 'border-[#101010]/[0.10] shadow-[0_5px_20px_rgba(0,0,0,0.025)] hover:border-[#CF1B28]/25 hover:shadow-[0_12px_35px_rgba(207,27,40,0.06)]'
+                    ${isOpen
+                      ? 'border-[#CF1B28]/30 shadow-[0_15px_45px_rgba(207,27,40,0.08)]'
+                      : 'border-[#101010]/[0.10] shadow-[0_5px_20px_rgba(0,0,0,0.025)] hover:border-[#CF1B28]/25 hover:shadow-[0_12px_35px_rgba(207,27,40,0.06)]'
                     }
                   `}
                 >
@@ -1832,10 +1830,9 @@ function Faq() {
                       to-transparent
                       transition-all
                       duration-500
-                      ${
-                        isOpen
-                          ? 'w-[55%] opacity-100'
-                          : 'w-0 opacity-0 group-hover:w-[35%] group-hover:opacity-60'
+                      ${isOpen
+                        ? 'w-[55%] opacity-100'
+                        : 'w-0 opacity-0 group-hover:w-[35%] group-hover:opacity-60'
                       }
                     `}
                   />
@@ -1871,10 +1868,9 @@ function Faq() {
                         transition-colors
                         duration-300
                         sm:text-[15px]
-                        ${
-                          isOpen
-                            ? 'text-[#CF1B28]'
-                            : 'text-[#101010] group-hover:text-[#CF1B28]'
+                        ${isOpen
+                          ? 'text-[#CF1B28]'
+                          : 'text-[#101010] group-hover:text-[#CF1B28]'
                         }
                       `}
                     >
@@ -1891,10 +1887,9 @@ function Faq() {
                           font-[800]
                           tracking-[1.5px]
                           sm:block
-                          ${
-                            isOpen
-                              ? 'text-[#CF1B28]'
-                              : 'text-[#101010]/25'
+                          ${isOpen
+                            ? 'text-[#CF1B28]'
+                            : 'text-[#101010]/25'
                           }
                         `}
                       >
@@ -1912,10 +1907,9 @@ function Faq() {
                           border
                           transition-all
                           duration-300
-                          ${
-                            isOpen
-                              ? 'border-[#CF1B28] bg-[#CF1B28] shadow-[0_6px_18px_rgba(207,27,40,0.22)]'
-                              : 'border-[#101010]/10 bg-[#F8F8F8] group-hover:border-[#CF1B28]/30 group-hover:bg-[#FFF4F4]'
+                          ${isOpen
+                            ? 'border-[#CF1B28] bg-[#CF1B28] shadow-[0_6px_18px_rgba(207,27,40,0.22)]'
+                            : 'border-[#101010]/10 bg-[#F8F8F8] group-hover:border-[#CF1B28]/30 group-hover:bg-[#FFF4F4]'
                           }
                         `}
                       >
@@ -1925,10 +1919,9 @@ function Faq() {
                           className={`
                             transition-all
                             duration-300
-                            ${
-                              isOpen
-                                ? 'rotate-180 text-white'
-                                : 'text-[#101010]/50 group-hover:text-[#CF1B28]'
+                            ${isOpen
+                              ? 'rotate-180 text-white'
+                              : 'text-[#101010]/50 group-hover:text-[#CF1B28]'
                             }
                           `}
                         />
@@ -1944,10 +1937,9 @@ function Faq() {
                       transition-all
                       duration-300
                       ease-out
-                      ${
-                        isOpen
-                          ? 'grid-rows-[1fr] opacity-100'
-                          : 'grid-rows-[0fr] opacity-0'
+                      ${isOpen
+                        ? 'grid-rows-[1fr] opacity-100'
+                        : 'grid-rows-[0fr] opacity-0'
                       }
                     `}
                   >
