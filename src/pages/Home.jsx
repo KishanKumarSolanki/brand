@@ -1440,7 +1440,7 @@ function FeaturedWork() {
             >
 
               <Link
-                to="/portfolio"
+                to=""
                 className="
                   group
                   relative
@@ -1547,7 +1547,7 @@ function FeaturedWork() {
 
                 <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6">
 
-                  <span
+                  {/* <span
                     className="
                       mb-2
                       inline-flex
@@ -1566,13 +1566,13 @@ function FeaturedWork() {
                     "
                   >
                     {p.category}
-                  </span>
+                  </span>| */}
 
                   {/* =================================
                       TITLE
                   ================================= */}
 
-                  <p
+                  {/* <p
                     className="
                       max-w-[85%]
                       text-[18px]
@@ -1584,7 +1584,7 @@ function FeaturedWork() {
                     "
                   >
                     {p.title}
-                  </p>
+                  </p> */}
 
                 </div>
 
