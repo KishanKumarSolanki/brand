@@ -1,26 +1,7 @@
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
-import { Rocket, Globe, Award } from 'lucide-react'
 
 function About() {
-  const items = [
-    {
-      title: 'Our Mission',
-      desc: 'To make premium design and engineering accessible to founders who care about craft.',
-      icon: Rocket,
-    },
-    {
-      title: 'Our Vision',
-      desc: 'A world where every ambitious brand looks and performs like a category leader.',
-      icon: Globe,
-    },
-    {
-      title: 'Our Belief',
-      desc: 'Great work happens at the intersection of taste, systems, and speed.',
-      icon: Award,
-    },
-  ]
-
   return (
     <section
       id="about"
@@ -36,9 +17,11 @@ function About() {
         lg:py-24
       "
     >
+
       {/* =========================================
           BACKGROUND GLOW
       ========================================= */}
+
       <div
         className="
           pointer-events-none
@@ -64,7 +47,7 @@ function About() {
         "
       />
 
-      {/* Subtle diagonal texture */}
+      {/* Subtle Diagonal Texture */}
       <div
         className="
           pointer-events-none
@@ -76,13 +59,15 @@ function About() {
       />
 
       {/* =========================================
-          CONTENT
+          MAIN CONTENT
       ========================================= */}
+
       <div className="relative z-10 mx-auto w-full max-w-[1180px]">
 
         {/* =========================================
             SECTION HEADING
         ========================================= */}
+
         <Reveal className="mx-auto max-w-[800px] text-center">
 
           <SectionHeading
@@ -92,222 +77,148 @@ function About() {
             align="center"
           />
 
-          <p
+        </Reveal>
+
+
+        {/* =========================================
+            MAIN ABOUT PARAGRAPH
+        ========================================= */}
+
+        <Reveal
+          delay={0.1}
+          className="mx-auto mt-8 max-w-[900px] sm:mt-10"
+        >
+
+          <div
             className="
-              mx-auto
-              mt-5
-              max-w-[650px]
-              text-[15px]
-              font-normal
-              leading-[1.7]
-              tracking-[0]
-              text-[#101010]/60
-              sm:text-[16px]
+              relative
+              overflow-hidden
+              rounded-[28px]
+              border
+              border-[#E9E9E9]
+              bg-[#FFFEFE]
+              px-6
+              py-7
+              shadow-[0_15px_50px_rgba(0,0,0,0.04)]
+              sm:px-10
+              sm:py-9
+              lg:px-14
+              lg:py-11
             "
           >
-            A team that treats every project like it's our own company.
-            We ship faster, care harder, and design with obsession.
+
+            {/* Top Red Accent */}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                left-1/2
+                top-0
+                h-[3px]
+                w-[35%]
+                -translate-x-1/2
+                bg-gradient-to-r
+                from-transparent
+                via-[#CF1B28]
+                to-transparent
+              "
+            />
+
+            {/* Soft Glow */}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                -right-24
+                -top-24
+                h-56
+                w-56
+                rounded-full
+                bg-[#CF1B28]/[0.06]
+                blur-[70px]
+              "
+            />
+
+            <p
+              className="
+                relative
+                z-10
+                text-center
+                text-[16px]
+                font-normal
+                leading-[1.85]
+                tracking-[-0.1px]
+                text-[#101010]/65
+                sm:text-[17px]
+                sm:leading-[1.85]
+                lg:text-[18px]
+              "
+            >
+              We are a creative studio built for ambitious brands that
+              refuse to blend in. We combine strategy, design, technology,
+              and thoughtful execution to create digital experiences that
+              feel distinctive, perform beautifully, and move businesses
+              forward. Every project is approached with the mindset of a
+              partner, not just a service provider — understanding the
+              bigger picture, caring about the smallest details, and
+              turning bold ideas into meaningful brand experiences.
+            </p>
+
+          </div>
+
+        </Reveal>
+
+
+        {/* =========================================
+            SECONDARY STATEMENT
+        ========================================= */}
+
+        <Reveal
+          delay={0.2}
+          className="mx-auto mt-8 max-w-[760px] text-center sm:mt-10"
+        >
+
+          <p
+            className="
+              text-[13px]
+              font-medium
+              leading-[1.75]
+              text-[#101010]/45
+              sm:text-[14px]
+            "
+          >
+            Strategy gives the work direction. Design gives it personality.
+            Technology makes it work. Together, they create brands people
+            remember.
           </p>
 
         </Reveal>
 
-        {/* =========================================
-            ABOUT CARDS
-        ========================================= */}
-        <div
-          className="
-            relative
-            mx-auto
-            mt-12
-            grid
-            max-w-[1080px]
-            grid-cols-1
-            gap-5
-            sm:mt-16
-            sm:grid-cols-2
-            lg:grid-cols-3
-          "
-        >
-          {items.map((item, index) => {
-            const Icon = item.icon
-
-            return (
-              <Reveal
-                key={item.title}
-                delay={index * 0.08}
-                className="h-full"
-              >
-                <article
-                  className="
-                    group
-                    relative
-                    flex
-                    h-full
-                    min-h-[230px]
-                    flex-col
-                    overflow-hidden
-                    rounded-[24px]
-                    border
-                    border-[#E5E5E5]
-                    bg-white
-                    p-7
-                    font-['Inter',Arial,Helvetica,sans-serif]
-                    shadow-[0_10px_35px_rgba(0,0,0,0.035)]
-                    transition-all
-                    duration-500
-                    hover:-translate-y-1
-                    hover:border-[#CF1B28]/30
-                    hover:bg-[#FFFDFD]
-                    hover:shadow-[0_20px_60px_rgba(207,27,40,0.10)]
-                  "
-                >
-
-                  {/* Card Glow */}
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute
-                      -right-16
-                      -top-16
-                      h-40
-                      w-40
-                      rounded-full
-                      bg-[#CF1B28]/0
-                      blur-[55px]
-                      transition-all
-                      duration-500
-                      group-hover:bg-[#CF1B28]/10
-                    "
-                  />
-
-                  {/* Top Shine */}
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute
-                      left-1/2
-                      top-0
-                      h-[2px]
-                      w-0
-                      -translate-x-1/2
-                      bg-gradient-to-r
-                      from-transparent
-                      via-[#CF1B28]
-                      to-transparent
-                      transition-all
-                      duration-500
-                      group-hover:w-[65%]
-                    "
-                  />
-
-                  <div className="relative z-10">
-
-                    {/* =========================================
-                        ICON
-                    ========================================= */}
-                    <div
-                      className="
-                        mb-6
-                        flex
-                        h-12
-                        w-12
-                        items-center
-                        justify-center
-                        rounded-[15px]
-                        border
-                        border-[#F0D5D7]
-                        bg-[#FFF4F4]
-                        transition-all
-                        duration-300
-                        group-hover:scale-105
-                        group-hover:border-[#CF1B28]
-                        group-hover:bg-[#CF1B28]
-                      "
-                    >
-                      <Icon
-                        size={20}
-                        strokeWidth={1.8}
-                        className="
-                          text-[#CF1B28]
-                          transition-all
-                          duration-300
-                          group-hover:text-white
-                        "
-                      />
-                    </div>
-
-                    {/* =========================================
-                        TITLE
-                    ========================================= */}
-                    <h3
-                      className="
-                        mb-3
-                        text-[21px]
-                        font-[900]
-                        leading-[1.1]
-                        tracking-[-0.6px]
-                        text-[#101010]
-                        transition-colors
-                        duration-300
-                        group-hover:text-[#CF1B28]
-                      "
-                    >
-                      {item.title}
-                    </h3>
-
-                    {/* =========================================
-                        DESCRIPTION
-                    ========================================= */}
-                    <p
-                      className="
-                        max-w-[320px]
-                        text-[13.5px]
-                        font-normal
-                        leading-[1.7]
-                        tracking-[0]
-                        text-[#101010]/55
-                        transition-colors
-                        duration-300
-                        group-hover:text-[#101010]/70
-                      "
-                    >
-                      {item.desc}
-                    </p>
-
-                  </div>
-
-                  {/* Bottom Number */}
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute
-                      bottom-5
-                      right-6
-                      text-[42px]
-                      font-[900]
-                      leading-none
-                      tracking-[-3px]
-                      text-[#101010]/[0.035]
-                      transition-colors
-                      duration-500
-                      group-hover:text-[#CF1B28]/[0.07]
-                    "
-                  >
-                    0{index + 1}
-                  </div>
-
-                </article>
-              </Reveal>
-            )
-          })}
-        </div>
 
         {/* =========================================
             BOTTOM BRAND LINE
         ========================================= */}
-        <Reveal delay={0.25}>
-          <div className="mt-10 flex items-center gap-3 sm:mt-12">
-            <div className="h-[2px] w-10 bg-[#CF1B28]" />
+
+        <Reveal delay={0.3}>
+          <div
+            className="
+              mt-10
+              flex
+              items-center
+              justify-center
+              gap-3
+              sm:mt-12
+            "
+          >
+
+            <div
+              className="
+                h-[2px]
+                w-10
+                bg-[#CF1B28]
+                sm:w-14
+              "
+            />
 
             <span
               className="
@@ -320,12 +231,26 @@ function About() {
             >
               Built for ambitious brands
             </span>
+
+            <div
+              className="
+                h-[2px]
+                w-10
+                bg-[#CF1B28]
+                sm:w-14
+              "
+            />
+
           </div>
         </Reveal>
 
       </div>
 
-      {/* Bottom Fade */}
+
+      {/* =========================================
+          BOTTOM FADE
+      ========================================= */}
+
       <div
         className="
           pointer-events-none
@@ -339,6 +264,7 @@ function About() {
           to-transparent
         "
       />
+
     </section>
   )
 }

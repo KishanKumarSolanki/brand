@@ -23,7 +23,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useScrollPin } from '../data/useScrollPin'
 import About from './About'
 import Services from './Services'
-
+import Portfolio from './Portfolio'
 gsap.registerPlugin(ScrollTrigger)
 
 if (typeof window !== 'undefined') {
@@ -43,24 +43,24 @@ export default function Home() {
       </div>
 
       {/* Capabilities */}
-      <div id="capabilities" className="scroll-mt-24">
+      {/* <div id="capabilities" className="scroll-mt-24">
         <Capabilities />
+      </div> */}
+      {/* Portfolio */}
+      <div id="portfolio" className="scroll-mt-24">
+        <Portfolio />
       </div>
-
       {/* Services */}
       <div id="services" className="scroll-mt-24">
         <Services />
       </div>
 
       {/* Process */}
-      <div id="process" className="scroll-mt-24">
+      {/* <div id="process" className="scroll-mt-24">
         <Process />
-      </div>
+      </div> */}
 
-      {/* Portfolio */}
-      <div id="portfolio" className="scroll-mt-24">
-        <FeaturedWork />
-      </div>
+
 
       {/* About */}
       <div id="about" className="scroll-mt-24">
@@ -1416,7 +1416,7 @@ function FeaturedWork() {
 
           <Reveal>
             <SectionHeading
-              eyebrow="Selected Work"
+              eyebrow="Portfolio"
               title="Design that gives businesses"
               accent="a stronger presence"
               align="left"

@@ -47,9 +47,9 @@ export const siteConfig = {
 // Top nav + footer both read from this so links always match routes
 export const navLinks = [
   { label: 'Home', to: '/#home' },
-  { label: 'About', to: '/#about' },
-  { label: 'Services', to: '/#services' },
   { label: 'Portfolio', to: '/#portfolio' },
+  { label: 'Services', to: '/#services' },
+  { label: 'About', to: '/#about' },
   { label: 'Contact', to: '/#contact' },
 ]
 

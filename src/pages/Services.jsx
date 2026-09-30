@@ -78,7 +78,7 @@ export default function Services() {
   return (
     <PageTransition>
       <Hero />
-      <ServiceList />
+      {/* <ServiceList /> */}
     </PageTransition>
   )
 }
@@ -314,8 +314,83 @@ function Hero() {
         </div>
 
       </Reveal>
+{/* =========================================
+            BOTTOM BRAND STATEMENT
+        ========================================= */}
 
+        <Reveal delay={0.3}>
+
+          <div
+            className="
+              mt-10
+              flex
+              flex-col
+              items-start
+              gap-4
+              rounded-[22px]
+              border
+              border-white/10
+              bg-black/20
+              px-6
+              py-5
+              backdrop-blur-md
+              sm:flex-row
+              sm:items-center
+              sm:justify-between
+              sm:px-7
+            "
+          >
+
+            <div className="flex items-center gap-3">
+
+              <span
+                className="
+                  flex
+                  h-9
+                  w-9
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-[#CF1B28]
+                  text-white
+                  shadow-[0_8px_25px_rgba(207,27,40,0.35)]
+                "
+              >
+                <Rocket
+                  size={16}
+                  strokeWidth={2}
+                />
+              </span>
+
+              <div>
+                <p className="text-[12px] font-[800] text-white">
+                  One brand. One clear direction.
+                </p>
+
+                <p className="mt-0.5 text-[11px] text-white/45">
+                  Strategy, identity, digital & growth.
+                </p>
+              </div>
+
+            </div>
+
+            <div
+              className="
+                text-[10px]
+                font-[800]
+                uppercase
+                tracking-[2px]
+                text-[#FFD800]
+              "
+            >
+              Built to grow
+            </div>
+
+          </div>
+
+        </Reveal>
     </section>
+    
   )
 }
 
