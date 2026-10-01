@@ -5,37 +5,36 @@
 // SITE CONTENT — edit everything here, no need to touch components
 // ────────────────────────────────────────────────────────────
 
-import img1 from '../assets/webp/1.webp'
-import img2 from '../assets/webp/2.webp'
-import img3 from '../assets/webp/3.webp'
-import img4 from '../assets/webp/4.webp'
-import img5 from '../assets/webp/5.webp'
-import img6 from '../assets/webp/6.webp'
-import img7 from '../assets/webp/7.webp'
-import img9 from '../assets/webp/9.webp'
-import img9Webp from '../assets/webp/9.webp'
-import akashImg from '../assets/webp/akash.webp'
-import Neeraj from '../assets/webp/Neeraj.webp'
-import SohilSir from '../assets/webp/SohilSir.webp'
-import Pawan from '../assets/webp/Pawan.webp'
-import Samar from '../assets/webp/Samar.webp'
-import Chandu from '../assets/webp/Chandu.webp'
-import Arman from '../assets/webp/Arman.webp'
-import Salman from '../assets/webp/Salman.webp'
-import ArjunSir from '../assets/webp/arjunsir.webp'
-import Abhishek from '../assets/webp/Abhishek.webp'
-import ccLogo from '../assets/webp/cc.webp'
-import Ncf from '../assets/webp/NCF.webp'
-import SocialMedia from '../assets/webp/SocialMedia.webp'
-import Software from '../assets/webp/Software.webp'
-import Website from '../assets/webp/Website.webp'
-import exploreLottie from '../assets/LottiFIles/Explore.lottie?url'
-import strategyLottie from '../assets/LottiFIles/Strategy.lottie?url'
-import designDevLottie from '../assets/LottiFIles/Design&Development.lottie?url'
-import launchLottie from '../assets/LottiFIles/Lounch.lottie?url'
-import growthLottie from '../assets/LottiFIles/Growth.lottie?url'
+// import img1 from '../assets/webp/1.webp'
+// import img2 from '../assets/webp/2.webp'
+// import img3 from '../assets/webp/3.webp'
+// import img4 from '../assets/webp/4.webp'
+// import img5 from '../assets/webp/5.webp'
+// import img6 from '../assets/webp/6.webp'
+// import img7 from '../assets/webp/7.webp'
+// import img9 from '../assets/webp/9.webp'
+// import img9Webp from '../assets/webp/9.webp'
+// import akashImg from '../assets/webp/akash.webp'
+// import Neeraj from '../assets/webp/Neeraj.webp'
+// import SohilSir from '../assets/webp/SohilSir.webp'
+// import Pawan from '../assets/webp/Pawan.webp'
+// import Samar from '../assets/webp/Samar.webp'
+// import Chandu from '../assets/webp/Chandu.webp'
+// import Arman from '../assets/webp/Arman.webp'
+// import Salman from '../assets/webp/Salman.webp'
+// import ArjunSir from '../assets/webp/arjunsir.webp'
+// import Abhishek from '../assets/webp/Abhishek.webp'
+// import ccLogo from '../assets/webp/cc.webp'
+// import Ncf from '../assets/webp/NCF.webp'
+// import SocialMedia from '../assets/webp/SocialMedia.webp'
+// import Software from '../assets/webp/Software.webp'
+// import Website from '../assets/webp/Website.webp'
+// import exploreLottie from '../assets/LottiFIles/Explore.lottie?url'
+// import strategyLottie from '../assets/LottiFIles/Strategy.lottie?url'
+// import designDevLottie from '../assets/LottiFIles/Design&Development.lottie?url'
+// import launchLottie from '../assets/LottiFIles/Lounch.lottie?url'
+// import growthLottie from '../assets/LottiFIles/Growth.lottie?url'
 
-import RestaurantMenu from '../assets/Restaurant Menu/19.png'
 import AadyaGrand from '../assets/logos/Aadya-Grand.png'
 import AllAboutFurniture from '../assets/logos/All-About-Furniture.png'
 import AnytimeAnywhere from '../assets/logos/Anytime-Anywhere...png'
@@ -63,6 +62,85 @@ import I15 from '../assets/COMPLETE BRANDING/15.png'
 import I16 from '../assets/COMPLETE BRANDING/16.png'
 import I17 from '../assets/COMPLETE BRANDING/17.png'
 import I18 from '../assets/COMPLETE BRANDING/18.png'
+
+import WebsiteBanner1 from '../assets/WEBSITE BANNER/Untitled-1.jpg'
+import WebsiteBanner2 from '../assets/WEBSITE BANNER/Untitled-2.png'
+import WebsiteBanner3 from '../assets/WEBSITE BANNER/Untitled-3.jpg'
+import WebsiteBanner4 from '../assets/WEBSITE BANNER/Untitled-4.png'
+import WebsiteBanner5 from '../assets/WEBSITE BANNER/Untitled-5.png'
+import WebsiteBanner6 from '../assets/WEBSITE BANNER/Untitled-6.png'
+import WebsiteBanner7 from '../assets/WEBSITE BANNER/Untitled-7.png'
+import WebsiteBanner8 from '../assets/WEBSITE BANNER/Untitled-8.png'
+import WebsiteBanner9 from '../assets/WEBSITE BANNER/Untitled-9.png'
+import WebsiteBanner10 from '../assets/WEBSITE BANNER/Untitled-10.png'
+
+import Thumbnail1 from '../assets/Thumbnails_/brochors.jpg'
+import Thumbnail2 from '../assets/Thumbnails_/company profiles.jpg'
+import Thumbnail3 from '../assets/Thumbnails_/E commers prisentation.jpg'
+import Thumbnail4 from '../assets/Thumbnails_/flyars.jpg'
+import Thumbnail5 from '../assets/Thumbnails_/letter heads.jpg'
+import Thumbnail6 from '../assets/Thumbnails_/logo.jpg'
+import Thumbnail7 from '../assets/Thumbnails_/menu.jpg'
+import Thumbnail8 from '../assets/Thumbnails_/product packging.jpg'
+import Thumbnail9 from '../assets/Thumbnails_/social media ports.jpg'
+import Thumbnail10 from '../assets/Thumbnails_/visitng cards.jpg'
+// import Thumbnail11 from '../assets/Thumbnails_/web banners.jpg'
+
+import SocialMedia1 from '../assets/Social Media/01.jpg'
+import SocialMedia2 from '../assets/Social Media/02.jpg'
+import SocialMedia3 from '../assets/Social Media/03.jpg'
+import SocialMedia4 from '../assets/Social Media/04.jpg'
+import SocialMedia5 from '../assets/Social Media/05.jpg'
+import SocialMedia6 from '../assets/Social Media/06.jpg'
+import SocialMedia7 from '../assets/Social Media/07.jpg'
+import SocialMedia8 from '../assets/Social Media/08.jpg'
+import SocialMedia9 from '../assets/Social Media/09.jpg'
+import SocialMedia10 from '../assets/Social Media/10.jpg'
+
+
+import RestaurantMenu1 from '../assets/RESTAURANT MENU/19.png'
+import RestaurantMenu2 from '../assets/RESTAURANT MENU/20.png'
+import RestaurantMenu3 from '../assets/RESTAURANT MENU/21.png'
+import RestaurantMenu4 from '../assets/RESTAURANT MENU/22.png'
+import RestaurantMenu5 from '../assets/RESTAURANT MENU/23.png'
+import RestaurantMenu6 from '../assets/RESTAURANT MENU/24.png'
+import RestaurantMenu7 from '../assets/RESTAURANT MENU/25.png'
+import RestaurantMenu8 from '../assets/RESTAURANT MENU/26.png'
+import RestaurantMenu9 from '../assets/RESTAURANT MENU/27.png'
+import RestaurantMenu10 from '../assets/RESTAURANT MENU/28.png'
+
+import Broucher1 from '../assets/brouchers/1.jpg'
+import Broucher2 from '../assets/brouchers/2.jpg'
+import Broucher3 from '../assets/brouchers/3.jpg'
+import Broucher4 from '../assets/brouchers/4.jpg'
+import Broucher5 from '../assets/brouchers/5.jpg'
+import Broucher6 from '../assets/brouchers/6.jpg'
+import Broucher7 from '../assets/brouchers/7.jpg'
+import Broucher8 from '../assets/brouchers/8.jpg'
+import Broucher9 from '../assets/brouchers/9.jpg'
+import Broucher10 from '../assets/brouchers/10.jpg'
+
+import CATALOGUE1 from '../assets/CATALOGUE/Untitled-1.png'
+import CATALOGUE2 from '../assets/CATALOGUE/Untitled-2.png'
+import CATALOGUE3 from '../assets/CATALOGUE/Untitled-3.png'
+import CATALOGUE4 from '../assets/CATALOGUE/Untitled-4.png'
+import CATALOGUE5 from '../assets/CATALOGUE/Untitled-5.png'
+import CATALOGUE6 from '../assets/CATALOGUE/Untitled-6.png'
+import CATALOGUE7 from '../assets/CATALOGUE/Untitled-7.png'
+import CATALOGUE8 from '../assets/CATALOGUE/Untitled-8.png'
+import CATALOGUE9 from '../assets/CATALOGUE/Untitled-9.png'
+import CATALOGUE10 from '../assets/CATALOGUE/Untitled-10.png' 
+
+import ProductPackaging1 from '../assets/PRODUCT PACKAGING/Untitled-1.png'
+import ProductPackaging2 from '../assets/PRODUCT PACKAGING/Untitled-2.png'
+import ProductPackaging3 from '../assets/PRODUCT PACKAGING/Untitled-3.png'
+import ProductPackaging4 from '../assets/PRODUCT PACKAGING/Untitled-4.png'
+import ProductPackaging5 from '../assets/PRODUCT PACKAGING/Untitled-5.png'
+import ProductPackaging6 from '../assets/PRODUCT PACKAGING/Untitled-6.png'
+import ProductPackaging7 from '../assets/PRODUCT PACKAGING/Untitled-7.png'
+import ProductPackaging8 from '../assets/PRODUCT PACKAGING/Untitled-8.png'
+import ProductPackaging9 from '../assets/PRODUCT PACKAGING/Untitled-9.png'
+import ProductPackaging10 from '../assets/PRODUCT PACKAGING/Untitled-10.png'
 
 export const siteConfig = {
   name: 'Brand Master',
@@ -117,17 +195,17 @@ export const footerColumns = [
   // },
 ]
 
-export const trustedBrands = [
-  { name: 'NovaCorp', logo: img1 },
-  { name: 'Lumos', logo: img2 },
-  { name: 'Arcadia', logo: img3 },
-  { name: 'Zenith', logo: img4 },
-  { name: 'Orbit', logo: img5 },
-  { name: 'Kairos', logo: img6 },
-  { name: 'Helix', logo: img7 },
-  { name: 'Meridian', logo: img9 },
-  { name: 'Meridian (Alt)', logo: img9Webp },
-]
+// export const trustedBrands = [
+//   { name: 'NovaCorp', logo: img1 },
+//   { name: 'Lumos', logo: img2 },
+//   { name: 'Arcadia', logo: img3 },
+//   { name: 'Zenith', logo: img4 },
+//   { name: 'Orbit', logo: img5 },
+//   { name: 'Kairos', logo: img6 },
+//   { name: 'Helix', logo: img7 },
+//   { name: 'Meridian', logo: img9 },
+//   { name: 'Meridian (Alt)', logo: img9Webp },
+// ]
 
 
 
@@ -162,53 +240,53 @@ export const stats = [
   { value: '24/7', label: 'Dedicated support' },
 ]
 
-export const processSteps = [
-  { n: "01", title: "Explore", desc: "Deep dive into your goals, users, and unfair advantages.", accent: "from-violet-500 to-fuchsia-500", lottie: exploreLottie },
-  { n: "02", title: "Strategy", desc: "Positioning, funnels, KPIs — the master plan.", accent: "from-indigo-500 to-violet-500", lottie: strategyLottie },
-  { n: "03", title: "Design & Development", desc: "Fast, scalable, production-grade builds.", accent: "from-blue-500 to-violet-500", lottie: designDevLottie },
-  { n: "04", title: "Launch", desc: "A polished go-live your customers remember.", accent: "from-violet-500 to-purple-500", lottie: launchLottie },
-  { n: "05", title: "Growth", desc: "Iterate, optimize, compound — every week.", accent: "from-fuchsia-500 to-rose-500", lottie: growthLottie },
-]
+// export const processSteps = [
+//   { n: "01", title: "Explore", desc: "Deep dive into your goals, users, and unfair advantages.", accent: "from-violet-500 to-fuchsia-500", lottie: exploreLottie },
+//   { n: "02", title: "Strategy", desc: "Positioning, funnels, KPIs — the master plan.", accent: "from-indigo-500 to-violet-500", lottie: strategyLottie },
+//   { n: "03", title: "Design & Development", desc: "Fast, scalable, production-grade builds.", accent: "from-blue-500 to-violet-500", lottie: designDevLottie },
+//   { n: "04", title: "Launch", desc: "A polished go-live your customers remember.", accent: "from-violet-500 to-purple-500", lottie: launchLottie },
+//   { n: "05", title: "Growth", desc: "Iterate, optimize, compound — every week.", accent: "from-fuchsia-500 to-rose-500", lottie: growthLottie },
+// ]
 
-export const services = [
-  {
-    n: '01', icon: 'Rocket', title: 'NCF Funnel',
-    tagline: 'Funnels that convert while you sleep.',
-    desc: 'No chase framework engineered around your customer journey.',
-    features: ['Campaign setup & optimize', 'Lead mangament', 'Scripting & Editing', 'Lms & landing page'],
-    stack: ['Meta ads', 'Ads creatives', 'Copy writing', 'Startegy development'],
-    price: 'From $6.5k',
+// export const services = [
+//   {
+//     n: '01', icon: 'Rocket', title: 'NCF Funnel',
+//     tagline: 'Funnels that convert while you sleep.',
+//     desc: 'No chase framework engineered around your customer journey.',
+//     features: ['Campaign setup & optimize', 'Lead mangament', 'Scripting & Editing', 'Lms & landing page'],
+//     stack: ['Meta ads', 'Ads creatives', 'Copy writing', 'Startegy development'],
+//     price: 'From $6.5k',
 
-    image: Ncf
-  },
-  {
-    n: '02', icon: 'Share2', title: 'Social Media Marketing',
-    tagline: 'Content that stops scrolls and starts revenue.',
-    desc: 'End-to-end social — from creative to paid to community.',
-    features: ['Content calendar', 'Reels & shorts', 'Paid ads', 'Community mgmt'],
-    stack: ['Instagram', 'Facebook', 'YouTube', 'LinkedIn'],
-    price: 'From $3.5k/mo',
-    image: SocialMedia
-  },
-  {
-    n: '03', icon: 'Globe', title: 'Website Development',
-    tagline: 'Editorial-grade websites that scale.',
-    desc: 'Design-led, performance-obsessed, SEO-ready builds.',
-    features: ['Design system', 'CMS', 'SEO', 'Analytics'],
-    stack: ['Next.js', 'React', 'Node.js', 'Framer Motion'],
-    price: 'From $8k',
-    image: Website
-  },
-  {
-    n: '04', icon: 'Code2', title: 'Software Development',
-    tagline: 'Custom apps built to last.',
-    desc: 'Dashboards, portals, automation — production-grade.',
-    features: ['LMS', 'Point of sale', 'Automation', 'Integrations'],
-    stack: ['Node', 'Postgres', 'Next.js', 'AWS'],
-    price: 'From $15k',
-    image: Software
-  },
-]
+//     image: Ncf
+//   },
+//   {
+//     n: '02', icon: 'Share2', title: 'Social Media Marketing',
+//     tagline: 'Content that stops scrolls and starts revenue.',
+//     desc: 'End-to-end social — from creative to paid to community.',
+//     features: ['Content calendar', 'Reels & shorts', 'Paid ads', 'Community mgmt'],
+//     stack: ['Instagram', 'Facebook', 'YouTube', 'LinkedIn'],
+//     price: 'From $3.5k/mo',
+//     image: SocialMedia
+//   },
+//   {
+//     n: '03', icon: 'Globe', title: 'Website Development',
+//     tagline: 'Editorial-grade websites that scale.',
+//     desc: 'Design-led, performance-obsessed, SEO-ready builds.',
+//     features: ['Design system', 'CMS', 'SEO', 'Analytics'],
+//     stack: ['Next.js', 'React', 'Node.js', 'Framer Motion'],
+//     price: 'From $8k',
+//     image: Website
+//   },
+//   {
+//     n: '04', icon: 'Code2', title: 'Software Development',
+//     tagline: 'Custom apps built to last.',
+//     desc: 'Dashboards, portals, automation — production-grade.',
+//     features: ['LMS', 'Point of sale', 'Automation', 'Integrations'],
+//     stack: ['Node', 'Postgres', 'Next.js', 'AWS'],
+//     price: 'From $15k',
+//     image: Software
+//   },
+// ]
 
 export const faqs = [
   { 
@@ -252,6 +330,19 @@ export const testimonials = [
 
 export const portfolioItems = [
   {
+    title: 'Our Office',
+    category: 'Our Office',
+
+    images: [
+    OurOffice,
+    Video2,
+    Video3,
+    Video4,
+    Video5,
+  ],
+  },
+
+  {
     title: 'Logo Design',
     category: 'Logo',
 
@@ -288,24 +379,38 @@ export const portfolioItems = [
 },
 
   {
-    title: 'Website Banner',
-    category: 'Website Banner',
+  title: 'Website Banner',
+  category: 'Website Banner',
 
-    images: [
-      Website,
-      img1,
-      img2,
-    ],
-  },
+  images: [
+    WebsiteBanner1,
+    WebsiteBanner2,
+    WebsiteBanner3,
+    WebsiteBanner4,
+    WebsiteBanner5,
+    WebsiteBanner6,
+    WebsiteBanner7,
+    WebsiteBanner8,
+    WebsiteBanner9,
+    WebsiteBanner10,
+  ],
+},
 
   {
     title: 'Thumbnails',
     category: 'Thumbnails',
 
     images: [
-      SocialMedia,
-      img3,
-      img4,
+      Thumbnail1,
+      Thumbnail2,
+      Thumbnail3,
+      Thumbnail4,
+      Thumbnail5,
+      Thumbnail6,
+      Thumbnail7,
+      Thumbnail8,
+      Thumbnail9,
+      Thumbnail10,
     ],
   },
 
@@ -314,9 +419,16 @@ export const portfolioItems = [
     category: 'Social Media',
 
     images: [
-      SocialMedia,
-      img5,
-      img6,
+      SocialMedia1,
+      SocialMedia2,
+      SocialMedia3,
+      SocialMedia4,
+      SocialMedia5,
+      SocialMedia6,
+      SocialMedia7,
+      SocialMedia8,
+      SocialMedia9,
+      SocialMedia10,
     ],
   },
 
@@ -325,39 +437,87 @@ export const portfolioItems = [
     category: 'Restaurant Menu',
 
     images: [
-      RestaurantMenu,
-      img7,
-      img9,
+      RestaurantMenu1,
+      RestaurantMenu2,
+      RestaurantMenu3,
+      RestaurantMenu4,
+      RestaurantMenu5,
+      RestaurantMenu6,
+      RestaurantMenu7,
+      RestaurantMenu8,
+      RestaurantMenu9,
+      RestaurantMenu10,
+    ],
+  },
+  {
+    title: 'Brouchers',
+    category: 'Brouchers',
+
+    images: [
+      Broucher1,
+      Broucher2,
+      Broucher3,
+      Broucher4,
+      Broucher5,
+      Broucher6,
+      Broucher7,
+      Broucher8,
+      Broucher9,
+      Broucher10,
+    ],
+  },
+  {
+    title: 'Catalogues',
+    category: 'Catalogues',
+
+    images: [
+      CATALOGUE1,
+      CATALOGUE2,
+      CATALOGUE3,
+      CATALOGUE4,
+      CATALOGUE5,
+      CATALOGUE6,
+      CATALOGUE7,
+      CATALOGUE8,
+      CATALOGUE9,
+      CATALOGUE10,
     ],
   },
 
   {
-    title: 'Our Office',
-    category: 'Our Office',
+    title: 'Product Packaging',
+    category: 'Product Packaging',
 
     images: [
-    OurOffice,
-    Video2,
-    Video3,
-    Video4,
-    Video5,
-  ],
-  },
-]
-export const filterCategories = ['All', 'Our Office', 'Logo', 'Complete Branding', 'Website Banner', 'Thumbnails', 'Social Media', 'Restaurant Menu']
+      ProductPackaging1,
+      ProductPackaging2,
+      ProductPackaging3,
+      ProductPackaging4,
+      ProductPackaging5,
+      ProductPackaging6,
+      ProductPackaging7,
+      ProductPackaging8,
+      ProductPackaging9,
+      ProductPackaging10,
+    ],
+  }
 
-export const teamMembers = [
-  { name: 'Sohil Alvi', role: 'Founder & Director', img: SohilSir },
-  { name: 'Akash Nagar', role: 'Creative Director', img: akashImg },
-  { name: 'Pawan Singh', role: 'Head of Management', img: Pawan },
-  { name: 'Arjun Prasad', role: 'Technical Head', img: ArjunSir },
-  { name: 'Chandr prakash', role: 'Social Media Head', img: Chandu },
-  { name: 'Abhishek Singh', role: 'Video Editing Head', img: Abhishek },
-  { name: 'Salman Alvi', role: 'Client Management', img: Salman },
-  { name: 'Arman Singh Rawat', role: 'Developer & Designer', img: Arman },
-  { name: 'Samresh Mali', role: 'Video Editor', img: Samar },
-  { name: 'Neeraj Sharma', role: 'Developer', img: Neeraj },
+  
 ]
+export const filterCategories = ['All', 'Our Office', 'Logo', 'Complete Branding', 'Website Banner', 'Thumbnails', 'Social Media', 'Restaurant Menu', 'Brouchers', 'Catalogues', 'Product Packaging']
+
+// export const teamMembers = [
+//   { name: 'Sohil Alvi', role: 'Founder & Director', img: SohilSir },
+//   { name: 'Akash Nagar', role: 'Creative Director', img: akashImg },
+//   { name: 'Pawan Singh', role: 'Head of Management', img: Pawan },
+//   { name: 'Arjun Prasad', role: 'Technical Head', img: ArjunSir },
+//   { name: 'Chandr prakash', role: 'Social Media Head', img: Chandu },
+//   { name: 'Abhishek Singh', role: 'Video Editing Head', img: Abhishek },
+//   { name: 'Salman Alvi', role: 'Client Management', img: Salman },
+//   { name: 'Arman Singh Rawat', role: 'Developer & Designer', img: Arman },
+//   { name: 'Samresh Mali', role: 'Video Editor', img: Samar },
+//   { name: 'Neeraj Sharma', role: 'Developer', img: Neeraj },
+// ]
 
 export const timeline = [
   { year: '2022', title: 'Started My Journey as a Designer', desc: 'Built a strong creative foundation through design, branding, and user experience.' },

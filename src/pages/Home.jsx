@@ -12,7 +12,7 @@ import CtaBanner from '../components/CtaBanner'
 import TestimonialsSection from '../components/TestimonialsSection'
 import BlurText from '../animations/BlurText'
 import {
-  capabilities, stats, processSteps, faqs, portfolioItems,
+  capabilities, stats, faqs, portfolioItems,
 } from '../data/siteData'
 // trustedBrands
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
@@ -1142,153 +1142,153 @@ function Capabilities() {
 //   )
 // }
 
-'use client'
-function Process() {
-  const sectionRef = useRef(null)
-  const pinRef = useRef(null)
-  const [lottieFailed, setLottieFailed] = useState(false)
-  const stepCount = processSteps.length
+// 'use client'
+// function Process() {
+//   const sectionRef = useRef(null)
+//   const pinRef = useRef(null)
+//   const [lottieFailed, setLottieFailed] = useState(false)
+//   const stepCount = processSteps.length
 
-  const { progress, activeStep, goToStep } = useScrollPin({
-    triggerRef: sectionRef,
-    pinRef,
-    stepCount,
-  })
+//   const { progress, activeStep, goToStep } = useScrollPin({
+//     triggerRef: sectionRef,
+//     pinRef,
+//     stepCount,
+//   })
 
-  useEffect(() => {
-    setLottieFailed(false)
-  }, [activeStep])
+//   useEffect(() => {
+//     setLottieFailed(false)
+//   }, [activeStep])
 
-  const active = processSteps[activeStep]
-  const fillPercent = progress * 100
+//   const active = processSteps[activeStep]
+//   const fillPercent = progress * 100
 
-  return (
-    <section ref={sectionRef} className="relative bg-white">
-      <div ref={pinRef} className="relative min-h-screen flex items-center py-10 sm:py-24 overflow-hidden">
-        <div className="absolute top-1/3 right-0 w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] bg-red-200/25 blur-[90px] sm:blur-[110px] rounded-full pointer-events-none" />
+//   return (
+//     <section ref={sectionRef} className="relative bg-white">
+//       <div ref={pinRef} className="relative min-h-screen flex items-center py-10 sm:py-24 overflow-hidden">
+//         <div className="absolute top-1/3 right-0 w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] bg-red-200/25 blur-[90px] sm:blur-[110px] rounded-full pointer-events-none" />
 
-        <div className="w-full max-w-7xl mx-auto px-4">
-          <Reveal>
-            <SectionHeading eyebrow="Our process" title="A five-step system," accent="Built to win" align="left" />
-          </Reveal>
+//         <div className="w-full max-w-7xl mx-auto px-4">
+//           <Reveal>
+//             <SectionHeading eyebrow="Our process" title="A five-step system," accent="Built to win" align="left" />
+//           </Reveal>
 
-          {/* ══════════════ DESKTOP — horizontal timeline, unchanged/untouched ══════════════ */}
-          <div className="hidden md:flex md:flex-col justify-center min-h-[calc(100vh-160px)]">
-            <div className="relative mb-16 max-w-4xl mx-auto w-full">
-              <div className="relative h-4">
-                <div className="absolute left-2 right-2 top-1/2 -translate-y-1/2 h-[2px] bg-[#120000]/10 rounded-full">
-                  <div
-                    className="h-full bg-gradient-to-r from-red-600 to-red-400 rounded-full transition-[width] duration-300 ease-out"
-                    style={{ width: `${fillPercent}%` }}
-                  />
-                </div>
-                <div className="relative grid h-full" style={{ gridTemplateColumns: `repeat(${stepCount}, 1fr)` }}>
-                  {processSteps.map((s, i) => {
-                    const isActive = i === activeStep
-                    const isDone = i < activeStep
-                    return (
-                      <div key={s.n} className="flex justify-center">
-                        <button
-                          type="button"
-                          onClick={() => goToStep?.(i)}
-                          aria-label={`Go to step ${i + 1}: ${s.title}`}
-                          className="relative flex items-center justify-center w-8 h-8 -my-2 cursor-pointer group/dot"
-                        >
-                          <span
-                            className={`block w-4 h-4 rounded-full border-2 transition-all duration-300 group-hover/dot:scale-125 ${isActive
-                              ? 'bg-red-600 border-red-600 scale-125 shadow-[0_0_0_5px_rgba(185,28,28,0.15)]'
-                              : isDone
-                                ? 'bg-red-600 border-red-600'
-                                : 'bg-white border-[#120000]/15 group-hover/dot:border-red-400'
-                              }`}
-                          />
-                        </button>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
+//           {/* ══════════════ DESKTOP — horizontal timeline, unchanged/untouched ══════════════ */}
+//           <div className="hidden md:flex md:flex-col justify-center min-h-[calc(100vh-160px)]">
+//             <div className="relative mb-16 max-w-4xl mx-auto w-full">
+//               <div className="relative h-4">
+//                 <div className="absolute left-2 right-2 top-1/2 -translate-y-1/2 h-[2px] bg-[#120000]/10 rounded-full">
+//                   <div
+//                     className="h-full bg-gradient-to-r from-red-600 to-red-400 rounded-full transition-[width] duration-300 ease-out"
+//                     style={{ width: `${fillPercent}%` }}
+//                   />
+//                 </div>
+//                 <div className="relative grid h-full" style={{ gridTemplateColumns: `repeat(${stepCount}, 1fr)` }}>
+//                   {processSteps.map((s, i) => {
+//                     const isActive = i === activeStep
+//                     const isDone = i < activeStep
+//                     return (
+//                       <div key={s.n} className="flex justify-center">
+//                         <button
+//                           type="button"
+//                           onClick={() => goToStep?.(i)}
+//                           aria-label={`Go to step ${i + 1}: ${s.title}`}
+//                           className="relative flex items-center justify-center w-8 h-8 -my-2 cursor-pointer group/dot"
+//                         >
+//                           <span
+//                             className={`block w-4 h-4 rounded-full border-2 transition-all duration-300 group-hover/dot:scale-125 ${isActive
+//                               ? 'bg-red-600 border-red-600 scale-125 shadow-[0_0_0_5px_rgba(185,28,28,0.15)]'
+//                               : isDone
+//                                 ? 'bg-red-600 border-red-600'
+//                                 : 'bg-white border-[#120000]/15 group-hover/dot:border-red-400'
+//                               }`}
+//                           />
+//                         </button>
+//                       </div>
+//                     )
+//                   })}
+//                 </div>
+//               </div>
 
-              <div className="relative grid mt-3" style={{ gridTemplateColumns: `repeat(${stepCount}, 1fr)` }}>
-                {processSteps.map((s, i) => {
-                  const isActive = i === activeStep
-                  const isDone = i < activeStep
-                  return (
-                    <button
-                      type="button"
-                      key={s.n}
-                      onClick={() => goToStep?.(i)}
-                      className={`text-[13px] font-medium text-center px-1 transition-colors duration-300 cursor-pointer hover:text-red-600 ${isActive || isDone ? 'text-[#120000]' : 'text-[#120000]/35'
-                        }`}
-                    >
-                      {s.title}
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
+//               <div className="relative grid mt-3" style={{ gridTemplateColumns: `repeat(${stepCount}, 1fr)` }}>
+//                 {processSteps.map((s, i) => {
+//                   const isActive = i === activeStep
+//                   const isDone = i < activeStep
+//                   return (
+//                     <button
+//                       type="button"
+//                       key={s.n}
+//                       onClick={() => goToStep?.(i)}
+//                       className={`text-[13px] font-medium text-center px-1 transition-colors duration-300 cursor-pointer hover:text-red-600 ${isActive || isDone ? 'text-[#120000]' : 'text-[#120000]/35'
+//                         }`}
+//                     >
+//                       {s.title}
+//                     </button>
+//                   )
+//                 })}
+//               </div>
+//             </div>
 
-            <div className="grid md:grid-cols-[1.1fr_1fr] gap-14 lg:gap-20 items-center max-w-5xl mx-auto w-full">
-              <LottiePanel
-                active={active}
-                lottieFailed={lottieFailed}
-                setLottieFailed={setLottieFailed}
-                activeStep={activeStep}
-              />
-              <StepText active={active} activeStep={activeStep} stepCount={stepCount} />
-            </div>
-          </div>
+//             <div className="grid md:grid-cols-[1.1fr_1fr] gap-14 lg:gap-20 items-center max-w-5xl mx-auto w-full">
+//               <LottiePanel
+//                 active={active}
+//                 lottieFailed={lottieFailed}
+//                 setLottieFailed={setLottieFailed}
+//                 activeStep={activeStep}
+//               />
+//               <StepText active={active} activeStep={activeStep} stepCount={stepCount} />
+//             </div>
+//           </div>
 
-          {/* ══════════════ MOBILE — vertical timeline, dot-centered line ══════════════ */}
-          <div className="grid md:hidden grid-cols-[24px_1fr] gap-4">
-            <div className="relative flex justify-center" style={{ minHeight: 460 }}>
-              {/* line — positioned to start/end exactly at first/last dot's center (dot = 12px, so 6px inset) */}
-              <div
-                className="absolute left-1/2 -translate-x-1/2 w-[2px] bg-[#120000]/10 rounded-full overflow-hidden"
-                style={{ top: 6, bottom: 6 }}
-              >
-                <div
-                  className="w-full bg-gradient-to-b from-red-600 to-red-400 rounded-full transition-[height] duration-300 ease-out"
-                  style={{ height: `${fillPercent}%` }}
-                />
-              </div>
-              <div className="relative flex flex-col justify-between h-full">
-                {processSteps.map((s, i) => {
-                  const isActive = i === activeStep
-                  const isDone = i < activeStep
-                  return (
-                    <span
-                      key={s.n}
-                      className={`block w-3 h-3 rounded-full border-2 transition-all duration-300 bg-white ${isActive
-                        ? 'border-red-600 bg-red-600 scale-125 shadow-[0_0_0_4px_rgba(185,28,28,0.15)]'
-                        : isDone
-                          ? 'border-red-600 bg-red-600'
-                          : 'border-[#120000]/15'
-                        }`}
-                    />
-                  )
-                })}
-              </div>
-            </div>
+//           {/* ══════════════ MOBILE — vertical timeline, dot-centered line ══════════════ */}
+//           <div className="grid md:hidden grid-cols-[24px_1fr] gap-4">
+//             <div className="relative flex justify-center" style={{ minHeight: 460 }}>
+//               {/* line — positioned to start/end exactly at first/last dot's center (dot = 12px, so 6px inset) */}
+//               <div
+//                 className="absolute left-1/2 -translate-x-1/2 w-[2px] bg-[#120000]/10 rounded-full overflow-hidden"
+//                 style={{ top: 6, bottom: 6 }}
+//               >
+//                 <div
+//                   className="w-full bg-gradient-to-b from-red-600 to-red-400 rounded-full transition-[height] duration-300 ease-out"
+//                   style={{ height: `${fillPercent}%` }}
+//                 />
+//               </div>
+//               <div className="relative flex flex-col justify-between h-full">
+//                 {processSteps.map((s, i) => {
+//                   const isActive = i === activeStep
+//                   const isDone = i < activeStep
+//                   return (
+//                     <span
+//                       key={s.n}
+//                       className={`block w-3 h-3 rounded-full border-2 transition-all duration-300 bg-white ${isActive
+//                         ? 'border-red-600 bg-red-600 scale-125 shadow-[0_0_0_4px_rgba(185,28,28,0.15)]'
+//                         : isDone
+//                           ? 'border-red-600 bg-red-600'
+//                           : 'border-[#120000]/15'
+//                         }`}
+//                     />
+//                   )
+//                 })}
+//               </div>
+//             </div>
 
-            <div className="flex flex-col gap-5">
-              <div className="rounded-3xl bg-gradient-to-br from-red-50 to-red-50 border border-[#120000]/5 p-4 overflow-hidden w-full max-w-[300px] aspect-square relative mx-auto">
-                <LottiePanel
-                  active={active}
-                  lottieFailed={lottieFailed}
-                  setLottieFailed={setLottieFailed}
-                  activeStep={activeStep}
-                  compact
-                />
-              </div>
-              <StepText active={active} activeStep={activeStep} stepCount={stepCount} compact />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+//             <div className="flex flex-col gap-5">
+//               <div className="rounded-3xl bg-gradient-to-br from-red-50 to-red-50 border border-[#120000]/5 p-4 overflow-hidden w-full max-w-[300px] aspect-square relative mx-auto">
+//                 <LottiePanel
+//                   active={active}
+//                   lottieFailed={lottieFailed}
+//                   setLottieFailed={setLottieFailed}
+//                   activeStep={activeStep}
+//                   compact
+//                 />
+//               </div>
+//               <StepText active={active} activeStep={activeStep} stepCount={stepCount} compact />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
 
 function LottiePanel({ active, lottieFailed, setLottieFailed, activeStep, compact = false }) {
   return (
