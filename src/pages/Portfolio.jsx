@@ -1,84 +1,646 @@
+// import { useState } from 'react'
+// import {
+//   ArrowLeft,
+//   ArrowRight,
+//   ArrowUpRight,
+// } from 'lucide-react'
+
+// import Reveal from './Reveal'
+// import { portfolioItems } from '../data/siteData'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, ArrowLeft, ArrowRight } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import CtaBanner from '../components/CtaBanner'
 import { portfolioItems, filterCategories } from '../data/siteData'
 
-export default function Portfolio() {
-  const [active, setActive] = useState('All')
-  const filtered =
-    active === 'All' ? portfolioItems : portfolioItems.filter((p) => p.category === active)
+
+export default function PortfolioSection() {
+
+  /* =====================================================
+     CATEGORY FILTER
+  ===================================================== */
+
+  const [activeCategory, setActiveCategory] = useState('All')
+
+
+  /* =====================================================
+     EACH CARD KA CURRENT IMAGE INDEX
+  ===================================================== */
+
+  const [imageIndexes, setImageIndexes] = useState({})
+
+
+  /* =====================================================
+     FILTER ITEMS
+  ===================================================== */
+
+  const filteredItems =
+    activeCategory === 'All'
+      ? portfolioItems
+      : portfolioItems.filter(
+          (item) => item.category === activeCategory
+        )
+
+
+  /* =====================================================
+     NEXT IMAGE
+  ===================================================== */
+
+  const nextImage = (itemIndex, totalImages) => {
+
+    setImageIndexes((prev) => {
+
+      const currentIndex = prev[itemIndex] || 0
+
+      return {
+        ...prev,
+
+        [itemIndex]:
+          (currentIndex + 1) % totalImages,
+      }
+
+    })
+
+  }
+
+
+  /* =====================================================
+     PREVIOUS IMAGE
+  ===================================================== */
+
+  const previousImage = (itemIndex, totalImages) => {
+
+    setImageIndexes((prev) => {
+
+      const currentIndex = prev[itemIndex] || 0
+
+      return {
+        ...prev,
+
+        [itemIndex]:
+          (currentIndex - 1 + totalImages) %
+          totalImages,
+      }
+
+    })
+
+  }
+
 
   return (
-    <PageTransition>
-      <section className="relative pt-24 sm:pt-40 pb-12 px-6 bg-white overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(207,27,40,0.08),transparent_55%)]" />
-        <Reveal className="relative max-w-3xl mx-auto text-center">
-          <SectionHeading eyebrow="Portfolio" title="Selected" accent="work" />
-          <p className="mt-5 text-[#101010]/60 text-[15px] max-w-lg mx-auto leading-relaxed">
-            A snapshot of what happens when craft meets ambition.
-          </p>
-        </Reveal>
 
-        <Reveal delay={0.1} className="relative flex flex-wrap items-center justify-center gap-2 mt-10">
-          {filterCategories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`text-[13px] font-medium px-4 py-2 rounded-full border transition-colors ${active === cat
-                ? 'bg-[#CF1B28] text-white border-[#CF1B28]'
-                : 'bg-white text-[#CF1B28] border-[#CF1B28] hover:bg-[#CF1B28] hover:text-white'
-                }`}
+    <section
+      id="portfolio"
+      className="
+        relative
+        overflow-hidden
+        bg-white
+        py-20
+        font-['Inter',Arial,Helvetica,sans-serif]
+        sm:py-24
+        lg:py-28
+      "
+    >
+
+      {/* =================================================
+          CONTAINER
+      ================================================= */}
+
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          w-full
+          max-w-[1220px]
+          px-5
+          sm:px-6
+          lg:px-8
+        "
+      >
+
+
+        {/* =================================================
+            HEADING
+        ================================================= */}
+
+        <Reveal>
+
+          <div className="max-w-[750px]">
+
+            <div
+              className="
+                mb-4
+                flex
+                items-center
+                gap-3
+              "
             >
-              {cat}
-            </button>
-          ))}
-        </Reveal>
-      </section>
 
-      <section className="bg-white pt-14 pb-24 px-6">
-        <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((p) => (
-              <motion.div
-                key={p.title}
-                layout
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              <span
+                className="
+                  h-[2px]
+                  w-10
+                  bg-[#CF1B28]
+                "
+              />
+
+              <span
+                className="
+                  text-[10px]
+                  font-[900]
+                  uppercase
+                  tracking-[3px]
+                  text-[#CF1B28]
+                "
               >
-                <a href="#" className="group block relative rounded-2xl overflow-hidden aspect-[3/4] bg-[#f5f5f5]">
-                  <img
-                    src={p.img}
-                    alt={p.title}
-                    loading="lazy"
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-5">
-                    <p className="text-[11px] uppercase tracking-wide text-red-200 mb-1">
-                      {p.category}
-                    </p>
-                    <p className="text-white font-semibold">{p.title}</p>
-                  </div>
-                  <span className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ArrowUpRight size={14} className="text-white" />
-                  </span>
-                </a>
-              </motion.div>
+                OUR WORK
+              </span>
+
+            </div>
+
+
+            <h2
+              className="
+                text-[42px]
+                font-[900]
+                leading-[1]
+                tracking-[-2px]
+                text-[#111820]
+                sm:text-[58px]
+                lg:text-[68px]
+              "
+            >
+
+              Work that makes
+              <br />
+
+              <span className="text-[#CF1B28]">
+                brands stand out.
+              </span>
+
+            </h2>
+
+          </div>
+
+        </Reveal>
+
+
+        {/* =================================================
+            CATEGORY FILTER
+        ================================================= */}
+
+        <Reveal delay={0.1}>
+
+          <div
+            className="
+              mt-8
+              flex
+              gap-2
+              overflow-x-auto
+              pb-2
+              scrollbar-hide
+              sm:mt-10
+            "
+          >
+
+            {[
+              'All',
+              'Our Office',
+              'Logo',
+              'Complete Branding',
+              'Web Development',
+            ].map((category) => (
+
+              <button
+                key={category}
+                type="button"
+                onClick={() => setActiveCategory(category)}
+                className={`
+                  shrink-0
+                  rounded-full
+                  border
+                  px-5
+                  py-2.5
+                  text-[11px]
+                  font-[800]
+                  uppercase
+                  tracking-[1px]
+                  transition-all
+                  duration-300
+
+                  ${
+                    activeCategory === category
+                      ? `
+                        border-[#CF1B28]
+                        bg-[#CF1B28]
+                        text-white
+                        shadow-[0_8px_25px_rgba(207,27,40,0.18)]
+                      `
+                      : `
+                        border-[#E6D9DA]
+                        bg-white
+                        text-[#555]
+                        hover:border-[#CF1B28]/40
+                        hover:text-[#CF1B28]
+                      `
+                  }
+                `}
+              >
+                {category}
+              </button>
+
             ))}
-          </AnimatePresence>
+
+          </div>
+
+        </Reveal>
+
+
+        {/* =================================================
+            PORTFOLIO GRID
+        ================================================= */}
+
+        <div
+          className="
+            mt-10
+            grid
+            grid-cols-1
+            gap-5
+            sm:grid-cols-2
+            lg:grid-cols-3
+          "
+        >
+
+          {filteredItems.map((item, index) => {
+
+            const images =
+              item.images?.length
+                ? item.images
+                : [item.img]
+
+            const currentIndex =
+              imageIndexes[index] || 0
+
+            const currentImage =
+              images[currentIndex]
+
+
+            return (
+
+              <Reveal
+                key={`${item.title}-${index}`}
+                delay={index * 0.05}
+              >
+
+                <article
+                  className="
+                    group
+                    overflow-hidden
+                    rounded-[22px]
+                    border
+                    border-[#E8DCDD]
+                    bg-white
+                    shadow-[0_10px_35px_rgba(0,0,0,0.045)]
+                    transition-all
+                    duration-500
+                    hover:-translate-y-1
+                    hover:shadow-[0_20px_50px_rgba(0,0,0,0.09)]
+                  "
+                >
+
+
+                  {/* =========================================
+                      IMAGE AREA
+                  ========================================= */}
+
+                  <div
+                    className="
+                      relative
+                      aspect-[4/3]
+                      overflow-hidden
+                      bg-[#F8F4F4]
+                    "
+                  >
+
+                    {/* IMAGE */}
+
+                    <img
+                      key={currentImage}
+                      src={currentImage}
+                      alt={item.title}
+                      className="
+                        h-full
+                        w-full
+                        object-cover
+                        transition-all
+                        duration-500
+                        group-hover:scale-[1.03]
+                      "
+                    />
+
+
+                    {/* =======================================
+                        DARK OVERLAY
+                    ======================================= */}
+
+                    <div
+                      className="
+                        pointer-events-none
+                        absolute
+                        inset-0
+                        bg-gradient-to-t
+                        from-black/25
+                        via-transparent
+                        to-transparent
+                      "
+                    />
+
+
+                    {/* =======================================
+                        CATEGORY
+                    ======================================= */}
+
+                    <div
+                      className="
+                        absolute
+                        left-4
+                        top-4
+                        rounded-full
+                        border
+                        border-white/40
+                        bg-white/90
+                        px-3
+                        py-1.5
+                        text-[9px]
+                        font-[900]
+                        uppercase
+                        tracking-[1.5px]
+                        text-[#CF1B28]
+                        backdrop-blur-md
+                      "
+                    >
+                      {item.category}
+                    </div>
+
+
+                    {/* =======================================
+                        CAROUSEL ARROWS
+                    ======================================= */}
+
+                    {images.length > 1 && (
+
+                      <div
+                        className="
+                          absolute
+                          bottom-4
+                          right-4
+                          flex
+                          items-center
+                          gap-2
+                        "
+                      >
+
+                        {/* PREVIOUS */}
+
+                        <button
+                          type="button"
+                          aria-label={`Previous ${item.title} image`}
+                          onClick={() =>
+                            previousImage(
+                              index,
+                              images.length
+                            )
+                          }
+                          className="
+                            flex
+                            h-9
+                            w-9
+                            items-center
+                            justify-center
+                            rounded-full
+                            border
+                            border-white/50
+                            bg-white/90
+                            text-[#111820]
+                            shadow-lg
+                            backdrop-blur-md
+                            transition-all
+                            duration-300
+                            hover:bg-[#CF1B28]
+                            hover:text-white
+                          "
+                        >
+
+                          <ArrowLeft
+                            size={15}
+                            strokeWidth={2.2}
+                          />
+
+                        </button>
+
+
+                        {/* NEXT */}
+
+                        <button
+                          type="button"
+                          aria-label={`Next ${item.title} image`}
+                          onClick={() =>
+                            nextImage(
+                              index,
+                              images.length
+                            )
+                          }
+                          className="
+                            flex
+                            h-9
+                            w-9
+                            items-center
+                            justify-center
+                            rounded-full
+                            border
+                            border-white/50
+                            bg-white/90
+                            text-[#111820]
+                            shadow-lg
+                            backdrop-blur-md
+                            transition-all
+                            duration-300
+                            hover:bg-[#CF1B28]
+                            hover:text-white
+                          "
+                        >
+
+                          <ArrowRight
+                            size={15}
+                            strokeWidth={2.2}
+                          />
+
+                        </button>
+
+                      </div>
+
+                    )}
+
+
+                    {/* =======================================
+                        IMAGE COUNTER
+                    ======================================= */}
+
+                    {images.length > 1 && (
+
+                      <div
+                        className="
+                          absolute
+                          bottom-4
+                          left-4
+                          rounded-full
+                          bg-black/55
+                          px-3
+                          py-1.5
+                          text-[10px]
+                          font-[800]
+                          text-white
+                          backdrop-blur-md
+                        "
+                      >
+                        {currentIndex + 1} / {images.length}
+                      </div>
+
+                    )}
+
+                  </div>
+
+
+                  {/* =========================================
+                      CARD CONTENT
+                  ========================================= */}
+
+                  <div className="p-5 sm:p-6">
+
+                    <div
+                      className="
+                        flex
+                        items-center
+                        justify-between
+                        gap-4
+                      "
+                    >
+
+                      <div>
+
+                        <p
+                          className="
+                            text-[10px]
+                            font-[800]
+                            uppercase
+                            tracking-[2px]
+                            text-[#CF1B28]
+                          "
+                        >
+                          {item.category}
+                        </p>
+
+
+                        <h3
+                          className="
+                            mt-1.5
+                            text-[19px]
+                            font-[900]
+                            tracking-[-0.5px]
+                            text-[#111820]
+                          "
+                        >
+                          {item.title}
+                        </h3>
+
+                      </div>
+
+
+                      <div
+                        className="
+                          flex
+                          h-9
+                          w-9
+                          shrink-0
+                          items-center
+                          justify-center
+                          rounded-full
+                          border
+                          border-[#E8DCDD]
+                          text-[#111820]/50
+                          transition-all
+                          duration-300
+                          group-hover:border-[#CF1B28]
+                          group-hover:bg-[#CF1B28]
+                          group-hover:text-white
+                        "
+                      >
+
+                        <ArrowUpRight
+                          size={15}
+                        />
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </article>
+
+              </Reveal>
+
+            )
+
+          })}
+
         </div>
 
-        {filtered.length === 0 && (
-          <p className="text-center text-[#101010]/40 mt-10">No projects in this category yet.</p>
-        )}
-      </section>
 
-    </PageTransition>
+        {/* =================================================
+            EMPTY STATE
+        ================================================= */}
+
+        {filteredItems.length === 0 && (
+
+          <div
+            className="
+              py-20
+              text-center
+              text-[14px]
+              font-medium
+              text-[#777]
+            "
+          >
+            No portfolio items found in this category.
+          </div>
+
+        )}
+
+      </div>
+
+
+      {/* =====================================================
+          SCROLLBAR CSS
+      ===================================================== */}
+
+      <style>{`
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+      `}</style>
+
+    </section>
   )
 }

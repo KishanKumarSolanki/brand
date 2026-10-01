@@ -35,6 +35,19 @@ import designDevLottie from '../assets/LottiFIles/Design&Development.lottie?url'
 import launchLottie from '../assets/LottiFIles/Lounch.lottie?url'
 import growthLottie from '../assets/LottiFIles/Growth.lottie?url'
 
+import RestaurantMenu from '../assets/Restaurant Menu/19.png'
+import OurOffice from '../assets/Videos/1.mp4'
+import AadyaGrand from '../assets/logos/Aadya-Grand.png'
+import AllAboutFurniture from '../assets/logos/All-About-Furniture.png'
+import AnytimeAnywhere from '../assets/logos/Anytime-Anywhere...png'
+import Aquahex from '../assets/logos/Aquahex.png'
+import Collections4u from '../assets/logos/Collections4u.png'
+import Harshni from '../assets/logos/Harshni.png'
+import Hightech from '../assets/logos/Hightech.png'
+import Modsik from '../assets/logos/Modsik.png'
+import ShreeMoming from '../assets/logos/Shree-Momai.png'
+import TheLeafCafe from '../assets/logos/The-Leaf-Cafe.png'
+
 export const siteConfig = {
   name: 'Brand Master',
   tagline: 'Let\'s build something unforgettable.',
@@ -214,15 +227,100 @@ export const testimonials = [
   { quote: 'Best-in-class creative + hard-nosed performance. This is our long-term partner.', name: 'Dinesh'},
 ]
 
+// export const portfolioItems = [
+//   { title: 'Website Developmente', category: 'Web', img: Website },
+//   { title: 'Social Media Marketing', category: 'Social Media', img: SocialMedia },
+//   { title: 'Software Development', category: 'Software', img: Software },
+//   { title: 'NCF Funnel', category: 'Marketing', img: Ncf },
+// ]
+
 export const portfolioItems = [
-  { title: 'Website Developmente', category: 'Web', img: Website },
-  { title: 'Social Media Marketing', category: 'Social Media', img: SocialMedia },
-  { title: 'Software Development', category: 'Software', img: Software },
-  { title: 'NCF Funnel', category: 'Marketing', img: Ncf },
+  {
+    title: 'Logo Design',
+    category: 'Logo',
+
+    images: [
+      AadyaGrand,
+      AllAboutFurniture,
+      AnytimeAnywhere,
+      Aquahex,
+      Collections4u,
+      Harshni,
+      Hightech,
+      Modsik,
+      ShreeMoming,
+      TheLeafCafe,
+    ],
+  },
+
+  {
+    title: 'Complete Branding',
+    category: 'Complete Branding',
+
+    images: [
+      img5,
+      img6,
+      img7,
+      img9,
+    ],
+  },
+
+  {
+    title: 'Website Banner',
+    category: 'Website Banner',
+
+    images: [
+      Website,
+      img1,
+      img2,
+    ],
+  },
+
+  {
+    title: 'Thumbnails',
+    category: 'Thumbnails',
+
+    images: [
+      SocialMedia,
+      img3,
+      img4,
+    ],
+  },
+
+  {
+    title: 'Social Media',
+    category: 'Social Media',
+
+    images: [
+      SocialMedia,
+      img5,
+      img6,
+    ],
+  },
+
+  {
+    title: 'Restaurant Menu',
+    category: 'Restaurant Menu',
+
+    images: [
+      RestaurantMenu,
+      img7,
+      img9,
+    ],
+  },
+
+  {
+    title: 'Our Office',
+    category: 'Our Office',
+
+    images: [
+      OurOffice,
+      img5,
+      img6,
+    ],
+  },
 ]
-
-
-export const filterCategories = ['All', 'Marketing', 'Social Media', 'Software', 'Web']
+export const filterCategories = ['All', 'Our Office', 'Logo', 'Complete Branding', 'Website Banner', 'Thumbnails', 'Social Media', 'Restaurant Menu']
 
 export const teamMembers = [
   { name: 'Sohil Alvi', role: 'Founder & Director', img: SohilSir },

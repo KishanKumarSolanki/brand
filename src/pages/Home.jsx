@@ -91,580 +91,688 @@ export default function Home() {
 }
 
 function Hero() {
-  const [accentVisible, setAccentVisible] = useState(false)
-  const [tailVisible, setTailVisible] = useState(false)
-
-  useEffect(() => {
-    const t1 = setTimeout(() => setAccentVisible(true), 500)
-    const t2 = setTimeout(() => setTailVisible(true), 800)
-
-    return () => {
-      clearTimeout(t1)
-      clearTimeout(t2)
-    }
-  }, [])
-
   return (
-    <section
-      className="
-        relative
-        isolate
-        overflow-hidden
+    <section className="bm-hero" aria-labelledby="bm-hero-title">
+      <style>{`
+        .bm-hero,
+        .bm-hero *,
+        .bm-hero *::before,
+        .bm-hero *::after {
+          box-sizing: border-box;
+        }
 
-        /* NAVBAR GAP */
-        mt-8
-        sm:mt-10
-        lg:mt-12
+        .bm-hero {
+          position: relative;
+          isolation: isolate;
+          width: 100%;
+          min-width: 0;
+          margin: 0;
+          padding: 95px 20px 22px;
+          overflow: hidden;
+          color: #ffffff;
+          background: #A71924;
+        }
 
-        /* HERO HEIGHT */
-        sm:min-h-[670px]
-        lg:min-h-[740px]
+        .bm-hero__background,
+        .bm-hero__texture,
+        .bm-hero__glow {
+          position: absolute;
+          pointer-events: none;
+          z-index: -1;
+        }
 
-        bg-[#A71924]
+        .bm-hero__background {
+          inset: 0;
+          background: radial-gradient(
+            circle at 72% 35%,
+            #C91E2C 0%,
+            #A71924 42%,
+            #8D111B 75%,
+            #720B13 100%
+          );
+        }
 
-        px-5
-        pt-8
-        pb-8
+        .bm-hero__texture {
+          inset: -20%;
+          opacity: .25;
+          background: linear-gradient(
+            135deg,
+            transparent 42%,
+            rgba(255,255,255,.05) 42%,
+            rgba(255,255,255,.05) 53%,
+            transparent 53%
+          );
+        }
 
-        sm:px-8
-        sm:pt-10
-        sm:pb-10
+        .bm-hero__glow {
+          border-radius: 50%;
+        }
 
-        lg:px-10
-        lg:pt-12
-        lg:pb-12
-      "
-    >
+        .bm-hero__glow--top {
+          top: -80px;
+          right: -150px;
+          width: 360px;
+          height: 360px;
+          background: rgba(227,49,62,.35);
+          filter: blur(100px);
+        }
 
-      {/* =========================================
-          BACKGROUND
-      ========================================= */}
+        .bm-hero__glow--right {
+          top: 180px;
+          right: -100px;
+          width: 320px;
+          height: 320px;
+          background: rgba(231,58,69,.20);
+          filter: blur(100px);
+        }
 
+        .bm-hero__glow--bottom {
+          bottom: -180px;
+          left: 45%;
+          width: 600px;
+          height: 420px;
+          transform: translateX(-50%);
+          background: rgba(94,7,16,.50);
+          filter: blur(110px);
+        }
+
+        .bm-hero__container {
+          position: relative;
+          width: 100%;
+          max-width: 1180px;
+          margin-inline: auto;
+        }
+
+        /*
+          Both elements occupy the same grid cell.
+          Both contribute to the hero height, preventing
+          unnecessary empty space below an absolute image.
+        */
+        .bm-hero__inner {
+          position: relative;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr);
+          align-items: start;
+          min-width: 0;
+        }
+
+        .bm-hero__content,
+        .bm-hero__mascot {
+          grid-area: 1 / 1;
+          min-width: 0;
+        }
+
+        .bm-hero__content {
+          position: relative;
+          z-index: 3;
+          width: 72%;
+          padding-top: 4px;
+        }
+
+        .bm-hero__eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          width: max-content;
+          max-width: calc(100% / .72);
+          margin: 0 0 16px;
+          color: rgba(255,255,255,.90);
+          font-size: clamp(7px, 2.3vw, 11px);
+          font-weight: 700;
+          line-height: 1.5;
+          letter-spacing: clamp(1px, .46vw, 1.8px);
+          text-transform: uppercase;
+        }
+
+        .bm-hero__dot {
+          flex: 0 0 6px;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #FFD447;
+          box-shadow: 0 0 10px #FFD447;
+        }
+
+        .bm-hero__title {
+          max-width: 700px;
+          margin: 0;
+          color: #ffffff;
+          font-size: clamp(33px, 10.75vw, 56px);
+          font-weight: 950;
+          line-height: .98;
+          letter-spacing: -.055em;
+        }
+
+        .bm-hero__line {
+          display: block;
+          white-space: nowrap;
+        }
+
+        .bm-hero__line + .bm-hero__line {
+          margin-top: 5px;
+        }
+
+        .bm-hero__accent,
+        .bm-hero__tail {
+          display: inline-block;
+          animation: bm-hero-reveal .7s ease both;
+        }
+
+        .bm-hero__accent {
+          animation-delay: .5s;
+        }
+
+        .bm-hero__tail {
+          margin-left: .16em;
+          animation-delay: .8s;
+        }
+
+        .bm-hero__description {
+          max-width: 520px;
+          margin: 18px 0 0;
+          color: rgba(255,255,255,.90);
+          font-size: clamp(11.5px, 3.33vw, 16px);
+          font-weight: 400;
+          line-height: 1.55;
+          overflow-wrap: break-word;
+        }
+
+        .bm-hero__actions {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          margin-top: 22px;
+        }
+
+        .bm-hero__button {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 7px;
+          width: 250px;
+          max-width: 100%;
+          min-height: 48px;
+          padding: 12px 13px;
+          border: 1px solid rgba(255,255,255,.80);
+          border-radius: 999px;
+          background: #ffffff;
+          color: #C83238;
+          font-size: clamp(9px, 2.82vw, 12px);
+          font-weight: 900;
+          line-height: 1.35;
+          text-align: center;
+          text-decoration: none;
+          box-shadow: 0 12px 30px rgba(0,0,0,.25);
+          -webkit-tap-highlight-color: transparent;
+          touch-action: manipulation;
+          transition:
+            transform .25s ease,
+            box-shadow .25s ease;
+        }
+
+        .bm-hero__button span {
+          min-width: 0;
+        }
+
+        .bm-hero__button svg {
+          flex: 0 0 16px;
+          width: 16px;
+          height: 16px;
+          transition: transform .25s ease;
+        }
+
+        .bm-hero__button:focus-visible {
+          outline: 3px solid #FFD447;
+          outline-offset: 5px;
+        }
+
+        .bm-hero__button:active {
+          transform: scale(.98);
+        }
+
+        .bm-hero__trust {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          width: 100%;
+          margin-top: 22px;
+        }
+
+        .bm-hero__avatars {
+          display: flex;
+          flex-shrink: 0;
+          padding-left: 0;
+        }
+
+        .bm-hero__avatar {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex: 0 0 24px;
+          width: 24px;
+          height: 24px;
+          border: 1.5px solid #A71924;
+          border-radius: 50%;
+          background: #24131A;
+          color: #ffffff;
+          font-size: 6px;
+          font-weight: 900;
+          line-height: 1;
+          box-shadow: 0 4px 10px rgba(0,0,0,.16);
+        }
+
+        .bm-hero__avatar + .bm-hero__avatar {
+          margin-left: -8px;
+        }
+
+        .bm-hero__rating {
+          min-width: 0;
+        }
+
+        .bm-hero__stars {
+          display: flex;
+          gap: 1px;
+          color: #FFD447;
+          font-size: 12px;
+          line-height: 1;
+        }
+
+        .bm-hero__trust-text {
+          margin: 4px 0 0;
+          color: rgba(255,255,255,.75);
+          font-size: 7px;
+          font-weight: 600;
+          line-height: 1.4;
+        }
+
+        .bm-hero__mascot {
+          position: relative;
+          z-index: 2;
+          justify-self: end;
+          width: 58%;
+          max-width: 390px;
+          margin-top: 32px;
+          transform: translateX(22.4%);
+          pointer-events: none;
+        }
+
+        .bm-hero__mascot-glow {
+          position: absolute;
+          top: 22%;
+          right: 15%;
+          width: 180px;
+          height: 180px;
+          border-radius: 50%;
+          background: rgba(231,58,69,.40);
+          filter: blur(65px);
+          pointer-events: none;
+        }
+
+        .bm-hero__image {
+          position: relative;
+          z-index: 1;
+          display: block;
+          width: 100%;
+          height: auto;
+          margin: 0;
+          object-fit: contain;
+          filter: drop-shadow(0 22px 32px rgba(0,0,0,.38));
+          user-select: none;
+          -webkit-user-select: none;
+        }
+
+        @keyframes bm-hero-reveal {
+          from {
+            opacity: 0;
+            transform: translateY(16px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          .bm-hero__button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px rgba(0,0,0,.35);
+          }
+
+          .bm-hero__button:hover svg {
+            transform: translate(3px, -3px);
+          }
+        }
+
+        @media (max-width: 359px) {
+          .bm-hero {
+            padding-inline: 16px;
+            padding-bottom: 18px;
+          }
+
+          .bm-hero__eyebrow {
+            gap: 6px;
+            margin-bottom: 14px;
+          }
+
+          .bm-hero__description {
+            margin-top: 15px;
+          }
+
+          .bm-hero__button {
+            gap: 4px;
+            padding-inline: 9px;
+          }
+
+          .bm-hero__trust {
+            gap: 7px;
+            margin-top: 18px;
+          }
+
+          .bm-hero__mascot {
+            margin-top: 34px;
+          }
+        }
+
+        @media (min-width: 640px) {
+          .bm-hero {
+            padding: 105px 32px 28px;
+          }
+
+          .bm-hero__content {
+            width: 66%;
+            padding-top: 8px;
+          }
+
+          .bm-hero__eyebrow {
+            max-width: calc(100% / .66);
+            margin-bottom: 20px;
+            font-size: 12px;
+            letter-spacing: 2.5px;
+          }
+
+          .bm-hero__dot {
+            flex-basis: 7px;
+            width: 7px;
+            height: 7px;
+          }
+
+          .bm-hero__title {
+            font-size: 60px;
+            line-height: .94;
+            letter-spacing: -3px;
+          }
+
+          .bm-hero__line + .bm-hero__line {
+            margin-top: 8px;
+          }
+
+          .bm-hero__description {
+            margin-top: 22px;
+            font-size: 17px;
+            line-height: 1.55;
+          }
+
+          .bm-hero__actions {
+            justify-content: flex-start;
+            margin-top: 28px;
+          }
+
+          .bm-hero__button {
+            width: 300px;
+            min-height: 52px;
+            gap: 9px;
+            padding-inline: 20px;
+            font-size: 13px;
+          }
+
+          .bm-hero__trust {
+            justify-content: flex-start;
+            gap: 12px;
+            margin-top: 28px;
+          }
+
+          .bm-hero__avatar {
+            flex-basis: 32px;
+            width: 32px;
+            height: 32px;
+            font-size: 8px;
+          }
+
+          .bm-hero__stars {
+            font-size: 14px;
+          }
+
+          .bm-hero__trust-text {
+            font-size: 10px;
+          }
+
+          .bm-hero__mascot {
+            width: 55%;
+            max-width: 470px;
+            margin-top: 6px;
+            transform: translateX(14.55%);
+          }
+
+          .bm-hero__mascot-glow {
+            width: 300px;
+            height: 300px;
+          }
+
+          .bm-hero__glow--top {
+            top: -90px;
+            right: -120px;
+            width: 500px;
+            height: 500px;
+          }
+
+          .bm-hero__glow--right {
+            right: -80px;
+            width: 400px;
+            height: 400px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .bm-hero {
+            padding: 110px 40px 32px;
+          }
+
+          .bm-hero__content {
+            width: 63%;
+            padding-top: 16px;
+          }
+
+          .bm-hero__eyebrow {
+            max-width: calc(100% / .63);
+            margin-bottom: 22px;
+            font-size: 13px;
+          }
+
+          .bm-hero__title {
+            font-size: 78px;
+            line-height: .94;
+            letter-spacing: -4px;
+          }
+
+          .bm-hero__description {
+            margin-top: 24px;
+            font-size: 20px;
+            line-height: 1.5;
+          }
+
+          .bm-hero__actions {
+            margin-top: 32px;
+          }
+
+          .bm-hero__button {
+            width: 325px;
+            min-height: 54px;
+            font-size: 14px;
+          }
+
+          .bm-hero__trust {
+            margin-top: 32px;
+          }
+
+          .bm-hero__avatar {
+            flex-basis: 36px;
+            width: 36px;
+            height: 36px;
+          }
+
+          .bm-hero__stars {
+            font-size: 15px;
+          }
+
+          .bm-hero__trust-text {
+            font-size: 11px;
+          }
+
+          .bm-hero__mascot {
+            width: 51%;
+            max-width: 550px;
+            margin-top: -30px;
+            transform: translateX(7.85%);
+          }
+
+          .bm-hero__mascot-glow {
+            width: 400px;
+            height: 400px;
+            filter: blur(95px);
+          }
+
+          .bm-hero__glow--top {
+            top: -100px;
+            right: -100px;
+            width: 560px;
+            height: 560px;
+          }
+
+          .bm-hero__glow--right {
+            top: 170px;
+            right: -50px;
+            width: 500px;
+            height: 500px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .bm-hero__accent,
+          .bm-hero__tail {
+            animation: none;
+            opacity: 1;
+            transform: none;
+          }
+
+          .bm-hero__button,
+          .bm-hero__button svg {
+            transition: none;
+          }
+        }
+      `}</style>
+
+      {/* Background */}
+      <div className="bm-hero__background" aria-hidden="true" />
       <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          bg-[radial-gradient(circle_at_72%_35%,#C91E2C_0%,#A71924_42%,#8D111B_75%,#720B13_100%)]
-        "
+        className="bm-hero__glow bm-hero__glow--top"
+        aria-hidden="true"
       />
-
-      {/* Red glow */}
       <div
-        className="
-          pointer-events-none
-          absolute
-          -right-[150px]
-          -top-[100px]
-          h-[380px]
-          w-[380px]
-          rounded-full
-          bg-[#E3313E]/35
-          blur-[110px]
-
-          sm:h-[500px]
-          sm:w-[500px]
-        "
+        className="bm-hero__glow bm-hero__glow--right"
+        aria-hidden="true"
       />
-
-      {/* Bottom glow */}
       <div
-        className="
-          pointer-events-none
-          absolute
-          -bottom-[180px]
-          left-[45%]
-          h-[400px]
-          w-[600px]
-          -translate-x-1/2
-          rounded-full
-          bg-[#5E0710]/45
-          blur-[110px]
-        "
+        className="bm-hero__glow bm-hero__glow--bottom"
+        aria-hidden="true"
       />
+      <div className="bm-hero__texture" aria-hidden="true" />
 
-      {/* Subtle diagonal texture */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-[-20%]
-          opacity-25
-          bg-[linear-gradient(135deg,transparent_42%,rgba(255,255,255,.05)_42%,rgba(255,255,255,.05)_53%,transparent_53%)]
-        "
-      />
-
-      {/* =========================================
-          HERO CONTENT
-      ========================================= */}
-
-      <div
-        className="
-          relative
-          z-10
-          mx-auto
-          w-full
-          max-w-[1180px]
-        "
-      >
-
-        <div
-          className="
-            relative
-
-            /* REDUCE INNER HEIGHT */
-            sm:min-h-[610px]
-            lg:min-h-[670px]
-          "
-        >
-
-          {/* =====================================
-              LEFT CONTENT
-          ===================================== */}
-
-          <div
-            className="
-              relative
-              z-30
-
-              w-[72%]
-
-              pt-2
-
-              sm:w-[66%]
-              sm:pt-4
-
-              lg:w-[63%]
-              lg:pt-6
-            "
-          >
-
-            {/* =====================================
-                EYEBROW
-            ===================================== */}
-
-            <div
-              className="
-                mb-3
-                flex
-                items-center
-                gap-2
-
-                text-[9px]
-                font-[700]
-                uppercase
-                tracking-[1.8px]
-
-                text-white/90
-
-                sm:mb-4
-                sm:text-[12px]
-                sm:tracking-[2.5px]
-              "
-            >
-
-              <span
-                className="
-                  h-[6px]
-                  w-[6px]
-                  shrink-0
-                  rounded-full
-                  bg-[#FFD447]
-                  shadow-[0_0_10px_#FFD447]
-                "
-              />
-
-              Complete Branding Solutions
-
+      <div className="bm-hero__container">
+        <div className="bm-hero__inner">
+          {/* Left content */}
+          <div className="bm-hero__content">
+            <div className="bm-hero__eyebrow">
+              <span className="bm-hero__dot" aria-hidden="true" />
+              <span>Complete Branding Solutions</span>
             </div>
 
+            <h1 id="bm-hero-title" className="bm-hero__title">
+              <span className="bm-hero__line">India's Next</span>
 
-            {/* =====================================
-                MAIN HEADING
-            ===================================== */}
-
-            <h1
-              className="
-                m-0
-                max-w-[700px]
-
-                text-[42px]
-                font-[950]
-                leading-[0.91]
-                tracking-[-2.5px]
-
-                text-white
-
-                sm:text-[60px]
-                sm:tracking-[-3px]
-
-                lg:text-[78px]
-                lg:tracking-[-4px]
-              "
-            >
-
-              <span className="block">
-                India's Next
+              <span className="bm-hero__line">
+                <span className="bm-hero__accent">Big</span>{" "}
+                <span className="bm-hero__tail">Brands</span>
               </span>
-
-              <span className="mt-1 block sm:mt-2">
-
-                <span
-                  className={`
-                    inline-block
-                    transition-all
-                    duration-700
-
-                    ${
-                      accentVisible
-                        ? "translate-y-0 opacity-100"
-                        : "translate-y-4 opacity-0"
-                    }
-                  `}
-                >
-                  Big
-                </span>
-
-                <span
-                  className={`
-                    ml-2
-                    inline-block
-                    transition-all
-                    duration-700
-
-                    ${
-                      tailVisible
-                        ? "translate-y-0 opacity-100"
-                        : "translate-y-4 opacity-0"
-                    }
-                  `}
-                >
-                  Brands
-                </span>
-
-              </span>
-
             </h1>
 
-
-            {/* =====================================
-                DESCRIPTION
-            ===================================== */}
-
-            <p
-              className="
-                mt-4
-
-                max-w-[520px]
-
-                text-[13px]
-                font-[400]
-                leading-[1.5]
-
-                text-white/90
-
-                sm:mt-5
-                sm:text-[17px]
-                sm:leading-[1.55]
-
-                lg:mt-6
-                lg:text-[20px]
-                lg:leading-[1.5]
-              "
-            >
-              Strategy, design, and creativity aligned to craft
-              impactful digital solutions. Focused on delivering
-              real growth that scales your brand and business.
+            <p className="bm-hero__description">
+              Strategy, design, and creativity aligned to craft impactful
+              digital solutions. Focused on delivering real growth that
+              scales your brand and business.
             </p>
 
-
-            {/* =====================================
-                ONLY CTA BUTTON
-            ===================================== */}
-
-            <div
-              className="
-                mt-5
-
-                flex
-                w-full
-                justify-center
-
-                sm:mt-7
-                sm:justify-start
-
-                lg:mt-8
-              "
-            >
-
-              <Link
-                to="/contact"
-                className="
-                  group
-                  relative
-                  z-50
-
-                  flex
-                  min-h-[48px]
-                  w-[250px]
-
-                  items-center
-                  justify-center
-                  gap-2
-
-                  rounded-full
-
-                  bg-white
-
-                  px-5
-
-                  text-center
-                  text-[11px]
-                  font-[900]
-
-                  text-[#C83238]
-
-                  shadow-[0_12px_30px_rgba(0,0,0,.25)]
-
-                  transition-all
-                  duration-300
-
-                  hover:-translate-y-1
-
-                  hover:shadow-[0_18px_40px_rgba(0,0,0,.35)]
-
-                  sm:min-h-[52px]
-                  sm:w-[300px]
-                  sm:text-[13px]
-
-                  lg:w-[325px]
-                  lg:text-[14px]
-                "
-              >
-
-                Book Free Brand Strategy Call
-
+            <div className="bm-hero__actions">
+              <Link to="/contact" className="bm-hero__button">
+                <span>Book Free Brand Strategy Call</span>
                 <ArrowUpRight
                   size={16}
                   strokeWidth={2.5}
-                  className="
-                    transition-transform
-                    duration-300
-                    group-hover:translate-x-1
-                    group-hover:-translate-y-1
-                  "
+                  aria-hidden="true"
                 />
-
               </Link>
-
             </div>
 
-
-            {/* =====================================
-                TRUST / RATING
-            ===================================== */}
-
-            <div
-              className="
-                mt-5
-
-                flex
-                items-center
-                justify-center
-                gap-2.5
-
-                sm:mt-7
-                sm:justify-start
-                sm:gap-3
-              "
-            >
-
-              {/* Avatar circles */}
-
-              <div className="flex -space-x-2">
-
+            <div className="bm-hero__trust">
+              <div className="bm-hero__avatars" aria-hidden="true">
                 {["SC", "MW", "PN", "DS"].map((item) => (
-                  <span
-                    key={item}
-                    className="
-                      flex
-
-                      h-6
-                      w-6
-
-                      items-center
-                      justify-center
-
-                      rounded-full
-
-                      border-[1.5px]
-                      border-[#A71924]
-
-                      bg-[#24131A]
-
-                      text-[6px]
-                      font-[900]
-
-                      text-white
-
-                      shadow-lg
-
-                      sm:h-8
-                      sm:w-8
-                      sm:text-[8px]
-                    "
-                  >
+                  <span key={item} className="bm-hero__avatar">
                     {item}
                   </span>
                 ))}
-
               </div>
 
-
-              {/* Rating */}
-
-              <div>
-
-                <div className="flex gap-[1px]">
-
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <span
-                      key={i}
-                      className="
-                        text-[11px]
-                        leading-none
-                        text-[#FFD447]
-
-                        sm:text-[14px]
-                      "
-                    >
+              <div className="bm-hero__rating">
+                <div
+                  className="bm-hero__stars"
+                  role="img"
+                  aria-label="5 out of 5 stars"
+                >
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <span key={index} aria-hidden="true">
                       ★
                     </span>
                   ))}
-
                 </div>
 
-                <p
-                  className="
-                    mt-[2px]
-
-                    text-[7px]
-                    font-[600]
-
-                    text-white/75
-
-                    sm:text-[10px]
-                  "
-                >
+                <p className="bm-hero__trust-text">
                   Trusted by 250+ founders
                 </p>
-
               </div>
-
             </div>
-
           </div>
 
-
-          {/* =====================================
-              MASCOT IMAGE
-          ===================================== */}
-
-          <div
-            className="
-              pointer-events-none
-
-              absolute
-
-              right-[-12%]
-              top-[2%]
-
-              z-20
-
-              flex
-
-              w-[59%]
-
-              items-end
-              justify-center
-
-              sm:right-[-8%]
-              sm:top-[-2%]
-              sm:w-[55%]
-
-              lg:right-[-4%]
-              lg:top-[-6%]
-              lg:w-[51%]
-            "
-          >
-
-            {/* Mascot glow */}
-
+          {/* Right mascot */}
+          <div className="bm-hero__mascot">
             <div
-              className="
-                pointer-events-none
-
-                absolute
-
-                right-[15%]
-                top-[22%]
-
-                h-[180px]
-                w-[180px]
-
-                rounded-full
-
-                bg-[#E73A45]/40
-
-                blur-[65px]
-
-                sm:h-[300px]
-                sm:w-[300px]
-
-                lg:h-[400px]
-                lg:w-[400px]
-
-                lg:blur-[95px]
-              "
+              className="bm-hero__mascot-glow"
+              aria-hidden="true"
             />
-
-
-            {/* Mascot */}
 
             <img
               src={Mascot}
               alt="BrandsMaster Mascot"
-              draggable="false"
-              className="
-                relative
-                z-20
-
-                h-auto
-                w-full
-
-                max-w-[380px]
-
-                object-contain
-
-                drop-shadow-[0_22px_32px_rgba(0,0,0,.38)]
-
-                transition-transform
-                duration-700
-
-                hover:scale-[1.02]
-
-                sm:max-w-[470px]
-
-                lg:max-w-[550px]
-              "
+              draggable={false}
+              loading="eager"
+              decoding="async"
+              className="bm-hero__image"
             />
-
           </div>
-
         </div>
-
       </div>
-
     </section>
   )
 }
