@@ -44,7 +44,7 @@ import Harshni from '../assets/logos/Harshni.png'
 import Hightech from '../assets/logos/Hightech.png'
 import Modsik from '../assets/logos/Modsik.png'
 import ShreeMoming from '../assets/logos/Shree-Momai.png'
-import TheLeafCafe from '../assets/logos/The-Leaf-Cafe.png'
+import TheLeafCafe from '../assets/logos/The-Leaf-Cafe.png'  
 
 import OurOffice from '../assets/Videos/1.mp4'
 import Video2 from '../assets/Videos/2.mp4'
