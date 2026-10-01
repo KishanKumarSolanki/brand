@@ -1,21 +1,8 @@
-// import { useState } from 'react'
-// import {
-//   ArrowLeft,
-//   ArrowRight,
-//   ArrowUpRight,
-// } from 'lucide-react'
-
-// import Reveal from './Reveal'
-// import { portfolioItems } from '../data/siteData'
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, ArrowLeft, ArrowRight } from 'lucide-react'
-import PageTransition from '../components/PageTransition'
-import Reveal from '../components/Reveal'
-import SectionHeading from '../components/SectionHeading'
-import CtaBanner from '../components/CtaBanner'
-import { portfolioItems, filterCategories } from '../data/siteData'
 
+import Reveal from '../components/Reveal'
+import { portfolioItems } from '../data/siteData'
 
 export default function PortfolioSection() {
 
@@ -27,7 +14,7 @@ export default function PortfolioSection() {
 
 
   /* =====================================================
-     EACH CARD KA CURRENT IMAGE INDEX
+     EACH CARD CURRENT MEDIA INDEX
   ===================================================== */
 
   const [imageIndexes, setImageIndexes] = useState({})
@@ -46,7 +33,7 @@ export default function PortfolioSection() {
 
 
   /* =====================================================
-     NEXT IMAGE
+     NEXT MEDIA
   ===================================================== */
 
   const nextImage = (itemIndex, totalImages) => {
@@ -57,7 +44,6 @@ export default function PortfolioSection() {
 
       return {
         ...prev,
-
         [itemIndex]:
           (currentIndex + 1) % totalImages,
       }
@@ -68,7 +54,7 @@ export default function PortfolioSection() {
 
 
   /* =====================================================
-     PREVIOUS IMAGE
+     PREVIOUS MEDIA
   ===================================================== */
 
   const previousImage = (itemIndex, totalImages) => {
@@ -79,7 +65,6 @@ export default function PortfolioSection() {
 
       return {
         ...prev,
-
         [itemIndex]:
           (currentIndex - 1 + totalImages) %
           totalImages,
@@ -88,6 +73,42 @@ export default function PortfolioSection() {
     })
 
   }
+
+
+  /* =====================================================
+     CHECK VIDEO
+  ===================================================== */
+
+  const isVideoFile = (src) => {
+
+    if (typeof src !== 'string') {
+      return false
+    }
+
+    const cleanSrc = src.split('?')[0].toLowerCase()
+
+    return (
+      cleanSrc.endsWith('.mp4') ||
+      cleanSrc.endsWith('.webm') ||
+      cleanSrc.endsWith('.ogg') ||
+      cleanSrc.endsWith('.mov')
+    )
+
+  }
+
+
+  /* =====================================================
+     CATEGORY LIST
+  ===================================================== */
+
+  const categories = [
+    'All',
+    ...Array.from(
+      new Set(
+        portfolioItems.map((item) => item.category)
+      )
+    ),
+  ]
 
 
   return (
@@ -207,13 +228,7 @@ export default function PortfolioSection() {
             "
           >
 
-            {[
-              'All',
-              'Our Office',
-              'Logo',
-              'Complete Branding',
-              'Web Development',
-            ].map((category) => (
+            {categories.map((category) => (
 
               <button
                 key={category}
@@ -277,16 +292,38 @@ export default function PortfolioSection() {
 
           {filteredItems.map((item, index) => {
 
+            /* ---------------------------------------------
+               GET MEDIA ARRAY
+            --------------------------------------------- */
+
             const images =
               item.images?.length
                 ? item.images
                 : [item.img]
 
+
+            /* ---------------------------------------------
+               CURRENT INDEX
+            --------------------------------------------- */
+
             const currentIndex =
               imageIndexes[index] || 0
 
+
+            /* ---------------------------------------------
+               CURRENT IMAGE / VIDEO
+            --------------------------------------------- */
+
             const currentImage =
               images[currentIndex]
+
+
+            /* ---------------------------------------------
+               CHECK IF CURRENT MEDIA IS VIDEO
+            --------------------------------------------- */
+
+            const isVideo =
+              isVideoFile(currentImage)
 
 
             return (
@@ -314,7 +351,7 @@ export default function PortfolioSection() {
 
 
                   {/* =========================================
-                      IMAGE AREA
+                      MEDIA AREA
                   ========================================= */}
 
                   <div
@@ -326,21 +363,49 @@ export default function PortfolioSection() {
                     "
                   >
 
-                    {/* IMAGE */}
+                    {/* =======================================
+                        VIDEO
+                    ======================================= */}
 
-                    <img
-                      key={currentImage}
-                      src={currentImage}
-                      alt={item.title}
-                      className="
-                        h-full
-                        w-full
-                        object-cover
-                        transition-all
-                        duration-500
-                        group-hover:scale-[1.03]
-                      "
-                    />
+                    {isVideo ? (
+
+                      <video
+                        key={currentImage}
+                        src={currentImage}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        controls
+                        preload="metadata"
+                        className="
+                          h-full
+                          w-full
+                          object-cover
+                        "
+                      />
+
+                    ) : (
+
+                      /* =====================================
+                         IMAGE
+                      ===================================== */
+
+                      <img
+                        key={currentImage}
+                        src={currentImage}
+                        alt={item.title}
+                        className="
+                          h-full
+                          w-full
+                          object-cover
+                          transition-all
+                          duration-500
+                          group-hover:scale-[1.03]
+                        "
+                      />
+
+                    )}
 
 
                     {/* =======================================
@@ -369,6 +434,7 @@ export default function PortfolioSection() {
                         absolute
                         left-4
                         top-4
+                        z-20
                         rounded-full
                         border
                         border-white/40
@@ -388,6 +454,38 @@ export default function PortfolioSection() {
 
 
                     {/* =======================================
+                        VIDEO LABEL
+                    ======================================= */}
+
+                    {isVideo && (
+
+                      <div
+                        className="
+                          absolute
+                          right-4
+                          top-4
+                          z-20
+                          rounded-full
+                          border
+                          border-white/30
+                          bg-black/55
+                          px-3
+                          py-1.5
+                          text-[9px]
+                          font-[900]
+                          uppercase
+                          tracking-[1.5px]
+                          text-white
+                          backdrop-blur-md
+                        "
+                      >
+                        VIDEO
+                      </div>
+
+                    )}
+
+
+                    {/* =======================================
                         CAROUSEL ARROWS
                     ======================================= */}
 
@@ -398,6 +496,7 @@ export default function PortfolioSection() {
                           absolute
                           bottom-4
                           right-4
+                          z-20
                           flex
                           items-center
                           gap-2
@@ -408,7 +507,7 @@ export default function PortfolioSection() {
 
                         <button
                           type="button"
-                          aria-label={`Previous ${item.title} image`}
+                          aria-label={`Previous ${item.title} media`}
                           onClick={() =>
                             previousImage(
                               index,
@@ -447,7 +546,7 @@ export default function PortfolioSection() {
 
                         <button
                           type="button"
-                          aria-label={`Next ${item.title} image`}
+                          aria-label={`Next ${item.title} media`}
                           onClick={() =>
                             nextImage(
                               index,
@@ -487,7 +586,7 @@ export default function PortfolioSection() {
 
 
                     {/* =======================================
-                        IMAGE COUNTER
+                        MEDIA COUNTER
                     ======================================= */}
 
                     {images.length > 1 && (
@@ -497,6 +596,7 @@ export default function PortfolioSection() {
                           absolute
                           bottom-4
                           left-4
+                          z-20
                           rounded-full
                           bg-black/55
                           px-3

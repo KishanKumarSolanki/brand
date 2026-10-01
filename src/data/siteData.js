@@ -36,7 +36,6 @@ import launchLottie from '../assets/LottiFIles/Lounch.lottie?url'
 import growthLottie from '../assets/LottiFIles/Growth.lottie?url'
 
 import RestaurantMenu from '../assets/Restaurant Menu/19.png'
-import OurOffice from '../assets/Videos/1.mp4'
 import AadyaGrand from '../assets/logos/Aadya-Grand.png'
 import AllAboutFurniture from '../assets/logos/All-About-Furniture.png'
 import AnytimeAnywhere from '../assets/logos/Anytime-Anywhere...png'
@@ -47,6 +46,23 @@ import Hightech from '../assets/logos/Hightech.png'
 import Modsik from '../assets/logos/Modsik.png'
 import ShreeMoming from '../assets/logos/Shree-Momai.png'
 import TheLeafCafe from '../assets/logos/The-Leaf-Cafe.png'
+
+import OurOffice from '../assets/Videos/1.mp4'
+import Video2 from '../assets/Videos/2.mp4'
+import Video3 from '../assets/Videos/3.mp4'
+import Video4 from '../assets/Videos/4.mp4'
+import Video5 from '../assets/Videos/5.mp4'
+
+import I8 from '../assets/COMPLETE BRANDING/08.png'
+import I10 from '../assets/COMPLETE BRANDING/10.png'
+import I11 from '../assets/COMPLETE BRANDING/11.png'
+import I12 from '../assets/COMPLETE BRANDING/12.png'
+import I13 from '../assets/COMPLETE BRANDING/13.png'
+import I14 from '../assets/COMPLETE BRANDING/14.png'
+import I15 from '../assets/COMPLETE BRANDING/15.png'
+import I16 from '../assets/COMPLETE BRANDING/16.png'
+import I17 from '../assets/COMPLETE BRANDING/17.png'
+import I18 from '../assets/COMPLETE BRANDING/18.png'
 
 export const siteConfig = {
   name: 'Brand Master',
@@ -254,16 +270,22 @@ export const portfolioItems = [
   },
 
   {
-    title: 'Complete Branding',
-    category: 'Complete Branding',
+  title: 'Complete Branding',
+  category: 'Complete Branding',
 
-    images: [
-      img5,
-      img6,
-      img7,
-      img9,
-    ],
-  },
+  images: [
+    I8,
+    I10,
+    I11,
+    I12,
+    I13,
+    I14,
+    I15,
+    I16,
+    I17,
+    I18,
+  ],
+},
 
   {
     title: 'Website Banner',
@@ -314,10 +336,12 @@ export const portfolioItems = [
     category: 'Our Office',
 
     images: [
-      OurOffice,
-      img5,
-      img6,
-    ],
+    OurOffice,
+    Video2,
+    Video3,
+    Video4,
+    Video5,
+  ],
   },
 ]
 export const filterCategories = ['All', 'Our Office', 'Logo', 'Complete Branding', 'Website Banner', 'Thumbnails', 'Social Media', 'Restaurant Menu']
