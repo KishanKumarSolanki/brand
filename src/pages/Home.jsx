@@ -53,7 +53,7 @@ export default function Home() {
         <TestimonialsSection />
       </div>
 
-      
+
       {/* Portfolio */}
       <div id="portfolio" className="scroll-mt-24">
         <Portfolio />
@@ -75,7 +75,7 @@ export default function Home() {
         <About />
       </div>
 
-      
+
 
       {/* FAQ */}
       <div id="faq" className="scroll-mt-24">
@@ -716,14 +716,20 @@ function Hero() {
             </p>
 
             <div className="bm-hero__actions">
-              <Link to="/contact" className="bm-hero__button">
+              <a
+                href="https://wa.me/919536404366"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bm-hero__button"
+              >
                 <span>Book Free Brand Strategy Call</span>
+
                 <ArrowUpRight
                   size={16}
                   strokeWidth={2.5}
                   aria-hidden="true"
                 />
-              </Link>
+              </a>
             </div>
 
             <div className="bm-hero__trust">

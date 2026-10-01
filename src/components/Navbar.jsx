@@ -38,8 +38,8 @@ export default function Navbar() {
       {/* DESKTOP NAVBAR */}
       <header
         className={`fixed inset-x-0 top-0 z-50 hidden transition-all duration-300 md:block ${scrolled
-            ? 'border-b border-white/10 bg-[#0a0a12]/90 shadow-lg backdrop-blur-xl'
-            : 'bg-transparent'
+          ? 'border-b border-white/10 bg-[#0a0a12]/90 shadow-lg backdrop-blur-xl'
+          : 'bg-transparent'
           }`}
       >
         <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 lg:px-8">
@@ -74,13 +74,15 @@ export default function Navbar() {
           <div className="group relative">
             <div className="pointer-events-none absolute inset-0 scale-110 rounded-full bg-red-500/40 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100" />
 
-            <Link
-              to="/#contact"
+            <a
+              href="https://wa.me/919536404366"
+              target="_blank"
+              rel="noopener noreferrer"
               className="relative inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/95 px-5 py-2.5 text-[14px] font-semibold text-[#0a0a12] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
             >
               Book a Call
               <span aria-hidden="true">↗</span>
-            </Link>
+            </a>
           </div>
         </nav>
       </header>

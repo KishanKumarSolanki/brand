@@ -73,8 +73,10 @@ export default function Footer() {
               strategy, design, and digital experiences that make an impact.
             </p>
 
-            <Link
-              to="/#contact"
+            <a
+              href="https://wa.me/919536404366"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group mt-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-red-400/40 hover:bg-red-500/10"
             >
               Let's Talk
@@ -82,7 +84,7 @@ export default function Footer() {
                 size={16}
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
-            </Link>
+            </a>
           </div>
 
           {/* Navigation Columns */}

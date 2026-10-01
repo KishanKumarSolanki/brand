@@ -145,8 +145,8 @@ import ProductPackaging10 from '../assets/PRODUCT PACKAGING/Untitled-10.png'
 export const siteConfig = {
   name: 'Brand Master',
   tagline: 'Let\'s build something unforgettable.',
-  email: 'crewcreative98@gmail.com',
-  phone: '+91 9899669649',
+  email: 'brandmaster@gmail.com',
+  phone: '+91 9536404366',
   location: ' 2nd Floor Building No.532/1  Bank Colony Deoli Village New Delhi 110062',
   hours: 'Mon–Sat · 10am–7pm PT',
 }
