@@ -1,10 +1,71 @@
-import { Star, Quote, ArrowUpRight } from 'lucide-react'
+import {
+  Users,
+  Star,
+  MapPin,
+  Gem,
+  ArrowUpRight,
+} from 'lucide-react'
+
 import Reveal from './Reveal'
-import SectionHeading from './SectionHeading'
-import { testimonials } from '../data/siteData'
+
+
+/* =========================================================
+   GOOGLE REVIEW URL
+   ---------------------------------------------------------
+   YAHAN APNA ACTUAL GOOGLE REVIEW / GOOGLE BUSINESS URL
+   PASTE KARNA HAI.
+========================================================= */
+
+const GOOGLE_RATING_URL =
+  'PASTE_YOUR_GOOGLE_REVIEW_URL_HERE'
+
 
 export default function TestimonialsSection() {
-  const marqueeTestimonials = [...testimonials, ...testimonials]
+
+  /* =======================================================
+     FOUR BRAND PROOF CARDS
+  ======================================================= */
+
+  const proofCards = [
+    {
+      id: 'reach',
+      value: '40K+',
+      description: 'Business owners reached',
+      icon: Users,
+      clickable: false,
+    },
+
+    {
+      id: 'rating',
+      value: '4.8★',
+      description: 'Google review rating',
+      icon: Star,
+      clickable: true,
+    },
+
+    {
+      id: 'india',
+      value: 'Pan India',
+      description: (
+        <>
+          Serving businesses across
+          <br />
+          India
+        </>
+      ),
+      icon: MapPin,
+      clickable: false,
+    },
+
+    {
+      id: 'support',
+      value: '360°',
+      description: 'Design support',
+      icon: Gem,
+      clickable: false,
+    },
+  ]
+
 
   return (
     <section
@@ -12,353 +73,322 @@ export default function TestimonialsSection() {
         relative
         isolate
         overflow-hidden
-        bg-[#220003]
+        bg-white
         py-16
         font-['Inter',Arial,Helvetica,sans-serif]
-        sm:py-24
-        lg:py-28
+        sm:py-20
+        lg:py-24
       "
     >
-      {/* =========================================
-          HERO-STYLE BACKGROUND
-      ========================================= */}
+
+      {/* =====================================================
+          SOFT BACKGROUND
+      ===================================================== */}
 
       <div
         className="
           pointer-events-none
           absolute
           inset-0
-          bg-[radial-gradient(circle_at_78%_25%,#D61521_0%,#9C050C_33%,#500006_68%,#220003_100%)]
+          bg-[radial-gradient(circle_at_85%_8%,rgba(207,27,40,0.055),transparent_34%)]
         "
       />
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          bg-[linear-gradient(135deg,rgba(0,0,0,0.12)_0%,transparent_42%,rgba(0,0,0,0.20)_100%)]
-        "
-      />
+      {/* =====================================================
+          DIAGONAL BACKGROUND SHINE
+      ===================================================== */}
 
-      {/* Red Glow */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -right-[160px]
-          -top-[150px]
-          h-[500px]
-          w-[500px]
-          rounded-full
-          bg-[#D61521]/40
-          blur-[130px]
-        "
-      />
-
-      {/* Bottom Glow */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -bottom-[220px]
-          left-1/2
-          h-[500px]
-          w-[800px]
-          -translate-x-1/2
-          rounded-full
-          bg-black/35
-          blur-[130px]
-        "
-      />
-
-      {/* Diagonal Shine */}
       <div
         className="
           pointer-events-none
           absolute
           inset-[-20%_-10%]
-          bg-[linear-gradient(135deg,transparent_45%,rgba(255,255,255,0.045)_45%,rgba(255,255,255,0.045)_56%,transparent_56%)]
+          bg-[linear-gradient(135deg,transparent_42%,rgba(207,27,40,0.025)_42%,rgba(207,27,40,0.025)_54%,transparent_54%)]
         "
       />
 
-      {/* Dot Pattern */}
       <div
         className="
           pointer-events-none
           absolute
-          inset-0
-          opacity-[0.055]
-          bg-[radial-gradient(circle,rgba(255,255,255,0.9)_1px,transparent_1px)]
-          bg-[length:28px_28px]
+          inset-[-20%_-10%]
+          opacity-70
+          bg-[linear-gradient(135deg,transparent_60%,rgba(207,27,40,0.018)_60%,rgba(207,27,40,0.018)_70%,transparent_70%)]
         "
-        style={{
-          maskImage:
-            'radial-gradient(ellipse at center, black 0%, transparent 75%)',
-          WebkitMaskImage:
-            'radial-gradient(ellipse at center, black 0%, transparent 75%)',
-        }}
       />
 
-      {/* =========================================
-          HEADING
-      ========================================= */}
 
-      <div className="relative z-10 mx-auto w-full max-w-[1180px] px-5 sm:px-6">
+      {/* =====================================================
+          MAIN CONTAINER
+      ===================================================== */}
+
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          w-full
+          max-w-[1220px]
+          px-5
+          sm:px-6
+          lg:px-8
+        "
+      >
+
+
+        {/* ===================================================
+            EYEBROW
+        =================================================== */}
 
         <Reveal>
-          <SectionHeading
-            eyebrow="Client Proof"
-            title="Real businesses."
-            accent="Real feedback."
-            align="left"
-            dark
-          />
-        </Reveal>
 
-        <Reveal delay={0.1}>
-          <p
+          <div
             className="
-              mt-5
-              max-w-[620px]
-              text-[15px]
-              font-normal
-              leading-[1.7]
-              text-white/65
-              sm:text-[16px]
+              mb-4
+              flex
+              items-center
+              gap-3
             "
           >
-            See what founders and businesses say after working with
-            BrandsMaster to build a stronger and more professional brand.
-          </p>
-        </Reveal>
 
-      </div>
-
-      {/* =========================================
-          MARQUEE
-      ========================================= */}
-
-      <div className="relative z-10 mt-10 w-full overflow-hidden sm:mt-12">
-
-        {/* Edge Fade */}
-        <div
-          className="
-            pointer-events-none
-            absolute
-            left-0
-            top-0
-            z-20
-            h-full
-            w-16
-            bg-gradient-to-r
-            from-[#500006]
-            to-transparent
-            sm:w-28
-          "
-        />
-
-        <div
-          className="
-            pointer-events-none
-            absolute
-            right-0
-            top-0
-            z-20
-            h-full
-            w-16
-            bg-gradient-to-l
-            from-[#500006]
-            to-transparent
-            sm:w-28
-          "
-        />
-
-        <div
-          className="
-            testimonial-marquee
-            flex
-            w-max
-            gap-5
-            hover:[animation-play-state:paused]
-          "
-        >
-          {marqueeTestimonials.map((t, i) => (
-            <div
-              key={`${t.name}-${i}`}
+            <span
               className="
-                w-[300px]
+                h-[2px]
+                w-9
                 shrink-0
-                sm:w-[380px]
+                bg-[#CF1B28]
+                sm:w-10
+              "
+            />
+
+            <span
+              className="
+                text-[10px]
+                font-[900]
+                uppercase
+                tracking-[3px]
+                text-[#CF1B28]
+                sm:text-[11px]
               "
             >
-              <article
+              WHY BRANDMASTER
+            </span>
+
+          </div>
+
+        </Reveal>
+
+
+        {/* ===================================================
+            MAIN HEADING
+        =================================================== */}
+
+        <Reveal delay={0.05}>
+
+          <h2
+            className="
+              max-w-[850px]
+              text-[42px]
+              font-[900]
+              leading-[0.98]
+              tracking-[-2.5px]
+              text-[#111820]
+              sm:text-[58px]
+              sm:tracking-[-3.5px]
+              lg:text-[68px]
+              lg:leading-[0.96]
+            "
+          >
+
+            Built for businesses that
+
+            <br />
+
+            <span
+              className="
+                text-[#CF1B28]
+              "
+            >
+              want to grow.
+            </span>
+
+          </h2>
+
+        </Reveal>
+
+
+        {/* ===================================================
+            FOUR CARDS
+        =================================================== */}
+
+        <div
+          className="
+            mt-10
+            grid
+            grid-cols-2
+            gap-3
+            sm:mt-12
+            sm:grid-cols-2
+            sm:gap-5
+            lg:grid-cols-4
+            lg:gap-4
+          "
+        >
+
+          {proofCards.map((card, index) => {
+
+            const Icon = card.icon
+
+
+            /* =================================================
+               CARD CONTENT
+            ================================================= */
+
+            const cardContent = (
+
+              <div
                 className="
                   group
                   relative
                   flex
-                  min-h-[270px]
-                  h-full
+                  min-h-[205px]
                   flex-col
                   overflow-hidden
-                  rounded-[24px]
+                  rounded-[20px]
                   border
-                  border-white/10
+                  border-[#EBCFD2]
                   bg-white
-                  p-6
-                  shadow-[0_20px_60px_rgba(0,0,0,0.22)]
+                  p-5
+                  shadow-[0_10px_35px_rgba(20,10,10,0.035)]
                   transition-all
-                  duration-500
-                  hover:-translate-y-2
-                  hover:border-[#FFD800]/40
-                  hover:shadow-[0_30px_80px_rgba(0,0,0,0.35)]
-                  sm:p-7
+                  duration-400
+                  hover:-translate-y-1
+                  hover:border-[#CF1B28]/35
+                  hover:shadow-[0_18px_45px_rgba(207,27,40,0.08)]
+                  sm:min-h-[220px]
+                  sm:p-6
+                  lg:min-h-[145px]
+                  lg:p-7
                 "
               >
 
-                {/* Card Glow */}
+                {/* ===========================================
+                    TOP LIGHT EFFECT
+                =========================================== */}
+
                 <div
                   className="
                     pointer-events-none
                     absolute
-                    -right-20
-                    -top-20
-                    h-48
-                    w-48
+                    -right-16
+                    -top-16
+                    h-32
+                    w-32
                     rounded-full
-                    bg-[#CF1B28]/0
-                    blur-[70px]
+                    bg-[#CF1B28]/[0.035]
+                    blur-2xl
                     transition-all
                     duration-500
-                    group-hover:bg-[#CF1B28]/15
+                    group-hover:bg-[#CF1B28]/[0.08]
                   "
                 />
 
-                {/* Top Shine */}
+
+                {/* ===========================================
+                    ICON
+                =========================================== */}
+
                 <div
                   className="
-                    pointer-events-none
-                    absolute
-                    left-1/2
-                    top-0
-                    h-[2px]
-                    w-0
-                    -translate-x-1/2
-                    bg-gradient-to-r
-                    from-transparent
-                    via-[#FFD800]
-                    to-transparent
+                    relative
+                    z-10
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-[13px]
+                    border
+                    border-[#F3CBCD]
+                    bg-[#FFF4F4]
+                    text-[#CF1B28]
                     transition-all
-                    duration-500
-                    group-hover:w-[70%]
+                    duration-300
+                    group-hover:border-[#CF1B28]/35
+                    group-hover:bg-[#CF1B28]
+                    group-hover:text-white
+                    sm:h-14
+                    sm:w-14
                   "
-                />
+                >
 
-                {/* =========================================
-                    TOP ROW
-                ========================================= */}
+                  <Icon
+                    size={25}
+                    strokeWidth={1.9}
+                  />
 
-                <div className="relative z-10 flex items-center justify-between">
+                </div>
 
-                  {/* Quote Icon */}
+
+                {/* ===========================================
+                    VALUE
+                =========================================== */}
+
+                <div
+                  className="
+                    relative
+                    z-10
+                    mt-5
+                  "
+                >
+
                   <div
                     className="
-                      flex
-                      h-10
-                      w-10
-                      items-center
-                      justify-center
-                      rounded-[13px]
-                      border
-                      border-[#F0D5D7]
-                      bg-[#FFF4F4]
+                      text-[30px]
+                      font-[900]
+                      leading-none
+                      tracking-[-1.4px]
+                      text-[#111820]
+                      sm:text-[36px]
+                      sm:tracking-[-1.8px]
+                      lg:text-[38px]
                     "
                   >
-                    <Quote
-                      size={17}
-                      strokeWidth={2}
-                      className="text-[#CF1B28]"
-                    />
+                    {card.value}
                   </div>
 
-                  {/* Stars */}
-                  <div className="flex gap-1">
-                    {Array.from({ length: 5 }).map((_, j) => (
-                      <Star
-                        key={j}
-                        size={14}
-                        strokeWidth={1.5}
-                        className="fill-[#FFD800] text-[#FFD800]"
-                      />
-                    ))}
+
+                  {/* =========================================
+                      DESCRIPTION
+                  ========================================= */}
+
+                  <div
+                    className="
+                      mt-2
+                      text-[11px]
+                      font-medium
+                      leading-[1.45]
+                      text-[#64727B]
+                      sm:text-[13px]
+                      sm:leading-[1.5]
+                    "
+                  >
+                    {card.description}
                   </div>
 
                 </div>
 
-                {/* =========================================
-                    REVIEW
-                ========================================= */}
 
-                <p
-                  className="
-                    relative
-                    z-10
-                    mt-6
-                    text-[14px]
-                    font-normal
-                    leading-[1.7]
-                    text-[#101010]/70
-                    sm:text-[15px]
-                  "
-                >
-                  "{t.quote}"
-                </p>
+                {/* ===========================================
+                    GOOGLE LINK INDICATOR
+                =========================================== */}
 
-                {/* =========================================
-                    CLIENT INFO
-                ========================================= */}
-
-                <div
-                  className="
-                    relative
-                    z-10
-                    mt-auto
-                    flex
-                    items-end
-                    justify-between
-                    border-t
-                    border-[#101010]/[0.08]
-                    pt-5
-                  "
-                >
-                  <div>
-                    <p
-                      className="
-                        text-[14px]
-                        font-[900]
-                        leading-tight
-                        tracking-[-0.2px]
-                        text-[#101010]
-                      "
-                    >
-                      {t.name}
-                    </p>
-
-                    <p
-                      className="
-                        mt-1
-                        text-[11px]
-                        font-medium
-                        leading-tight
-                        text-[#101010]/45
-                      "
-                    >
-                      {t.role}
-                    </p>
-                  </div>
-
+                {card.clickable && (
                   <div
                     className="
+                      absolute
+                      bottom-5
+                      right-5
                       flex
                       h-8
                       w-8
@@ -366,74 +396,189 @@ export default function TestimonialsSection() {
                       justify-center
                       rounded-full
                       border
-                      border-[#101010]/10
-                      text-[#101010]/35
+                      border-[#E7D7D8]
+                      bg-white
+                      text-[#CF1B28]
+                      opacity-0
                       transition-all
                       duration-300
-                      group-hover:border-[#CF1B28]
-                      group-hover:bg-[#CF1B28]
-                      group-hover:text-white
+                      group-hover:opacity-100
+                      sm:bottom-6
+                      sm:right-6
                     "
                   >
-                    <ArrowUpRight size={14} strokeWidth={2.2} />
+
+                    <ArrowUpRight
+                      size={14}
+                      strokeWidth={2.3}
+                    />
+
                   </div>
-                </div>
+                )}
 
-              </article>
-            </div>
-          ))}
+              </div>
+
+            )
+
+
+            /* =================================================
+               GOOGLE CARD = CLICKABLE
+            ================================================= */
+
+            if (card.clickable) {
+
+              return (
+                <Reveal
+                  key={card.id}
+                  delay={0.08 + index * 0.06}
+                >
+
+                  <a
+                    href={
+                      GOOGLE_RATING_URL.startsWith('http')
+                        ? GOOGLE_RATING_URL
+                        : '#'
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View BrandsMaster Google reviews"
+                    onClick={(event) => {
+
+                      if (
+                        !GOOGLE_RATING_URL.startsWith('http')
+                      ) {
+                        event.preventDefault()
+                      }
+
+                    }}
+                    className="
+                      block
+                      h-full
+                      cursor-pointer
+                    "
+                  >
+
+                    {cardContent}
+
+                  </a>
+
+                </Reveal>
+              )
+            }
+
+
+            /* =================================================
+               NORMAL CARD
+            ================================================= */
+
+            return (
+              <Reveal
+                key={card.id}
+                delay={0.08 + index * 0.06}
+              >
+
+                {cardContent}
+
+              </Reveal>
+            )
+
+          })}
+
         </div>
-      </div>
 
-      {/* =========================================
-          BOTTOM BRAND LINE
-      ========================================= */}
 
-      <div className="relative z-10 mx-auto mt-10 w-full max-w-[1180px] px-5 sm:mt-12 sm:px-6">
-        <Reveal delay={0.25}>
-          <div className="flex items-center gap-3">
-            <div className="h-[2px] w-10 bg-[#FFD800]" />
+        {/* ===================================================
+            BOTTOM TRUST LINE
+        =================================================== */}
+
+        <Reveal delay={0.35}>
+
+          <div
+            className="
+              mt-8
+              flex
+              items-center
+              gap-3
+              sm:mt-9
+            "
+          >
 
             <span
               className="
-                text-[10px]
+                h-[2px]
+                w-9
+                shrink-0
+                bg-[#CF1B28]
+                sm:w-10
+              "
+            />
+
+            <span
+              className="
+                text-[9px]
                 font-[800]
                 uppercase
-                tracking-[3px]
-                text-white/45
+                tracking-[2.5px]
+                text-[#87939A]
+                sm:text-[10px]
+                sm:tracking-[3px]
               "
             >
               Trusted by ambitious businesses
             </span>
+
           </div>
+
         </Reveal>
+
       </div>
 
-      {/* =========================================
-          MARQUEE CSS
-      ========================================= */}
+
+      {/* =====================================================
+          RESPONSIVE CSS
+      ===================================================== */}
 
       <style>{`
-        .testimonial-marquee {
-          animation: testimonial-scroll 35s linear infinite;
-          will-change: transform;
-        }
 
-        @keyframes testimonial-scroll {
-          from {
-            transform: translateX(0);
+        /* =========================================
+           TABLET
+        ========================================= */
+
+        @media (min-width: 640px) and (max-width: 1023px) {
+
+          .brandmaster-proof-card {
+            min-height: 210px;
           }
 
-          to {
-            transform: translateX(-50%);
-          }
         }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 639px) {
+
+          section {
+            overflow: hidden;
+          }
+
+        }
+
+
+        /* =========================================
+           REDUCED MOTION
+        ========================================= */
 
         @media (prefers-reduced-motion: reduce) {
-          .testimonial-marquee {
-            animation: none;
+
+          * {
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
           }
+
         }
+
       `}</style>
 
     </section>

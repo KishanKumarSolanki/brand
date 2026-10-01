@@ -240,7 +240,7 @@ export default function CtaBanner() {
           >
 
             {/* Primary Button */}
-            <a
+            {/* <a
               href="#contact-form"
               className="
                 group
@@ -278,7 +278,7 @@ export default function CtaBanner() {
                   group-hover:-translate-y-1
                 "
               />
-            </a>
+            </a> */}
 
             {/* Secondary Button */}
             <a

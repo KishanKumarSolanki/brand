@@ -24,6 +24,7 @@ import { useScrollPin } from '../data/useScrollPin'
 import About from './About'
 import Services from './Services'
 import Portfolio from './Portfolio'
+import Mascot from '../assets/Mascot.png'
 gsap.registerPlugin(ScrollTrigger)
 
 if (typeof window !== 'undefined') {
@@ -46,6 +47,13 @@ export default function Home() {
       {/* <div id="capabilities" className="scroll-mt-24">
         <Capabilities />
       </div> */}
+
+      {/* Testimonials */}
+      <div id="testimonials" className="scroll-mt-24">
+        <TestimonialsSection />
+      </div>
+
+      
       {/* Portfolio */}
       <div id="portfolio" className="scroll-mt-24">
         <Portfolio />
@@ -67,10 +75,7 @@ export default function Home() {
         <About />
       </div>
 
-      {/* Testimonials */}
-      <div id="testimonials" className="scroll-mt-24">
-        <TestimonialsSection />
-      </div>
+      
 
       {/* FAQ */}
       <div id="faq" className="scroll-mt-24">
@@ -90,8 +95,8 @@ function Hero() {
   const [tailVisible, setTailVisible] = useState(false)
 
   useEffect(() => {
-    const t1 = setTimeout(() => setAccentVisible(true), 700)
-    const t2 = setTimeout(() => setTailVisible(true), 1000)
+    const t1 = setTimeout(() => setAccentVisible(true), 500)
+    const t2 = setTimeout(() => setTailVisible(true), 800)
 
     return () => {
       clearTimeout(t1)
@@ -102,214 +107,218 @@ function Hero() {
   return (
     <section
       className="
-        relative isolate overflow-hidden
-        min-h-[820px]
-        bg-[#CF1B28]
-        px-4
-        pb-12
-        pt-[110px]
-        sm:px-6
-        sm:pt-[130px]
-        lg:pt-[130px]
+        relative
+        isolate
+        overflow-hidden
+
+        /* NAVBAR GAP */
+        mt-8
+        sm:mt-10
+        lg:mt-12
+
+        /* HERO HEIGHT */
+        sm:min-h-[670px]
+        lg:min-h-[740px]
+
+        bg-[#A71924]
+
+        px-5
+        pt-8
+        pb-8
+
+        sm:px-8
+        sm:pt-10
+        sm:pb-10
+
+        lg:px-10
+        lg:pt-12
+        lg:pb-12
       "
     >
-      {/* =====================================================
-          PREMIUM HERO BACKGROUND
-      ====================================================== */}
 
-      {/* Main Red → Deep Red → Black Gradient */}
-      <div
-        className="
-          pointer-events-none
-          absolute inset-0
-          bg-[radial-gradient(circle_at_78%_25%,#D61521_0%,#9C050C_33%,#500006_68%,#220003_100%)]
-        "
-      />
+      {/* =========================================
+          BACKGROUND
+      ========================================= */}
 
-      {/* Subtle Black Overlay */}
-      <div
-        className="
-          pointer-events-none
-          absolute inset-0
-          bg-[linear-gradient(135deg,rgba(0,0,0,0.12)_0%,transparent_42%,rgba(0,0,0,0.18)_100%)]
-        "
-      />
-
-      {/* Soft Red Glow */}
       <div
         className="
           pointer-events-none
           absolute
-          -right-[120px]
-          -top-[120px]
-          h-[420px]
-          w-[420px]
-          rounded-full
-          bg-[#D61521]/40
-          blur-[120px]
+          inset-0
+          bg-[radial-gradient(circle_at_72%_35%,#C91E2C_0%,#A71924_42%,#8D111B_75%,#720B13_100%)]
         "
       />
 
-      {/* Dark Bottom Glow */}
+      {/* Red glow */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-[150px]
+          -top-[100px]
+          h-[380px]
+          w-[380px]
+          rounded-full
+          bg-[#E3313E]/35
+          blur-[110px]
+
+          sm:h-[500px]
+          sm:w-[500px]
+        "
+      />
+
+      {/* Bottom glow */}
       <div
         className="
           pointer-events-none
           absolute
           -bottom-[180px]
-          left-1/2
-          h-[420px]
-          w-[700px]
+          left-[45%]
+          h-[400px]
+          w-[600px]
           -translate-x-1/2
           rounded-full
-          bg-black/25
-          blur-[120px]
+          bg-[#5E0710]/45
+          blur-[110px]
         "
       />
 
-      {/* Diagonal Premium Shine */}
+      {/* Subtle diagonal texture */}
       <div
         className="
           pointer-events-none
           absolute
-          inset-[-20%_-10%]
-          bg-[linear-gradient(135deg,transparent_45%,rgba(255,255,255,0.045)_45%,rgba(255,255,255,0.045)_56%,transparent_56%)]
+          inset-[-20%]
+          opacity-25
+          bg-[linear-gradient(135deg,transparent_42%,rgba(255,255,255,.05)_42%,rgba(255,255,255,.05)_53%,transparent_53%)]
         "
       />
 
-      {/* Subtle Dot Pattern */}
-      <div
-        className="
-          pointer-events-none
-          absolute inset-0
-          opacity-[0.08]
-          bg-dot-grid
-          bg-[length:28px_28px]
-        "
-        style={{
-          maskImage:
-            'radial-gradient(ellipse at center, black 0%, transparent 72%)',
-          WebkitMaskImage:
-            'radial-gradient(ellipse at center, black 0%, transparent 72%)',
-        }}
-      />
-
-      {/* =====================================================
+      {/* =========================================
           HERO CONTENT
-      ====================================================== */}
+      ========================================= */}
 
       <div
         className="
-          relative z-10
+          relative
+          z-10
           mx-auto
-          grid
           w-full
           max-w-[1180px]
-          grid-cols-1
-          items-center
-          gap-12
-          lg:grid-cols-[1.02fr_.98fr]
-          lg:gap-8
         "
       >
 
-        {/* =================================================
-            LEFT CONTENT
-        ================================================== */}
+        <div
+          className="
+            relative
 
-        <Reveal>
-          <div className="flex min-w-0 flex-col items-center text-center lg:items-start lg:text-left">
+            /* REDUCE INNER HEIGHT */
+            sm:min-h-[610px]
+            lg:min-h-[670px]
+          "
+        >
 
-            {/* EYEBROW */}
+          {/* =====================================
+              LEFT CONTENT
+          ===================================== */}
+
+          <div
+            className="
+              relative
+              z-30
+
+              w-[72%]
+
+              pt-2
+
+              sm:w-[66%]
+              sm:pt-4
+
+              lg:w-[63%]
+              lg:pt-6
+            "
+          >
+
+            {/* =====================================
+                EYEBROW
+            ===================================== */}
+
             <div
               className="
-                mb-[18px]
-                inline-flex
+                mb-3
+                flex
                 items-center
                 gap-2
-                text-[12px]
-                font-medium
+
+                text-[9px]
+                font-[700]
                 uppercase
-                tracking-[4px]
+                tracking-[1.8px]
+
                 text-white/90
-                sm:text-[14px]
-                sm:tracking-[5px]
+
+                sm:mb-4
+                sm:text-[12px]
+                sm:tracking-[2.5px]
               "
             >
+
               <span
                 className="
-                  relative
-                  flex
-                  h-2
-                  w-2
+                  h-[6px]
+                  w-[6px]
                   shrink-0
+                  rounded-full
+                  bg-[#FFD447]
+                  shadow-[0_0_10px_#FFD447]
                 "
-              >
-                <span
-                  className="
-                    absolute
-                    inline-flex
-                    h-full
-                    w-full
-                    animate-ping
-                    rounded-full
-                    bg-[#FFD800]
-                    opacity-40
-                  "
-                />
-
-                <span
-                  className="
-                    relative
-                    inline-flex
-                    h-2
-                    w-2
-                    rounded-full
-                    bg-[#FFD800]
-                  "
-                />
-              </span>
+              />
 
               Complete Branding Solutions
+
             </div>
 
-            {/* =================================================
+
+            {/* =====================================
                 MAIN HEADING
-            ================================================== */}
+            ===================================== */}
 
             <h1
               className="
                 m-0
-                w-full
-                max-w-[850px]
-                text-[clamp(54px,7vw,92px)]
+                max-w-[700px]
+
+                text-[42px]
                 font-[950]
-                leading-[0.9]
-                tracking-[-5px]
+                leading-[0.91]
+                tracking-[-2.5px]
+
                 text-white
+
+                sm:text-[60px]
+                sm:tracking-[-3px]
+
+                lg:text-[78px]
+                lg:tracking-[-4px]
               "
             >
-              {/* Line 1 */}
+
               <span className="block">
-                <BlurText
-                  text="India's Next"
-                  delay={120}
-                  animateBy="words"
-                  direction="top"
-                  className="text-white"
-                />
+                India's Next
               </span>
 
-              {/* Line 2 */}
-              <span className="mt-2 block sm:mt-3">
+              <span className="mt-1 block sm:mt-2">
+
                 <span
                   className={`
                     inline-block
-                    text-[#FFD800]
                     transition-all
                     duration-700
-                    ${accentVisible
-                      ? 'translate-y-0 opacity-100'
-                      : 'translate-y-4 opacity-0'
+
+                    ${
+                      accentVisible
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-4 opacity-0"
                     }
                   `}
                 >
@@ -318,37 +327,49 @@ function Hero() {
 
                 <span
                   className={`
-                    ml-3
+                    ml-2
                     inline-block
-                    text-white
                     transition-all
                     duration-700
-                    ${tailVisible
-                      ? 'translate-y-0 opacity-100'
-                      : 'translate-y-4 opacity-0'
+
+                    ${
+                      tailVisible
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-4 opacity-0"
                     }
                   `}
                 >
                   Brands
                 </span>
+
               </span>
+
             </h1>
 
-            {/* =================================================
+
+            {/* =====================================
                 DESCRIPTION
-            ================================================== */}
+            ===================================== */}
 
             <p
               className="
-                mt-6
-                max-w-[620px]
-                text-[18px]
-                font-normal
-                leading-[1.6]
-                text-[#F5DDDD]
-                sm:text-[20px]
-                lg:text-[22px]
-                lg:leading-[1.45]
+                mt-4
+
+                max-w-[520px]
+
+                text-[13px]
+                font-[400]
+                leading-[1.5]
+
+                text-white/90
+
+                sm:mt-5
+                sm:text-[17px]
+                sm:leading-[1.55]
+
+                lg:mt-6
+                lg:text-[20px]
+                lg:leading-[1.5]
               "
             >
               Strategy, design, and creativity aligned to craft
@@ -356,56 +377,75 @@ function Hero() {
               real growth that scales your brand and business.
             </p>
 
-            {/* =================================================
-                CTA BUTTONS
-            ================================================== */}
+
+            {/* =====================================
+                ONLY CTA BUTTON
+            ===================================== */}
 
             <div
               className="
-                mt-8
+                mt-5
+
                 flex
                 w-full
-                flex-col
-                items-center
-                gap-[14px]
-                sm:w-auto
-                sm:flex-row
-                sm:flex-wrap
+                justify-center
+
+                sm:mt-7
+                sm:justify-start
+
                 lg:mt-8
               "
             >
-              {/* Primary */}
+
               <Link
                 to="/contact"
                 className="
                   group
-                  inline-flex
-                  min-h-[54px]
-                  w-full
-                  max-w-[340px]
+                  relative
+                  z-50
+
+                  flex
+                  min-h-[48px]
+                  w-[250px]
+
                   items-center
                   justify-center
                   gap-2
+
                   rounded-full
+
                   bg-white
-                  px-[25px]
-                  py-[17px]
-                  text-[14px]
+
+                  px-5
+
+                  text-center
+                  text-[11px]
                   font-[900]
-                  text-[#CF1B28]
-                  shadow-[0_15px_40px_rgba(0,0,0,0.20)]
+
+                  text-[#C83238]
+
+                  shadow-[0_12px_30px_rgba(0,0,0,.25)]
+
                   transition-all
                   duration-300
+
                   hover:-translate-y-1
-                  hover:shadow-[0_20px_50px_rgba(0,0,0,0.30)]
-                  sm:w-auto
-                  sm:max-w-none
+
+                  hover:shadow-[0_18px_40px_rgba(0,0,0,.35)]
+
+                  sm:min-h-[52px]
+                  sm:w-[300px]
+                  sm:text-[13px]
+
+                  lg:w-[325px]
+                  lg:text-[14px]
                 "
               >
+
                 Book Free Brand Strategy Call
 
                 <ArrowUpRight
-                  size={17}
+                  size={16}
                   strokeWidth={2.5}
                   className="
                     transition-transform
@@ -414,228 +454,217 @@ function Hero() {
                     group-hover:-translate-y-1
                   "
                 />
+
               </Link>
 
-              {/* Secondary */}
-              <Link
-                to="/services"
-                className="
-                  group
-                  inline-flex
-                  min-h-[54px]
-                  w-full
-                  max-w-[340px]
-                  items-center
-                  justify-center
-                  gap-2
-                  rounded-full
-                  border
-                  border-white/45
-                  bg-white/[0.03]
-                  px-[25px]
-                  py-[17px]
-                  text-[14px]
-                  font-[900]
-                  text-white
-                  backdrop-blur-sm
-                  transition-all
-                  duration-300
-                  hover:border-white
-                  hover:bg-white/[0.10]
-                  sm:w-auto
-                  sm:max-w-none
-                "
-              >
-                Explore Services
-
-                <ArrowUpRight
-                  size={17}
-                  strokeWidth={2.5}
-                  className="
-                    transition-transform
-                    duration-300
-                    group-hover:translate-x-1
-                    group-hover:-translate-y-1
-                  "
-                />
-              </Link>
             </div>
 
-            {/* =================================================
-                SOCIAL PROOF
-            ================================================== */}
+
+            {/* =====================================
+                TRUST / RATING
+            ===================================== */}
 
             <div
               className="
-                mt-9
+                mt-5
+
                 flex
                 items-center
                 justify-center
-                gap-3
-                sm:mt-10
-                sm:gap-4
-                lg:justify-start
+                gap-2.5
+
+                sm:mt-7
+                sm:justify-start
+                sm:gap-3
               "
             >
-              {/* Avatars */}
-              <div className="flex shrink-0 -space-x-2.5">
-                {[
-                  'from-violet-500 to-purple-500',
-                  'from-purple-400 to-pink-400',
-                  'from-fuchsia-500 to-violet-500',
-                  'from-pink-400 to-purple-400',
-                ].map((gradient, i) => (
+
+              {/* Avatar circles */}
+
+              <div className="flex -space-x-2">
+
+                {["SC", "MW", "PN", "DS"].map((item) => (
                   <span
-                    key={i}
-                    className={`
+                    key={item}
+                    className="
                       flex
-                      h-9
-                      w-9
+
+                      h-6
+                      w-6
+
                       items-center
                       justify-center
+
                       rounded-full
-                      border-2
-                      border-[#760006]
-                      bg-gradient-to-br
-                      ${gradient}
-                      text-[10px]
+
+                      border-[1.5px]
+                      border-[#A71924]
+
+                      bg-[#24131A]
+
+                      text-[6px]
                       font-[900]
+
                       text-white
-                      shadow-sm
-                    `}
+
+                      shadow-lg
+
+                      sm:h-8
+                      sm:w-8
+                      sm:text-[8px]
+                    "
                   >
-                    {['SC', 'MW', 'PN', 'DS'][i]}
+                    {item}
                   </span>
                 ))}
+
               </div>
 
+
               {/* Rating */}
-              <div className="text-left">
-                <div className="flex gap-[2px]">
+
+              <div>
+
+                <div className="flex gap-[1px]">
+
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <svg
+                    <span
                       key={i}
-                      width="13"
-                      height="13"
-                      viewBox="0 0 20 20"
-                      className="fill-[#FFD800]"
+                      className="
+                        text-[11px]
+                        leading-none
+                        text-[#FFD447]
+
+                        sm:text-[14px]
+                      "
                     >
-                      <path d="M10 1l2.7 6.3 6.8.6-5.2 4.5 1.6 6.6L10 15.7 4.1 19l1.6-6.6L.5 7.9l6.8-.6L10 1z" />
-                    </svg>
+                      ★
+                    </span>
                   ))}
+
                 </div>
 
                 <p
                   className="
-                    mt-1
-                    text-[11px]
-                    font-medium
-                    leading-4
+                    mt-[2px]
+
+                    text-[7px]
+                    font-[600]
+
                     text-white/75
-                    sm:text-xs
+
+                    sm:text-[10px]
                   "
                 >
                   Trusted by 250+ founders
                 </p>
+
               </div>
+
             </div>
+
           </div>
-        </Reveal>
 
-        {/* =================================================
-            RIGHT — PROFILE CARD
-        ================================================== */}
 
-        <Reveal delay={0.15}>
+          {/* =====================================
+              MASCOT IMAGE
+          ===================================== */}
+
           <div
             className="
-              relative
-              mx-auto
+              pointer-events-none
+
+              absolute
+
+              right-[-12%]
+              top-[2%]
+
+              z-20
+
               flex
-              w-full
-              max-w-[570px]
-              items-center
+
+              w-[59%]
+
+              items-end
               justify-center
-              lg:justify-end
+
+              sm:right-[-8%]
+              sm:top-[-2%]
+              sm:w-[55%]
+
+              lg:right-[-4%]
+              lg:top-[-6%]
+              lg:w-[51%]
             "
           >
 
-            {/* Background Red Glow */}
-            <div
-              className="
-                pointer-events-none
-                absolute
-                right-[5%]
-                top-[10%]
-                h-[280px]
-                w-[280px]
-                rounded-full
-                bg-[#D61521]/50
-                blur-[90px]
-                sm:h-[380px]
-                sm:w-[380px]
-              "
-            />
+            {/* Mascot glow */}
 
-            {/* Black Glow */}
             <div
               className="
                 pointer-events-none
+
                 absolute
-                bottom-[5%]
-                left-[20%]
+
+                right-[15%]
+                top-[22%]
+
                 h-[180px]
-                w-[280px]
+                w-[180px]
+
                 rounded-full
-                bg-black/30
-                blur-[80px]
+
+                bg-[#E73A45]/40
+
+                blur-[65px]
+
+                sm:h-[300px]
+                sm:w-[300px]
+
+                lg:h-[400px]
+                lg:w-[400px]
+
+                lg:blur-[95px]
               "
             />
 
-            <div
+
+            {/* Mascot */}
+
+            <img
+              src={Mascot}
+              alt="BrandsMaster Mascot"
+              draggable="false"
               className="
-    relative
-    z-10
-    w-[min(88vw,340px)]
-    max-w-[340px]
-    sm:w-full
-    sm:max-w-[380px]
-    lg:max-w-[500px]
-  "
-            >
-              <ProfileCard
-                name="Brand Master"
-                title="Brand Master"
-                contactText="Book a call"
-                showUserInfo={true}
-                enableTilt={true}
-                enableMobileTilt={false}
-                behindGlowEnabled
-                behindGlowColor="rgba(0,0,0,0.38)"
-                innerGradient="linear-gradient(145deg,#CF1B2855 0%,#76000670 55%,#00000050 100%)"
-              />
-            </div>
+                relative
+                z-20
+
+                h-auto
+                w-full
+
+                max-w-[380px]
+
+                object-contain
+
+                drop-shadow-[0_22px_32px_rgba(0,0,0,.38)]
+
+                transition-transform
+                duration-700
+
+                hover:scale-[1.02]
+
+                sm:max-w-[470px]
+
+                lg:max-w-[550px]
+              "
+            />
+
           </div>
-        </Reveal>
+
+        </div>
+
       </div>
 
-      {/* =====================================================
-          BOTTOM FADE
-      ====================================================== */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          bottom-0
-          left-0
-          right-0
-          h-24
-          bg-gradient-to-t
-          from-[#220003]/35
-          to-transparent
-        "
-      />
     </section>
   )
 }
