@@ -381,41 +381,7 @@ export const portfolioItems = [
   ],
 },
 
-  {
-  title: 'Website Banner',
-  category: 'Website Banner',
-
-  images: [
-    WebsiteBanner1,
-    WebsiteBanner2,
-    WebsiteBanner3,
-    WebsiteBanner4,
-    WebsiteBanner5,
-    WebsiteBanner6,
-    WebsiteBanner7,
-    WebsiteBanner8,
-    WebsiteBanner9,
-    WebsiteBanner10,
-  ],
-},
-
-  {
-    title: 'Thumbnails',
-    category: 'Thumbnails',
-
-    images: [
-      Thumbnail1,
-      Thumbnail2,
-      Thumbnail3,
-      Thumbnail4,
-      Thumbnail5,
-      Thumbnail6,
-      Thumbnail7,
-      Thumbnail8,
-      Thumbnail9,
-      Thumbnail10,
-    ],
-  },
+  
 
   {
     title: 'Social Media',
@@ -467,13 +433,6 @@ export const portfolioItems = [
       Broucher8,
       Broucher9,
       Broucher10,
-    ],
-  },
-  {
-    title: 'Catalogues',
-    category: 'Catalogues',
-
-    images: [
       CATALOGUE1,
       CATALOGUE2,
       CATALOGUE3,

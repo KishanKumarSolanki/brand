@@ -76,7 +76,7 @@ export default function Footer() {
               href="https://wa.me/919536404366"
               target="_blank"
               rel="noopener noreferrer"
-              className="group mt-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-red-400/40 hover:bg-red-500/10"
+              className="group mt-7 inline-flex items-center gap-2 rounded-[10px] border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:border-red-400/40 hover:bg-red-500/10"
             >
               Let's Talk
               <ArrowRight
@@ -84,6 +84,11 @@ export default function Footer() {
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </a>
+          </div>
+
+          <div>
+            Get in Touch
+            mobile: <a href="tel:+919536404366" className="text-white/70 hover:text-white">+91 95364 04366</a>  
           </div>
 
           {/* Navigation Columns */}
@@ -120,36 +125,9 @@ export default function Footer() {
             <p className="text-center text-xs leading-relaxed text-white/40 sm:text-left">
               © {new Date().getFullYear()} {siteConfig.name || 'Brand Master'}.
               All rights reserved.
-              <span className="mt-1 block text-white/30 sm:mt-0 sm:inline">
-                {' '}Crafted with obsession.
-              </span>
+
             </p>
 
-            {/* Social Links */}
-            <div className="flex items-center gap-3">
-              {socialLinks
-                .filter((social) => socialIconMap[social.label])
-                .map((social) => {
-                  const Icon = socialIconMap[social.label]
-
-                  return (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="group flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/55 transition-all duration-300 hover:-translate-y-1 hover:border-red-400/40 hover:bg-red-500/10 hover:text-white"
-                    >
-                      <Icon
-                        size={17}
-                        strokeWidth={1.7}
-                        className="transition-transform duration-300 group-hover:scale-110"
-                      />
-                    </a>
-                  )
-                })}
-            </div>
           </div>
         </div>
       </div>

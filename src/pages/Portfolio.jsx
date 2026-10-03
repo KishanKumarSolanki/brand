@@ -297,12 +297,11 @@ export default function PortfolioSection() {
         id="portfolio"
         className="
           relative
+          m-0
           overflow-hidden
           bg-white
-          py-20
+          p-0
           font-['Inter',Arial,Helvetica,sans-serif]
-          sm:py-24
-          lg:py-28
         "
       >
 
@@ -317,9 +316,10 @@ export default function PortfolioSection() {
             mx-auto
             w-full
             max-w-[1220px]
-            px-5
+            px-4
             sm:px-6
             lg:px-8
+            m-0
           "
         >
 
@@ -330,11 +330,13 @@ export default function PortfolioSection() {
 
           <Reveal>
 
-            <div className="max-w-[750px]">
+            <div className="m-0 max-w-[750px]">
+
+              {/* EYEBROW */}
 
               <div
                 className="
-                  mb-4
+                  m-0
                   flex
                   items-center
                   gap-3
@@ -345,6 +347,7 @@ export default function PortfolioSection() {
                   className="
                     h-[2px]
                     w-10
+                    shrink-0
                     bg-[#CF1B28]
                   "
                 />
@@ -364,8 +367,12 @@ export default function PortfolioSection() {
               </div>
 
 
+              {/* HEADING */}
+
               <h2
                 className="
+                  m-0
+                  mt-2
                   text-[42px]
                   font-[900]
                   leading-[1]
@@ -399,13 +406,13 @@ export default function PortfolioSection() {
 
             <div
               className="
-                mt-8
+                mt-4
                 flex
                 gap-2
                 overflow-x-auto
-                pb-2
+                p-0
                 scrollbar-hide
-                sm:mt-10
+                sm:mt-5
               "
             >
 
@@ -422,7 +429,7 @@ export default function PortfolioSection() {
                     rounded-full
                     border
                     px-5
-                    py-2.5
+                    py-2
                     text-[11px]
                     font-[800]
                     uppercase
@@ -464,10 +471,10 @@ export default function PortfolioSection() {
 
           <div
             className="
-              mt-10
+              mt-4
               grid
               grid-cols-1
-              gap-5
+              gap-4
               sm:grid-cols-2
               lg:grid-cols-3
             "
@@ -834,7 +841,7 @@ export default function PortfolioSection() {
                         CARD CONTENT
                     ===================================== */}
 
-                    <div className="p-5 sm:p-6">
+                    <div className="p-4 sm:p-5">
 
                       <div
                         className="
@@ -849,6 +856,7 @@ export default function PortfolioSection() {
 
                           <p
                             className="
+                              m-0
                               text-[10px]
                               font-[800]
                               uppercase
@@ -862,7 +870,8 @@ export default function PortfolioSection() {
 
                           <h3
                             className="
-                              mt-1.5
+                              m-0
+                              mt-1
                               text-[19px]
                               font-[900]
                               tracking-[-0.5px]
@@ -924,7 +933,7 @@ export default function PortfolioSection() {
 
             <div
               className="
-                py-20
+                py-10
                 text-center
                 text-[14px]
                 font-medium
@@ -956,9 +965,9 @@ export default function PortfolioSection() {
               items-center
               justify-center
               bg-black/90
-              p-4
+              p-2
               backdrop-blur-md
-              sm:p-8
+              sm:p-4
             "
             role="dialog"
             aria-modal="true"
@@ -1114,14 +1123,14 @@ export default function PortfolioSection() {
               <div
                 className="
                   flex
-                  max-h-[88vh]
-                  max-w-[88vw]
+                  max-h-[94vh]
+                  max-w-[94vw]
                   items-center
                   justify-center
                   overflow-hidden
                   rounded-[12px]
-                  sm:max-h-[90vh]
-                  sm:max-w-[86vw]
+                  sm:max-h-[94vh]
+                  sm:max-w-[90vw]
                 "
               >
 
@@ -1136,13 +1145,13 @@ export default function PortfolioSection() {
                     playsInline
                     controls
                     className="
-                      max-h-[88vh]
-                      max-w-[88vw]
+                      max-h-[94vh]
+                      max-w-[94vw]
                       rounded-[12px]
                       object-contain
                       shadow-[0_25px_100px_rgba(0,0,0,0.45)]
-                      sm:max-h-[90vh]
-                      sm:max-w-[86vw]
+                      sm:max-h-[94vh]
+                      sm:max-w-[90vw]
                     "
                   />
 
@@ -1153,13 +1162,13 @@ export default function PortfolioSection() {
                     src={lightboxMedia}
                     alt={lightboxItem.title}
                     className="
-                      max-h-[88vh]
-                      max-w-[88vw]
+                      max-h-[94vh]
+                      max-w-[94vw]
                       rounded-[12px]
                       object-contain
                       shadow-[0_25px_100px_rgba(0,0,0,0.45)]
-                      sm:max-h-[90vh]
-                      sm:max-w-[86vw]
+                      sm:max-h-[94vh]
+                      sm:max-w-[90vw]
                     "
                   />
 
@@ -1289,6 +1298,94 @@ export default function PortfolioSection() {
 
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
+        }
+
+        /* ================================================
+           PORTFOLIO SPACING RESET
+        ================================================= */
+
+        #portfolio {
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
+
+        #portfolio > div {
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+        }
+
+        /* ================================================
+           REMOVE DEFAULT ELEMENT SPACING
+        ================================================= */
+
+        #portfolio h1,
+        #portfolio h2,
+        #portfolio h3,
+        #portfolio h4,
+        #portfolio h5,
+        #portfolio h6,
+        #portfolio p {
+          margin-bottom: 0;
+        }
+
+        /* ================================================
+           MOBILE LEFT / RIGHT SPACE
+        ================================================= */
+
+        @media (max-width: 639px) {
+
+          #portfolio > div {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+
+        }
+
+        /* ================================================
+           TABLET LEFT / RIGHT SPACE
+        ================================================= */
+
+        @media (min-width: 640px) and (max-width: 1023px) {
+
+          #portfolio > div {
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+          }
+
+        }
+
+        /* ================================================
+           DESKTOP LEFT / RIGHT SPACE
+        ================================================= */
+
+        @media (min-width: 1024px) {
+
+          #portfolio > div {
+            padding-left: 32px !important;
+            padding-right: 32px !important;
+          }
+
+        }
+
+        /* ================================================
+           HORIZONTAL CATEGORY SCROLL
+        ================================================= */
+
+        #portfolio .scrollbar-hide {
+          overflow-x: auto;
+          overflow-y: hidden;
+        }
+
+        /* ================================================
+           PREVENT HORIZONTAL PAGE OVERFLOW
+        ================================================= */
+
+        #portfolio {
+          width: 100%;
+          max-width: 100%;
+          overflow-x: hidden;
         }
 
       `}</style>

@@ -11,11 +11,9 @@ export default function CtaBanner() {
         overflow-hidden
         bg-[#4A0008]
         px-5
-        py-16
+        py-[20px]
         font-['Inter',Arial,Helvetica,sans-serif]
         sm:px-6
-        sm:py-20
-        lg:py-[88px]
       "
     >
 
@@ -32,7 +30,8 @@ export default function CtaBanner() {
         "
       />
 
-      {/* Top Red Glow */}
+      {/* TOP RED GLOW */}
+
       <div
         className="
           pointer-events-none
@@ -48,7 +47,8 @@ export default function CtaBanner() {
         "
       />
 
-      {/* Left Glow */}
+      {/* LEFT GLOW */}
+
       <div
         className="
           pointer-events-none
@@ -63,7 +63,8 @@ export default function CtaBanner() {
         "
       />
 
-      {/* Right Glow */}
+      {/* RIGHT GLOW */}
+
       <div
         className="
           pointer-events-none
@@ -78,7 +79,8 @@ export default function CtaBanner() {
         "
       />
 
-      {/* Bottom Dark Glow */}
+      {/* BOTTOM DARK GLOW */}
+
       <div
         className="
           pointer-events-none
@@ -94,7 +96,8 @@ export default function CtaBanner() {
         "
       />
 
-      {/* Diagonal Shine */}
+      {/* DIAGONAL SHINE */}
+
       <div
         className="
           pointer-events-none
@@ -104,7 +107,8 @@ export default function CtaBanner() {
         "
       />
 
-      {/* Subtle Dot Pattern */}
+      {/* SUBTLE DOT PATTERN */}
+
       <div
         className="
           pointer-events-none
@@ -148,7 +152,9 @@ export default function CtaBanner() {
               text-white/65
             "
           >
+
             <span className="relative flex h-2 w-2">
+
               <span
                 className="
                   absolute
@@ -170,9 +176,11 @@ export default function CtaBanner() {
                   bg-[#FFD800]
                 "
               />
+
             </span>
 
             Your business has a story.
+
           </div>
 
           {/* =========================================
@@ -195,35 +203,17 @@ export default function CtaBanner() {
             "
           >
             Let&apos;s build the brand around it.
+
             <br className="hidden sm:block" />
+
             <span className="block sm:inline">
               {' '}
             </span>
+
           </h2>
 
           {/* =========================================
-              DESCRIPTION
-          ========================================= */}
-
-          <p
-            className="
-              mx-auto
-              mt-6
-              max-w-[650px]
-              text-[14px]
-              font-normal
-              leading-[1.65]
-              text-white/70
-              sm:text-[15px]
-              md:text-[16px]
-            "
-          >
-            Book a free 30-minute strategy call. We&apos;ll audit your
-            funnel and share 3 wins you can implement this week.
-          </p>
-
-          {/* =========================================
-              BUTTONS
+              BUTTON
           ========================================= */}
 
           <div
@@ -239,48 +229,8 @@ export default function CtaBanner() {
             "
           >
 
-            {/* Primary Button */}
-            {/* <a
-              href="#contact-form"
-              className="
-                group
-                inline-flex
-                min-h-[46px]
-                w-full
-                items-center
-                justify-center
-                gap-2
-                rounded-full
-                bg-white
-                px-7
-                py-3
-                text-[13px]
-                font-[800]
-                text-[#7A0615]
-                shadow-[0_12px_35px_rgba(0,0,0,0.18)]
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:bg-[#FFF8F8]
-                hover:shadow-[0_18px_45px_rgba(0,0,0,0.28)]
-                sm:w-auto
-              "
-            >
-              Book free consultation
+            {/* SECONDARY BUTTON */}
 
-              <ArrowUpRight
-                size={15}
-                strokeWidth={2.5}
-                className="
-                  transition-transform
-                  duration-300
-                  group-hover:translate-x-1
-                  group-hover:-translate-y-1
-                "
-              />
-            </a> */}
-
-            {/* Secondary Button */}
             <a
               href="https://wa.me/919536404366"
               className="
@@ -291,7 +241,7 @@ export default function CtaBanner() {
                 items-center
                 justify-center
                 gap-2
-                rounded-full
+                rounded-[10px]
                 border
                 border-white/30
                 bg-white/[0.03]
@@ -309,7 +259,7 @@ export default function CtaBanner() {
                 sm:w-auto
               "
             >
-              Start Your Brand 
+              Start Your Brand
 
               <ArrowUpRight
                 size={15}
@@ -321,6 +271,7 @@ export default function CtaBanner() {
                   group-hover:-translate-y-1
                 "
               />
+
             </a>
 
           </div>

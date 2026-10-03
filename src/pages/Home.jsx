@@ -93,6 +93,7 @@ export default function Home() {
 function Hero() {
   return (
     <section className="bm-hero" aria-labelledby="bm-hero-title">
+
       <style>{`
         .bm-hero,
         .bm-hero *,
@@ -100,6 +101,10 @@ function Hero() {
         .bm-hero *::after {
           box-sizing: border-box;
         }
+
+        /* =====================================================
+           HERO MAIN
+        ===================================================== */
 
         .bm-hero {
           position: relative;
@@ -112,6 +117,11 @@ function Hero() {
           color: #ffffff;
           background: #A71924;
         }
+
+
+        /* =====================================================
+           BACKGROUND
+        ===================================================== */
 
         .bm-hero__background,
         .bm-hero__texture,
@@ -143,6 +153,11 @@ function Hero() {
             transparent 53%
           );
         }
+
+
+        /* =====================================================
+           BACKGROUND GLOWS
+        ===================================================== */
 
         .bm-hero__glow {
           border-radius: 50%;
@@ -176,6 +191,11 @@ function Hero() {
           filter: blur(110px);
         }
 
+
+        /* =====================================================
+           CONTAINER
+        ===================================================== */
+
         .bm-hero__container {
           position: relative;
           width: 100%;
@@ -183,11 +203,11 @@ function Hero() {
           margin-inline: auto;
         }
 
-        /*
-          Both elements occupy the same grid cell.
-          Both contribute to the hero height, preventing
-          unnecessary empty space below an absolute image.
-        */
+
+        /* =====================================================
+           INNER GRID
+        ===================================================== */
+
         .bm-hero__inner {
           position: relative;
           display: grid;
@@ -202,26 +222,43 @@ function Hero() {
           min-width: 0;
         }
 
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
         .bm-hero__content {
           position: relative;
           z-index: 3;
           width: 72%;
           padding-top: 4px;
+          text-align: left;
         }
+
+
+        /* =====================================================
+           EYEBROW
+        ===================================================== */
 
         .bm-hero__eyebrow {
           display: flex;
           align-items: center;
+          justify-content: flex-start;
           gap: 8px;
           width: max-content;
           max-width: calc(100% / .72);
           margin: 0 0 16px;
-          color: rgba(255,255,255,.90);
+          color: black;
           font-size: clamp(7px, 2.3vw, 11px);
           font-weight: 700;
           line-height: 1.5;
           letter-spacing: clamp(1px, .46vw, 1.8px);
           text-transform: uppercase;
+          text-align: left;
+          border-radius: 10px;
+          border: 1px solid rgba(255,255,255,.40);
+          padding: 4px 10px 3px;
+          background: rgba(255,255,255);
         }
 
         .bm-hero__dot {
@@ -233,14 +270,20 @@ function Hero() {
           box-shadow: 0 0 10px #FFD447;
         }
 
+
+        /* =====================================================
+           MAIN HEADING
+        ===================================================== */
+
         .bm-hero__title {
           max-width: 700px;
           margin: 0;
           color: #ffffff;
-          font-size: clamp(33px, 10.75vw, 56px);
+          font-size: clamp(30px, 9vw, 56px);
           font-weight: 950;
           line-height: .98;
           letter-spacing: -.055em;
+          text-align: left;
         }
 
         .bm-hero__line {
@@ -252,6 +295,11 @@ function Hero() {
           margin-top: 5px;
         }
 
+
+        /* =====================================================
+           HEADING ACCENT
+        ===================================================== */
+
         .bm-hero__accent,
         .bm-hero__tail {
           display: inline-block;
@@ -259,14 +307,19 @@ function Hero() {
         }
 
         .bm-hero__accent {
+          color: #f9ca14;
           animation-delay: .5s;
         }
 
         .bm-hero__tail {
-          // margin-left: .16em;
           color: #f9ca14;
           animation-delay: .8s;
         }
+
+
+        /* =====================================================
+           DESCRIPTION
+        ===================================================== */
 
         .bm-hero__description {
           max-width: 520px;
@@ -276,11 +329,17 @@ function Hero() {
           font-weight: 400;
           line-height: 1.55;
           overflow-wrap: break-word;
+          text-align: left;
         }
+
+
+        /* =====================================================
+           CTA
+        ===================================================== */
 
         .bm-hero__actions {
           display: flex;
-          justify-content: center;
+          justify-content: flex-start;
           width: 100%;
           margin-top: 22px;
         }
@@ -296,7 +355,7 @@ function Hero() {
           min-height: 48px;
           padding: 12px 13px;
           border: 1px solid rgba(255,255,255,.80);
-          border-radius: 999px;
+          border-radius: 10px;
           background: #ffffff;
           color: #C83238;
           font-size: clamp(9px, 2.82vw, 12px);
@@ -332,11 +391,16 @@ function Hero() {
           transform: scale(.98);
         }
 
+
+        /* =====================================================
+           TRUST SECTION
+        ===================================================== */
+
         .bm-hero__trust {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
           gap: 10px;
           width: 100%;
           margin-top: 22px;
@@ -371,10 +435,12 @@ function Hero() {
 
         .bm-hero__rating {
           min-width: 0;
+          text-align: left;
         }
 
         .bm-hero__stars {
           display: flex;
+          justify-content: flex-start;
           gap: 1px;
           color: #FFD447;
           font-size: 12px;
@@ -387,7 +453,13 @@ function Hero() {
           font-size: 7px;
           font-weight: 600;
           line-height: 1.4;
+          text-align: left;
         }
+
+
+        /* =====================================================
+           MASCOT
+        ===================================================== */
 
         .bm-hero__mascot {
           position: relative;
@@ -425,6 +497,11 @@ function Hero() {
           -webkit-user-select: none;
         }
 
+
+        /* =====================================================
+           ANIMATION
+        ===================================================== */
+
         @keyframes bm-hero-reveal {
           from {
             opacity: 0;
@@ -437,7 +514,13 @@ function Hero() {
           }
         }
 
+
+        /* =====================================================
+           DESKTOP HOVER
+        ===================================================== */
+
         @media (hover: hover) and (pointer: fine) {
+
           .bm-hero__button:hover {
             transform: translateY(-3px);
             box-shadow: 0 18px 40px rgba(0,0,0,.35);
@@ -446,39 +529,158 @@ function Hero() {
           .bm-hero__button:hover svg {
             transform: translate(3px, -3px);
           }
+
         }
 
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
         @media (max-width: 359px) {
+
           .bm-hero {
-            padding-inline: 16px;
-            padding-bottom: 18px;
+            padding: 85px 16px 18px;
+          }
+
+          .bm-hero__content {
+            width: 78%;
           }
 
           .bm-hero__eyebrow {
+            justify-content: flex-start;
             gap: 6px;
-            margin-bottom: 14px;
+            margin-bottom: 13px;
+            max-width: 100%;
+          }
+
+          .bm-hero__title {
+            font-size: 28px;
+            line-height: .98;
+            letter-spacing: -.045em;
           }
 
           .bm-hero__description {
-            margin-top: 15px;
+            margin-top: 14px;
+            font-size: 11px;
+            line-height: 1.5;
+          }
+
+          .bm-hero__actions {
+            justify-content: flex-start;
+            margin-top: 19px;
           }
 
           .bm-hero__button {
-            gap: 4px;
-            padding-inline: 9px;
+            width: 220px;
+            gap: 5px;
+            padding-inline: 10px;
           }
 
           .bm-hero__trust {
+            justify-content: flex-start;
             gap: 7px;
             margin-top: 18px;
           }
 
           .bm-hero__mascot {
+            width: 55%;
             margin-top: 34px;
           }
+
         }
 
+
+        /* =====================================================
+           MOBILE - LEFT ALIGNED
+        ===================================================== */
+
+        @media (min-width: 360px) and (max-width: 639px) {
+
+          .bm-hero {
+            padding: 88px 20px 22px;
+            padding-top: 110px;
+          }
+
+          .bm-hero__content {
+            width: 78%;
+            padding-top: 3px;
+            text-align: left;
+          }
+
+          .bm-hero__eyebrow {
+            justify-content: flex-start;
+            max-width: 100%;
+            margin-bottom: 15px;
+            text-align: left;
+          }
+
+          .bm-hero__title {
+            max-width: 100%;
+            font-size: 38px;
+            line-height: .98;
+            letter-spacing: -.045em;
+            text-align: left;
+          }
+
+          .bm-hero__line {
+            text-align: left;
+          }
+
+          .bm-hero__description {
+            max-width: 430px;
+            margin-top: 16px;
+            font-size: 11.5px;
+            line-height: 1.52;
+            text-align: left;
+          }
+
+          .bm-hero__actions {
+            justify-content: flex-start;
+            margin-top: 20px;
+          }
+
+          .bm-hero__button {
+            width: 230px;
+            min-height: 46px;
+            font-size: 10px;
+          }
+
+          .bm-hero__trust {
+            justify-content: flex-start;
+            margin-top: 20px;
+          }
+
+          .bm-hero__rating {
+            text-align: left;
+          }
+
+          .bm-hero__stars {
+            justify-content: flex-start;
+            font-size: 18px;
+          }
+
+          .bm-hero__trust-text {
+            text-align: left;
+            font-size: 10px;
+          }
+
+          .bm-hero__mascot {
+            width: 55%;
+            max-width: 280px;
+            margin-top: 36px;
+            transform: translateX(20%);
+          }
+
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
         @media (min-width: 640px) {
+
           .bm-hero {
             padding: 105px 32px 28px;
           }
@@ -486,9 +688,11 @@ function Hero() {
           .bm-hero__content {
             width: 66%;
             padding-top: 8px;
+            text-align: left;
           }
 
           .bm-hero__eyebrow {
+            justify-content: flex-start;
             max-width: calc(100% / .66);
             margin-bottom: 20px;
             font-size: 12px;
@@ -505,6 +709,7 @@ function Hero() {
             font-size: 60px;
             line-height: .94;
             letter-spacing: -3px;
+            text-align: left;
           }
 
           .bm-hero__line + .bm-hero__line {
@@ -515,6 +720,7 @@ function Hero() {
             margin-top: 22px;
             font-size: 17px;
             line-height: 1.55;
+            text-align: left;
           }
 
           .bm-hero__actions {
@@ -575,9 +781,16 @@ function Hero() {
             width: 400px;
             height: 400px;
           }
+
         }
 
+
+        /* =====================================================
+           DESKTOP
+        ===================================================== */
+
         @media (min-width: 1024px) {
+
           .bm-hero {
             padding: 110px 40px 32px;
           }
@@ -585,9 +798,11 @@ function Hero() {
           .bm-hero__content {
             width: 63%;
             padding-top: 16px;
+            text-align: left;
           }
 
           .bm-hero__eyebrow {
+            justify-content: flex-start;
             max-width: calc(100% / .63);
             margin-bottom: 22px;
             font-size: 13px;
@@ -597,15 +812,18 @@ function Hero() {
             font-size: 78px;
             line-height: .94;
             letter-spacing: -4px;
+            text-align: left;
           }
 
           .bm-hero__description {
             margin-top: 24px;
             font-size: 20px;
             line-height: 1.5;
+            text-align: left;
           }
 
           .bm-hero__actions {
+            justify-content: flex-start;
             margin-top: 32px;
           }
 
@@ -616,6 +834,7 @@ function Hero() {
           }
 
           .bm-hero__trust {
+            justify-content: flex-start;
             margin-top: 32px;
           }
 
@@ -659,9 +878,16 @@ function Hero() {
             width: 500px;
             height: 500px;
           }
+
         }
 
+
+        /* =====================================================
+           REDUCED MOTION
+        ===================================================== */
+
         @media (prefers-reduced-motion: reduce) {
+
           .bm-hero__accent,
           .bm-hero__tail {
             animation: none;
@@ -673,98 +899,201 @@ function Hero() {
           .bm-hero__button svg {
             transition: none;
           }
+
         }
+
       `}</style>
 
-      {/* Background */}
-      <div className="bm-hero__background" aria-hidden="true" />
+
+      {/* =====================================================
+          BACKGROUND
+      ===================================================== */}
+
+      <div
+        className="bm-hero__background"
+        aria-hidden="true"
+      />
+
       <div
         className="bm-hero__glow bm-hero__glow--top"
         aria-hidden="true"
       />
+
       <div
         className="bm-hero__glow bm-hero__glow--right"
         aria-hidden="true"
       />
+
       <div
         className="bm-hero__glow bm-hero__glow--bottom"
         aria-hidden="true"
       />
-      <div className="bm-hero__texture" aria-hidden="true" />
+
+      <div
+        className="bm-hero__texture"
+        aria-hidden="true"
+      />
+
+
+      {/* =====================================================
+          CONTAINER
+      ===================================================== */}
 
       <div className="bm-hero__container">
+
         <div className="bm-hero__inner">
-          {/* Left content */}
+
+          {/* =================================================
+              LEFT CONTENT
+          ================================================= */}
+
           <div className="bm-hero__content">
+
+            {/* EYEBROW */}
+
             <div className="bm-hero__eyebrow">
-              <span className="bm-hero__dot" aria-hidden="true" />
-              <span>Complete Branding Solutions</span>
+
+              <span
+                className="bm-hero__dot"
+                aria-hidden="true"
+              />
+
+              <span>
+                Complete Branding Solutions
+              </span>
+
             </div>
 
-            <h1 id="bm-hero-title" className="bm-hero__title">
-              <span className="bm-hero__line">We Build</span>
+
+            {/* MAIN HEADING */}
+
+            <h1
+              id="bm-hero-title"
+              className="bm-hero__title"
+            >
 
               <span className="bm-hero__line">
-                <span className="bm-hero__accent">Brands That</span>{" "}
-                <br></br>
-                <span className="bm-hero__tail">Mean Business
-
-                </span>
+                We Build Brands
               </span>
+
+              <span className="bm-hero__line">
+
+                <span className="bm-hero__accent">
+                  that Means
+                </span>
+
+                <br />
+
+                <span className="bm-hero__tail">
+                  Business
+                </span>
+
+              </span>
+
             </h1>
 
+
+            {/* DESCRIPTION */}
+
             <p className="bm-hero__description">
-              From logos and brand identity to social media, packaging and pitch decks — BrandsMaster gives growing businesses the design they need to look professional, memorable and ready to grow.
+              From logos and brand identity to social media,
+              packaging and pitch decks — BrandsMaster gives
+              growing businesses the design they need to look
+              professional, memorable and ready to grow.
             </p>
 
+
+            {/* CTA */}
+
             <div className="bm-hero__actions">
+
               <a
                 href="https://wa.me/919536404366"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bm-hero__button"
               >
-                <span>Build My Brand </span>
+
+                <span>
+                  Build My Brand
+                </span>
 
                 <ArrowUpRight
                   size={16}
                   strokeWidth={2.5}
                   aria-hidden="true"
                 />
+
               </a>
+
             </div>
 
+
+            {/* TRUST */}
+
             <div className="bm-hero__trust">
-              <div className="bm-hero__avatars" aria-hidden="true">
+
+              <div
+                className="bm-hero__avatars"
+                aria-hidden="true"
+              >
+
                 {["SC", "MW", "PN", "DS"].map((item) => (
-                  <span key={item} className="bm-hero__avatar">
+
+                  <span
+                    key={item}
+                    className="bm-hero__avatar"
+                  >
                     {item}
                   </span>
+
                 ))}
+
               </div>
 
+
               <div className="bm-hero__rating">
+
                 <div
                   className="bm-hero__stars"
                   role="img"
                   aria-label="5 out of 5 stars"
                 >
-                  {Array.from({ length: 5 }, (_, index) => (
-                    <span key={index} aria-hidden="true">
-                      ★
-                    </span>
-                  ))}
+
+                  {Array.from(
+                    { length: 5 },
+                    (_, index) => (
+
+                      <span
+                        key={index}
+                        aria-hidden="true"
+                      >
+                        ★
+                      </span>
+
+                    )
+                  )}
+
                 </div>
+
 
                 <p className="bm-hero__trust-text">
                   Trusted by 10,000+ founders
                 </p>
+
               </div>
+
             </div>
+
           </div>
 
-          {/* Right mascot */}
+
+          {/* =================================================
+              RIGHT MASCOT
+          ================================================= */}
+
           <div className="bm-hero__mascot">
+
             <div
               className="bm-hero__mascot-glow"
               aria-hidden="true"
@@ -778,9 +1107,13 @@ function Hero() {
               decoding="async"
               className="bm-hero__image"
             />
+
           </div>
+
         </div>
+
       </div>
+
     </section>
   )
 }
@@ -1831,341 +2164,158 @@ function FeaturedWork() {
 }
 
 function Faq() {
-  const [openIndex, setOpenIndex] = useState(0)
+  const [openIndex, setOpenIndex] = useState(2)
 
   return (
     <section
       className="
-        relative
-        overflow-hidden
         bg-white
         px-5
-        py-16
-        font-['Inter',Arial,Helvetica,sans-serif]
+        py-[20px]
         sm:px-6
-        sm:py-24
-        lg:py-28
       "
     >
-      {/* =========================================
-          BACKGROUND
-      ========================================= */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          bg-[radial-gradient(ellipse_at_top,rgba(207,27,40,0.045),transparent_58%)]
-        "
-      />
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -right-[180px]
-          top-[10%]
-          h-[420px]
-          w-[420px]
-          rounded-full
-          bg-red-100/50
-          blur-[120px]
-        "
-      />
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -left-[180px]
-          bottom-[5%]
-          h-[400px]
-          w-[400px]
-          rounded-full
-          bg-red-50
-          blur-[110px]
-        "
-      />
-
-      {/* Subtle diagonal texture */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-[-20%]
-          opacity-50
-          bg-[linear-gradient(135deg,transparent_45%,rgba(207,27,40,0.018)_45%,rgba(207,27,40,0.018)_56%,transparent_56%)]
-        "
-      />
-
-      {/* =========================================
-          CONTENT
-      ========================================= */}
-
-      <div className="relative z-10 mx-auto w-full max-w-[900px]">
+      <div className="mx-auto max-w-[900px]">
 
         {/* Heading */}
-        <Reveal>
-          <div className="text-center">
-            <SectionHeading
-              eyebrow="FAQ"
-              title="Questions,"
-              accent="answered"
-              align="center"
-            />
 
-            <p
-              className="
-                mx-auto
-                mt-5
-                max-w-[620px]
-                text-[15px]
-                font-normal
-                leading-[1.7]
-                text-[#101010]/55
-                sm:text-[16px]
-              "
-            >
-              Everything you need to know before getting started with
-              BrandsMaster.
-            </p>
-          </div>
-        </Reveal>
+        <div className="text-center">
+
+          <h2
+            className="
+              text-[30px]
+              font-[900]
+              tracking-[-2px]
+              text-[#101010]
+              sm:text-[56px]
+            "
+          >
+            Everything you need to know
+          </h2>
+
+          <p
+            className="
+              mt-3
+              text-[15px]
+              text-[#101010]/55
+            "
+          >
+            Straight answers before you start.
+          </p>
+
+        </div>
 
         {/* FAQ List */}
-        <div className="mt-10 space-y-3 sm:mt-12">
+
+        <div className="mt-8">
 
           {faqs.map((f, i) => {
+
             const isOpen = openIndex === i
 
             return (
-              <Reveal
+              <div
                 key={f.q}
-                delay={i * 0.04}
+                className="
+                  border-b
+                  border-[#101010]/10
+                "
               >
+
+                {/* Question */}
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOpenIndex(isOpen ? -1 : i)
+                  }
+                  className="
+                    flex
+                    w-full
+                    items-center
+                    gap-3
+                    py-5
+                    text-left
+                  "
+                >
+
+                  {/* Arrow */}
+
+                  <span
+                    className={`
+                      text-[13px]
+                      transition-all
+                      duration-300
+                      ${
+                        isOpen
+                          ? 'rotate-90 text-[#CF1B28]'
+                          : 'text-[#101010]/50'
+                      }
+                    `}
+                  >
+                    ▶
+                  </span>
+
+                  {/* Question */}
+
+                  <span
+                    className={`
+                      text-[18px]
+                      font-[800]
+                      transition-colors
+                      duration-300
+                      ${
+                        isOpen
+                          ? 'text-[#CF1B28]'
+                          : 'text-[#101010]'
+                      }
+                    `}
+                  >
+                    {f.q}
+                  </span>
+
+                </button>
+
+                {/* Answer */}
+
                 <div
                   className={`
-                    group
-                    relative
-                    overflow-hidden
-                    rounded-[18px]
-                    border
-                    bg-white
+                    grid
                     transition-all
                     duration-300
-                    ${isOpen
-                      ? 'border-[#CF1B28]/30 shadow-[0_15px_45px_rgba(207,27,40,0.08)]'
-                      : 'border-[#101010]/[0.10] shadow-[0_5px_20px_rgba(0,0,0,0.025)] hover:border-[#CF1B28]/25 hover:shadow-[0_12px_35px_rgba(207,27,40,0.06)]'
+                    ${
+                      isOpen
+                        ? 'grid-rows-[1fr] opacity-100 pb-5'
+                        : 'grid-rows-[0fr] opacity-0'
                     }
                   `}
                 >
 
-                  {/* Top Accent */}
-                  <div
-                    className={`
-                      absolute
-                      left-1/2
-                      top-0
-                      h-[2px]
-                      -translate-x-1/2
-                      bg-gradient-to-r
-                      from-transparent
-                      via-[#CF1B28]
-                      to-transparent
-                      transition-all
-                      duration-500
-                      ${isOpen
-                        ? 'w-[55%] opacity-100'
-                        : 'w-0 opacity-0 group-hover:w-[35%] group-hover:opacity-60'
-                      }
-                    `}
-                  />
+                  <div className="overflow-hidden">
 
-                  {/* Question Button */}
-                  <button
-                    type="button"
-                    className="
-                      flex
-                      w-full
-                      items-center
-                      justify-between
-                      gap-5
-                      px-5
-                      py-5
-                      text-left
-                      sm:px-6
-                      sm:py-[22px]
-                    "
-                    onClick={() =>
-                      setOpenIndex(isOpen ? -1 : i)
-                    }
-                    aria-expanded={isOpen}
-                  >
-
-                    {/* Question */}
-                    <span
-                      className={`
-                        text-[14px]
-                        font-[800]
-                        leading-[1.45]
-                        tracking-[-0.15px]
-                        transition-colors
-                        duration-300
-                        sm:text-[15px]
-                        ${isOpen
-                          ? 'text-[#CF1B28]'
-                          : 'text-[#101010] group-hover:text-[#CF1B28]'
-                        }
-                      `}
+                    <p
+                      className="
+                        pl-7
+                        pr-4
+                        text-[15px]
+                        leading-[1.8]
+                        text-[#101010]/60
+                      "
                     >
-                      {f.q}
-                    </span>
+                      {f.a}
+                    </p>
 
-                    {/* Number + Arrow */}
-                    <span className="flex shrink-0 items-center gap-3">
-
-                      <span
-                        className={`
-                          hidden
-                          text-[10px]
-                          font-[800]
-                          tracking-[1.5px]
-                          sm:block
-                          ${isOpen
-                            ? 'text-[#CF1B28]'
-                            : 'text-[#101010]/25'
-                          }
-                        `}
-                      >
-                        0{i + 1}
-                      </span>
-
-                      <span
-                        className={`
-                          flex
-                          h-9
-                          w-9
-                          items-center
-                          justify-center
-                          rounded-full
-                          border
-                          transition-all
-                          duration-300
-                          ${isOpen
-                            ? 'border-[#CF1B28] bg-[#CF1B28] shadow-[0_6px_18px_rgba(207,27,40,0.22)]'
-                            : 'border-[#101010]/10 bg-[#F8F8F8] group-hover:border-[#CF1B28]/30 group-hover:bg-[#FFF4F4]'
-                          }
-                        `}
-                      >
-                        <ChevronDown
-                          size={15}
-                          strokeWidth={2.2}
-                          className={`
-                            transition-all
-                            duration-300
-                            ${isOpen
-                              ? 'rotate-180 text-white'
-                              : 'text-[#101010]/50 group-hover:text-[#CF1B28]'
-                            }
-                          `}
-                        />
-                      </span>
-
-                    </span>
-                  </button>
-
-                  {/* Answer */}
-                  <div
-                    className={`
-                      grid
-                      transition-all
-                      duration-300
-                      ease-out
-                      ${isOpen
-                        ? 'grid-rows-[1fr] opacity-100'
-                        : 'grid-rows-[0fr] opacity-0'
-                      }
-                    `}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="px-5 pb-5 sm:px-6 sm:pb-6">
-
-                        <div
-                          className="
-                            mb-4
-                            h-px
-                            w-full
-                            bg-gradient-to-r
-                            from-[#CF1B28]/15
-                            via-[#CF1B28]/5
-                            to-transparent
-                          "
-                        />
-
-                        <p
-                          className="
-                            max-w-[760px]
-                            text-[13.5px]
-                            font-normal
-                            leading-[1.75]
-                            text-[#101010]/55
-                            sm:text-[14px]
-                          "
-                        >
-                          {f.a}
-                        </p>
-
-                      </div>
-                    </div>
                   </div>
 
                 </div>
-              </Reveal>
+
+              </div>
             )
           })}
 
         </div>
 
-        {/* Bottom Brand Line */}
-        <Reveal delay={0.25}>
-          <div className="mt-10 flex items-center justify-center gap-3 sm:mt-12">
-
-            <div className="h-[2px] w-10 bg-[#CF1B28]" />
-
-            <span
-              className="
-                text-[10px]
-                font-[800]
-                uppercase
-                tracking-[3px]
-                text-[#101010]/35
-              "
-            >
-              Still have questions? Let's talk.
-            </span>
-
-            <div className="h-[2px] w-10 bg-[#CF1B28]" />
-
-          </div>
-        </Reveal>
-
       </div>
-
-      {/* Bottom Fade */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          bottom-0
-          left-0
-          right-0
-          h-20
-          bg-gradient-to-t
-          from-[#fffaf2]/40
-          to-transparent
-        "
-      />
     </section>
   )
 }

@@ -1,8 +1,6 @@
 import { useState } from 'react'
 
 import {
-  Users,
-  Star,
   ArrowUpRight,
   ArrowLeft,
   ArrowRight,
@@ -14,13 +12,10 @@ import Reveal from './Reveal'
 
 /* =========================================================
    GOOGLE REVIEW URL
-   ---------------------------------------------------------
-   YAHAN APNA ACTUAL GOOGLE REVIEW / GOOGLE BUSINESS URL
-   PASTE KARNA HAI.
-========================================================= */
+   ========================================================= */
 
 const GOOGLE_RATING_URL =
-  'PASTE_YOUR_GOOGLE_REVIEW_URL_HERE'
+  'https://www.google.com/search?q=brands+master+mira+bhayandar+reviews&oq=brands&gs_lcrp=EgZjaHJvbWUqCAgBEEUYJxg7MgYIABBFGDkyCAgBEEUYJxg7MgoIAhAAGIAEGLQHMgcIAxAAGIAEMgcIBBAAGIAEMgYIBRBFGDwyBggGEEUYPTIGCAcQRRg80gEIMTY4OWowajeoAgCwAgA&sourceid=chrome&source=chrome.ob&ie=UTF-8#lrd=0x3be7af29af817bfd:0x576106eea426d9c4,1,,,,'
 
 
 export default function TestimonialsSection() {
@@ -33,7 +28,7 @@ export default function TestimonialsSection() {
 
 
   /* =======================================================
-     TWO BRAND PROOF CARDS
+     TWO BRAND PROOF ITEMS
   ======================================================= */
 
   const proofCards = [
@@ -41,7 +36,6 @@ export default function TestimonialsSection() {
       id: 'reach',
       value: '40K+',
       description: 'Business owners reached',
-      icon: Users,
       clickable: false,
     },
 
@@ -49,7 +43,6 @@ export default function TestimonialsSection() {
       id: 'rating',
       value: '4.8★',
       description: 'Google review rating',
-      icon: Star,
       clickable: true,
     },
   ]
@@ -72,7 +65,7 @@ export default function TestimonialsSection() {
 
 
   /* =======================================================
-     CHECK IF MEDIA IS VIDEO
+     CHECK VIDEO
   ======================================================= */
 
   const isOfficeVideo =
@@ -120,10 +113,10 @@ export default function TestimonialsSection() {
         isolate
         overflow-hidden
         bg-white
-        py-16
+        py-10
         font-['Inter',Arial,Helvetica,sans-serif]
-        sm:py-20
-        lg:py-24
+        sm:py-14
+        lg:py-16
       "
     >
 
@@ -191,7 +184,7 @@ export default function TestimonialsSection() {
 
           <div
             className="
-              mb-4
+              mb-3
               flex
               items-center
               gap-3
@@ -235,14 +228,14 @@ export default function TestimonialsSection() {
           <h2
             className="
               max-w-[850px]
-              text-[42px]
+              text-[40px]
               font-[900]
               leading-[0.98]
               tracking-[-2.5px]
               text-[#111820]
-              sm:text-[58px]
+              sm:text-[54px]
               sm:tracking-[-3.5px]
-              lg:text-[68px]
+              lg:text-[64px]
               lg:leading-[0.96]
             "
           >
@@ -251,11 +244,7 @@ export default function TestimonialsSection() {
 
             <br />
 
-            <span
-              className="
-                text-[#CF1B28]
-              "
-            >
+            <span className="text-[#CF1B28]">
               to look like brands
             </span>
 
@@ -265,30 +254,27 @@ export default function TestimonialsSection() {
 
 
         {/* ===================================================
-            BRAND PROOF CARDS
+            BRAND PROOF
+            NO CARD / NO ICON
         =================================================== */}
 
         <div
           className="
-            mt-10
+            mt-5
             grid
             grid-cols-2
-            gap-3
-            sm:mt-12
-            sm:grid-cols-2
-            sm:gap-5
-            lg:grid-cols-2
-            lg:gap-5
+            gap-6
+            sm:mt-6
+            sm:gap-10
+            lg:mt-7
+            lg:gap-14
           "
         >
 
           {proofCards.map((card, index) => {
 
-            const Icon = card.icon
-
-
             /* =================================================
-               CARD CONTENT
+               CLEAN CONTENT
             ================================================= */
 
             const cardContent = (
@@ -298,84 +284,11 @@ export default function TestimonialsSection() {
                   group
                   relative
                   flex
-                  min-h-[205px]
                   flex-col
-                  overflow-hidden
-                  rounded-[20px]
-                  border
-                  border-[#EBCFD2]
-                  bg-white
-                  p-5
-                  shadow-[0_10px_35px_rgba(20,10,10,0.035)]
-                  transition-all
-                  duration-400
-                  hover:-translate-y-1
-                  hover:border-[#CF1B28]/35
-                  hover:shadow-[0_18px_45px_rgba(207,27,40,0.08)]
-                  sm:min-h-[220px]
-                  sm:p-6
-                  lg:min-h-[180px]
-                  lg:p-7
+                  p-0
+                  text-left
                 "
               >
-
-                {/* ===========================================
-                    TOP LIGHT EFFECT
-                =========================================== */}
-
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    -right-16
-                    -top-16
-                    h-32
-                    w-32
-                    rounded-full
-                    bg-[#CF1B28]/[0.035]
-                    blur-2xl
-                    transition-all
-                    duration-500
-                    group-hover:bg-[#CF1B28]/[0.08]
-                  "
-                />
-
-
-                {/* ===========================================
-                    ICON
-                =========================================== */}
-
-                <div
-                  className="
-                    relative
-                    z-10
-                    flex
-                    h-12
-                    w-12
-                    items-center
-                    justify-center
-                    rounded-[13px]
-                    border
-                    border-[#F3CBCD]
-                    bg-[#FFF4F4]
-                    text-[#CF1B28]
-                    transition-all
-                    duration-300
-                    group-hover:border-[#CF1B28]/35
-                    group-hover:bg-[#CF1B28]
-                    group-hover:text-white
-                    sm:h-14
-                    sm:w-14
-                  "
-                >
-
-                  <Icon
-                    size={25}
-                    strokeWidth={1.9}
-                  />
-
-                </div>
-
 
                 {/* ===========================================
                     VALUE
@@ -383,76 +296,59 @@ export default function TestimonialsSection() {
 
                 <div
                   className="
-                    relative
-                    z-10
-                    mt-5
+                    text-[28px]
+                    font-[900]
+                    leading-none
+                    tracking-[-1.3px]
+                    text-[#111820]
+                    sm:text-[34px]
+                    sm:tracking-[-1.6px]
+                    lg:text-[38px]
                   "
                 >
-
-                  <div
-                    className="
-                      text-[30px]
-                      font-[900]
-                      leading-none
-                      tracking-[-1.4px]
-                      text-[#111820]
-                      sm:text-[36px]
-                      sm:tracking-[-1.8px]
-                      lg:text-[38px]
-                    "
-                  >
-                    {card.value}
-                  </div>
-
-
-                  {/* =========================================
-                      DESCRIPTION
-                  ========================================= */}
-
-                  <div
-                    className="
-                      mt-2
-                      text-[11px]
-                      font-medium
-                      leading-[1.45]
-                      text-[#64727B]
-                      sm:text-[13px]
-                      sm:leading-[1.5]
-                    "
-                  >
-                    {card.description}
-                  </div>
-
+                  {card.value}
                 </div>
 
 
                 {/* ===========================================
-                    GOOGLE LINK INDICATOR
+                    DESCRIPTION
+                =========================================== */}
+
+                <div
+                  className="
+                    mt-1.5
+                    text-[11px]
+                    font-medium
+                    leading-[1.45]
+                    text-[#64727B]
+                    sm:text-[13px]
+                    sm:leading-[1.5]
+                  "
+                >
+                  {card.description}
+                </div>
+
+
+                {/* ===========================================
+                    GOOGLE LINK ARROW
                 =========================================== */}
 
                 {card.clickable && (
 
                   <div
                     className="
-                      absolute
-                      bottom-5
-                      right-5
+                      mt-1
                       flex
-                      h-8
-                      w-8
+                      h-6
+                      w-6
                       items-center
                       justify-center
-                      rounded-full
-                      border
-                      border-[#E7D7D8]
-                      bg-white
                       text-[#CF1B28]
-                      opacity-0
+                      opacity-70
                       transition-all
                       duration-300
+                      group-hover:translate-x-1
                       group-hover:opacity-100
-                      sm:bottom-6
-                      sm:right-6
                     "
                   >
 
@@ -471,7 +367,7 @@ export default function TestimonialsSection() {
 
 
             /* =================================================
-               GOOGLE CARD = CLICKABLE
+               GOOGLE RATING = CLICKABLE
             ================================================= */
 
             if (card.clickable) {
@@ -505,6 +401,7 @@ export default function TestimonialsSection() {
                       block
                       h-full
                       cursor-pointer
+                      no-underline
                     "
                   >
 
@@ -519,7 +416,7 @@ export default function TestimonialsSection() {
 
 
             /* =================================================
-               NORMAL CARD
+               NORMAL ITEM
             ================================================= */
 
             return (
@@ -550,14 +447,14 @@ export default function TestimonialsSection() {
 
             <div
               className="
-                mt-6
+                mt-4
                 overflow-hidden
                 rounded-[22px]
                 border
                 border-[#E8DCDD]
                 bg-white
                 shadow-[0_10px_35px_rgba(0,0,0,0.045)]
-                sm:mt-8
+                sm:mt-6
               "
             >
 
@@ -823,9 +720,9 @@ export default function TestimonialsSection() {
               </div>
 
 
-              {/* =============================================
+              {/* =================================================
                   OFFICE CONTENT
-              ============================================= */}
+              ================================================= */}
 
               <div
                 className="
@@ -914,11 +811,11 @@ export default function TestimonialsSection() {
 
           <div
             className="
-              mt-8
+              mt-5
               flex
               items-center
               gap-3
-              sm:mt-9
+              sm:mt-6
             "
           >
 
@@ -959,23 +856,6 @@ export default function TestimonialsSection() {
 
       <style>{`
 
-        /* =========================================
-           TABLET
-        ========================================= */
-
-        @media (min-width: 640px) and (max-width: 1023px) {
-
-          .brandmaster-proof-card {
-            min-height: 210px;
-          }
-
-        }
-
-
-        /* =========================================
-           MOBILE
-        ========================================= */
-
         @media (max-width: 639px) {
 
           section {
@@ -983,11 +863,6 @@ export default function TestimonialsSection() {
           }
 
         }
-
-
-        /* =========================================
-           REDUCED MOTION
-        ========================================= */
 
         @media (prefers-reduced-motion: reduce) {
 
