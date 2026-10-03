@@ -50,12 +50,12 @@ export default function Footer() {
             <Link to="/" className="mb-6 inline-flex items-center gap-3">
               <img
                 src={Brand}
-                alt={`${siteConfig.name || 'Brand Master'} logo`}
+                alt={`${siteConfig.name || 'Brands Master'} logo`}
                 className="h-10 w-10 object-contain"
               />
 
               <span className="text-lg font-bold tracking-tight text-white">
-                {siteConfig.name || 'Brand Master'}
+                {siteConfig.name || 'Brands Master'}
                 <span className="text-red-500">.</span>
               </span>
             </Link>
@@ -63,7 +63,7 @@ export default function Footer() {
             <h3 className="mb-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
               Let's build a brand that
               <br />
-              <span className="bg-gradient-to-r from-red-400 via-rose-400 to-red-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
                 means business.
               </span>
             </h3>
@@ -72,6 +72,10 @@ export default function Footer() {
               We help ambitious businesses build strong brands through strategy, design, and digital execution.
             </p>
 
+
+            <div>
+              Get in touch with us: <a href="tel:+919536404366" className="text-white/70 hover:text-white">+91 95364 04366</a>
+            </div>
             <a
               href="https://wa.me/919536404366"
               target="_blank"
@@ -84,11 +88,8 @@ export default function Footer() {
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </a>
-          
-          <div>
-            Get in Touch
-            mobile: <a href="tel:+919536404366" className="text-white/70 hover:text-white">+91 95364 04366</a>  
-          </div>
+
+
           </div>
 
 

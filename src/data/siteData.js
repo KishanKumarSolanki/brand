@@ -143,7 +143,7 @@ import ProductPackaging9 from '../assets/PRODUCT PACKAGING/Untitled-9.png'
 import ProductPackaging10 from '../assets/PRODUCT PACKAGING/Untitled-10.png'
 
 export const siteConfig = {
-  name: 'Brand Master',
+  name: 'Brands Master',
   tagline: 'Let\'s build something unforgettable.',
   email: 'brandmaster@gmail.com',
   phone: '+91 9536404366',

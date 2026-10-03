@@ -344,14 +344,7 @@ export default function PortfolioSection() {
                 "
               >
 
-                <span
-                  className="
-                    h-[2px]
-                    w-10
-                    shrink-0
-                    bg-[#CF1B28]
-                  "
-                />
+                
 
                 <span
                   className="

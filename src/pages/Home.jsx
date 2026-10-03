@@ -617,7 +617,7 @@ function Hero() {
 
           .bm-hero__title {
             max-width: 100%;
-            font-size: 38px;
+            font-size: 36px;
             line-height: .98;
             letter-spacing: -.045em;
             text-align: left;
@@ -630,10 +630,11 @@ function Hero() {
           .bm-hero__description {
             max-width: 430px;
             margin-top: 16px;
-            font-size: 11.5px;
+            font-size: 11px;
             line-height: 1.52;
             text-align: left;
-          }
+            font-weight:700;
+            }
 
           .bm-hero__actions {
             justify-content: flex-start;
@@ -643,7 +644,7 @@ function Hero() {
           .bm-hero__button {
             width: 230px;
             min-height: 46px;
-            font-size: 10px;
+            font-size: 14px;
           }
 
           .bm-hero__trust {
@@ -997,7 +998,7 @@ function Hero() {
 
             <p className="bm-hero__description">
               From logos and brand identity to social media,
-              packaging and pitch decks — BrandsMaster gives
+              packaging and pitch decks — BrandsMaster <br></br>gives
               growing businesses the design they need to look
               professional, memorable and ready to grow.
             </p>

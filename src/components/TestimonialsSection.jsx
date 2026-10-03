@@ -191,15 +191,7 @@ export default function TestimonialsSection() {
             "
           >
 
-            <span
-              className="
-                h-[2px]
-                w-9
-                shrink-0
-                bg-[#CF1B28]
-                sm:w-10
-              "
-            />
+           
 
             <span
               className="
@@ -819,15 +811,7 @@ export default function TestimonialsSection() {
             "
           >
 
-            <span
-              className="
-                h-[2px]
-                w-9
-                shrink-0
-                bg-[#CF1B28]
-                sm:w-10
-              "
-            />
+            
 
             <span
               className="
