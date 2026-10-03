@@ -701,11 +701,12 @@ function Hero() {
             </div>
 
             <h1 id="bm-hero-title" className="bm-hero__title">
-              <span className="bm-hero__line">We Build Brands</span>
+              <span className="bm-hero__line">We Build</span>
 
               <span className="bm-hero__line">
-                <span className="bm-hero__accent">That</span>{" "}
-                <span className="bm-hero__tail"> Mean Business
+                <span className="bm-hero__accent">Brands That </span>{" "}
+                <br />
+                <span className="bm-hero__tail">Mean Business
 
                 </span>
               </span>
