@@ -71,9 +71,9 @@ export default function Home() {
 
 
       {/* About */}
-      <div id="about" className="scroll-mt-24">
+      {/* <div id="about" className="scroll-mt-24">
         <About />
-      </div>
+      </div> */}
 
 
 
@@ -701,18 +701,18 @@ function Hero() {
             </div>
 
             <h1 id="bm-hero-title" className="bm-hero__title">
-              <span className="bm-hero__line">India's Next</span>
+              <span className="bm-hero__line">We Build Brands</span>
 
               <span className="bm-hero__line">
-                <span className="bm-hero__accent">Big</span>{" "}
-                <span className="bm-hero__tail">Brands</span>
+                <span className="bm-hero__accent">That</span>{" "}
+                <span className="bm-hero__tail"> Mean Business
+
+                </span>
               </span>
             </h1>
 
             <p className="bm-hero__description">
-              Strategy, design, and creativity aligned to craft impactful
-              digital solutions. Focused on delivering real growth that
-              scales your brand and business.
+              From logos and brand identity to social media, packaging and pitch decks — BrandsMaster gives growing businesses the design they need to look professional, memorable and ready to grow.
             </p>
 
             <div className="bm-hero__actions">
@@ -722,7 +722,7 @@ function Hero() {
                 rel="noopener noreferrer"
                 className="bm-hero__button"
               >
-                <span>Book Free Brand Strategy Call</span>
+                <span>Build My Brand </span>
 
                 <ArrowUpRight
                   size={16}
@@ -755,7 +755,7 @@ function Hero() {
                 </div>
 
                 <p className="bm-hero__trust-text">
-                  Trusted by 250+ founders
+                  Trusted by 10,000+ founders
                 </p>
               </div>
             </div>

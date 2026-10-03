@@ -290,28 +290,28 @@ export const stats = [
 
 export const faqs = [
   { 
-    q: 'What services does BrandsMaster offer?', 
-    a: 'BrandsMaster provides complete branding solutions including logo design, brand identity, social media creatives, and pitch deck design to help businesses build a strong and consistent presence.' 
+    q: 'What services does BrandsMaster offer?',
+    a: 'Logo design, brand identity, social media creatives, pitch decks, and other business design requirements.' 
   },
 
   { 
     q: 'Who should work with BrandsMaster?', 
-    a: 'We work with startups, small businesses, and growing brands that want to look professional, build credibility, and scale their presence across digital platforms.' 
+    a: ' Startups, small businesses, growing companies, and established brands looking for consistent professional design.' 
   },
 
   { 
-    q: 'How long does a branding project take?', 
-    a: 'The timeline depends on the scope. Logo design usually takes a few days, while complete branding (logo, identity, creatives) can take 1–2 weeks or more based on requirements.' 
+    q: 'How long does a design project take?', 
+    a: 'Timelines depend on the scope and deliverables. We confirm the expected timeline before starting.' 
   },
 
   { 
     q: 'Do you create custom designs or use templates?', 
-    a: 'All our designs are created from scratch based on your business, target audience, and positioning. We do not use generic templates.' 
+    a: 'Every project is created specifically for the clients brand, requirements, and intended use.' 
   },
 
   { 
-    q: 'How can I get started with BrandsMaster?', 
-    a: 'You can start by booking a free strategy call or contacting us on WhatsApp. We will understand your business and guide you with the best branding approach.' 
+    q: 'How do I get started with BrandsMaster?', 
+    a: ' Share your requirement with our team, discuss the scope, choose the right service, and get started.' 
   }
 ];
 export const testimonials = [

@@ -61,16 +61,15 @@ export default function Footer() {
             </Link>
 
             <h3 className="mb-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-              Let's build something
+              Let's build a brand that
               <br />
               <span className="bg-gradient-to-r from-red-400 via-rose-400 to-red-500 bg-clip-text text-transparent">
-                unforgettable.
+                means business.
               </span>
             </h3>
 
             <p className="max-w-sm text-sm leading-7 text-white/55">
-              We help ambitious businesses build meaningful brands through
-              strategy, design, and digital experiences that make an impact.
+              We help ambitious businesses build strong brands through strategy, design, and digital execution.
             </p>
 
             <a

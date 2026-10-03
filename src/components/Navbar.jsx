@@ -80,7 +80,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="relative inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/95 px-5 py-2.5 text-[14px] font-semibold text-[#0a0a12] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
             >
-              Book a Call
+              Start a Project 
               <span aria-hidden="true">↗</span>
             </a>
           </div>

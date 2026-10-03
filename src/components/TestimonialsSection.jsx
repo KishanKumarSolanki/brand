@@ -200,7 +200,7 @@ export default function TestimonialsSection() {
             "
           >
 
-            Built for businesses that
+            Built for businesses ready
 
             <br />
 
@@ -209,7 +209,7 @@ export default function TestimonialsSection() {
                 text-[#CF1B28]
               "
             >
-              want to grow.
+              to look like brands
             </span>
 
           </h2>

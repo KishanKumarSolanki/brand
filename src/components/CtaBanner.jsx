@@ -172,7 +172,7 @@ export default function CtaBanner() {
               />
             </span>
 
-            Ready?
+            Your business has a story.
           </div>
 
           {/* =========================================
@@ -194,10 +194,10 @@ export default function CtaBanner() {
               lg:tracking-[-3.5px]
             "
           >
-            Let&apos;s make your brand impossible
+            Let&apos;s build the brand around it.
             <br className="hidden sm:block" />
             <span className="block sm:inline">
-              {' '}to ignore.
+              {' '}
             </span>
           </h2>
 
@@ -282,7 +282,7 @@ export default function CtaBanner() {
 
             {/* Secondary Button */}
             <a
-              href="#portfolio"
+              href="https://wa.me/919536404366"
               className="
                 group
                 inline-flex
@@ -309,7 +309,7 @@ export default function CtaBanner() {
                 sm:w-auto
               "
             >
-              See portfolio
+              Start Your Brand 
 
               <ArrowUpRight
                 size={15}

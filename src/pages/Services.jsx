@@ -208,7 +208,7 @@ function Hero() {
         <SectionHeading
           eyebrow="Our Services"
           title="Everything your brand needs,"
-          accent="under one roof."
+          accent="in one place."
           dark
           align="center"
         />
@@ -224,9 +224,8 @@ function Hero() {
             sm:text-[17px]
           "
         >
-          Brand Master helps ambitious businesses build a powerful
-          brand identity, create a premium digital presence and develop
-          the creative systems they need to grow with confidence.
+          From logo design and brand identity to social media, packaging and pitch decks, we create the visual assets your business needs to present a consistent, professional brand.
+
         </p>
 
         {/* =========================================
@@ -251,7 +250,7 @@ function Hero() {
               backdrop-blur-sm
             "
           >
-            Strategy
+            Logo Design
           </span>
 
           <span
@@ -270,7 +269,7 @@ function Hero() {
               backdrop-blur-sm
             "
           >
-            Design
+            Brand Identity
           </span>
 
           <span
@@ -289,7 +288,7 @@ function Hero() {
               backdrop-blur-sm
             "
           >
-            Digital
+            Social Media
           </span>
 
           <span
@@ -308,7 +307,43 @@ function Hero() {
               backdrop-blur-sm
             "
           >
-            Growth
+            Packaging
+          </span>
+          <span
+            className="
+              rounded-full
+              border
+              border-[#FFD800]/30
+              bg-[#FFD800]/10
+              px-4
+              py-2
+              text-[10px]
+              font-[800]
+              uppercase
+              tracking-[2px]
+              text-[#FFD800]
+              backdrop-blur-sm
+            "
+          >
+            Pitch Decks
+          </span>
+          <span
+            className="
+              rounded-full
+              border
+              border-[#FFD800]/30
+              bg-[#FFD800]/10
+              px-4
+              py-2
+              text-[10px]
+              font-[800]
+              uppercase
+              tracking-[2px]
+              text-[#FFD800]
+              backdrop-blur-sm
+            "
+          >
+            More...
           </span>
 
         </div>

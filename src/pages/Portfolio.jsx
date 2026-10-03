@@ -196,11 +196,11 @@ export default function PortfolioSection() {
               "
             >
 
-              Work that makes
+              Brands we've built.
               <br />
 
               <span className="text-[#CF1B28]">
-                brands stand out.
+                Businesses we've helped grow
               </span>
 
             </h2>
