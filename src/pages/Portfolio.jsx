@@ -1,5 +1,10 @@
-import { useState } from 'react'
-import { ArrowUpRight, ArrowLeft, ArrowRight } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import {
+  ArrowUpRight,
+  ArrowLeft,
+  ArrowRight,
+  X,
+} from 'lucide-react'
 
 import Reveal from '../components/Reveal'
 import { portfolioItems } from '../data/siteData'
@@ -21,6 +26,13 @@ export default function PortfolioSection() {
 
 
   /* =====================================================
+     LIGHTBOX / POPUP
+  ===================================================== */
+
+  const [lightbox, setLightbox] = useState(null)
+
+
+  /* =====================================================
      FILTER ITEMS
   ===================================================== */
 
@@ -33,7 +45,7 @@ export default function PortfolioSection() {
 
 
   /* =====================================================
-     NEXT MEDIA
+     NEXT MEDIA - CARD
   ===================================================== */
 
   const nextImage = (itemIndex, totalImages) => {
@@ -54,7 +66,7 @@ export default function PortfolioSection() {
 
 
   /* =====================================================
-     PREVIOUS MEDIA
+     PREVIOUS MEDIA - CARD
   ===================================================== */
 
   const previousImage = (itemIndex, totalImages) => {
@@ -85,16 +97,144 @@ export default function PortfolioSection() {
       return false
     }
 
-    const cleanSrc = src.split('?')[0].toLowerCase()
+    const cleanSrc = src
+      .split('?')[0]
+      .toLowerCase()
 
     return (
       cleanSrc.endsWith('.mp4') ||
       cleanSrc.endsWith('.webm') ||
       cleanSrc.endsWith('.ogg') ||
-      cleanSrc.endsWith('.mov')
+      cleanSrc.endsWith('.mov') ||
+      cleanSrc.endsWith('.m4v')
     )
 
   }
+
+
+  /* =====================================================
+     OPEN LIGHTBOX
+  ===================================================== */
+
+  const openLightbox = (itemIndex, mediaIndex) => {
+
+    setLightbox({
+      itemIndex,
+      mediaIndex,
+    })
+
+  }
+
+
+  /* =====================================================
+     CLOSE LIGHTBOX
+  ===================================================== */
+
+  const closeLightbox = () => {
+    setLightbox(null)
+  }
+
+
+  /* =====================================================
+     LIGHTBOX NEXT
+  ===================================================== */
+
+  const nextLightbox = () => {
+
+    if (!lightbox) return
+
+    const item = filteredItems[lightbox.itemIndex]
+
+    if (!item) return
+
+    const images =
+      item.images?.length
+        ? item.images
+        : [item.img]
+
+    if (images.length <= 1) return
+
+    setLightbox((prev) => ({
+      ...prev,
+      mediaIndex:
+        (prev.mediaIndex + 1) % images.length,
+    }))
+
+  }
+
+
+  /* =====================================================
+     LIGHTBOX PREVIOUS
+  ===================================================== */
+
+  const previousLightbox = () => {
+
+    if (!lightbox) return
+
+    const item = filteredItems[lightbox.itemIndex]
+
+    if (!item) return
+
+    const images =
+      item.images?.length
+        ? item.images
+        : [item.img]
+
+    if (images.length <= 1) return
+
+    setLightbox((prev) => ({
+      ...prev,
+      mediaIndex:
+        (prev.mediaIndex - 1 + images.length) %
+        images.length,
+    }))
+
+  }
+
+
+  /* =====================================================
+     KEYBOARD CONTROLS
+  ===================================================== */
+
+  useEffect(() => {
+
+    if (!lightbox) return
+
+    const handleKeyDown = (event) => {
+
+      if (event.key === 'Escape') {
+        closeLightbox()
+      }
+
+      if (event.key === 'ArrowRight') {
+        nextLightbox()
+      }
+
+      if (event.key === 'ArrowLeft') {
+        previousLightbox()
+      }
+
+    }
+
+    document.addEventListener(
+      'keydown',
+      handleKeyDown
+    )
+
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+
+      document.removeEventListener(
+        'keydown',
+        handleKeyDown
+      )
+
+      document.body.style.overflow = ''
+
+    }
+
+  }, [lightbox])
 
 
   /* =====================================================
@@ -105,623 +245,1035 @@ export default function PortfolioSection() {
     'All',
     ...Array.from(
       new Set(
-        portfolioItems.map((item) => item.category)
+        portfolioItems.map(
+          (item) => item.category
+        )
       )
     ),
   ]
 
 
+  /* =====================================================
+     LIGHTBOX CURRENT DATA
+  ===================================================== */
+
+  let lightboxItem = null
+  let lightboxImages = []
+  let lightboxMedia = null
+  let lightboxIsVideo = false
+
+  if (lightbox) {
+
+    lightboxItem =
+      filteredItems[lightbox.itemIndex]
+
+    if (lightboxItem) {
+
+      lightboxImages =
+        lightboxItem.images?.length
+          ? lightboxItem.images
+          : [lightboxItem.img]
+
+      lightboxMedia =
+        lightboxImages[lightbox.mediaIndex]
+
+      lightboxIsVideo =
+        isVideoFile(lightboxMedia)
+
+    }
+
+  }
+
+
   return (
 
-    <section
-      id="portfolio"
-      className="
-        relative
-        overflow-hidden
-        bg-white
-        py-20
-        font-['Inter',Arial,Helvetica,sans-serif]
-        sm:py-24
-        lg:py-28
-      "
-    >
+    <>
 
-      {/* =================================================
-          CONTAINER
-      ================================================= */}
+      {/* ===================================================
+          PORTFOLIO SECTION
+      =================================================== */}
 
-      <div
+      <section
+        id="portfolio"
         className="
           relative
-          z-10
-          mx-auto
-          w-full
-          max-w-[1220px]
-          px-5
-          sm:px-6
-          lg:px-8
+          overflow-hidden
+          bg-white
+          py-20
+          font-['Inter',Arial,Helvetica,sans-serif]
+          sm:py-24
+          lg:py-28
         "
       >
 
-
         {/* =================================================
-            HEADING
-        ================================================= */}
-
-        <Reveal>
-
-          <div className="max-w-[750px]">
-
-            <div
-              className="
-                mb-4
-                flex
-                items-center
-                gap-3
-              "
-            >
-
-              <span
-                className="
-                  h-[2px]
-                  w-10
-                  bg-[#CF1B28]
-                "
-              />
-
-              <span
-                className="
-                  text-[10px]
-                  font-[900]
-                  uppercase
-                  tracking-[3px]
-                  text-[#CF1B28]
-                "
-              >
-                OUR WORK
-              </span>
-
-            </div>
-
-
-            <h2
-              className="
-                text-[42px]
-                font-[900]
-                leading-[1]
-                tracking-[-2px]
-                text-[#111820]
-                sm:text-[58px]
-                lg:text-[68px]
-              "
-            >
-
-              Brands we've built.
-              <br />
-
-              <span className="text-[#CF1B28]">
-                Businesses we've helped grow
-              </span>
-
-            </h2>
-
-          </div>
-
-        </Reveal>
-
-
-        {/* =================================================
-            CATEGORY FILTER
-        ================================================= */}
-
-        <Reveal delay={0.1}>
-
-          <div
-            className="
-              mt-8
-              flex
-              gap-2
-              overflow-x-auto
-              pb-2
-              scrollbar-hide
-              sm:mt-10
-            "
-          >
-
-            {categories.map((category) => (
-
-              <button
-                key={category}
-                type="button"
-                onClick={() => setActiveCategory(category)}
-                className={`
-                  shrink-0
-                  rounded-full
-                  border
-                  px-5
-                  py-2.5
-                  text-[11px]
-                  font-[800]
-                  uppercase
-                  tracking-[1px]
-                  transition-all
-                  duration-300
-
-                  ${
-                    activeCategory === category
-                      ? `
-                        border-[#CF1B28]
-                        bg-[#CF1B28]
-                        text-white
-                        shadow-[0_8px_25px_rgba(207,27,40,0.18)]
-                      `
-                      : `
-                        border-[#E6D9DA]
-                        bg-white
-                        text-[#555]
-                        hover:border-[#CF1B28]/40
-                        hover:text-[#CF1B28]
-                      `
-                  }
-                `}
-              >
-                {category}
-              </button>
-
-            ))}
-
-          </div>
-
-        </Reveal>
-
-
-        {/* =================================================
-            PORTFOLIO GRID
+            CONTAINER
         ================================================= */}
 
         <div
           className="
-            mt-10
-            grid
-            grid-cols-1
-            gap-5
-            sm:grid-cols-2
-            lg:grid-cols-3
+            relative
+            z-10
+            mx-auto
+            w-full
+            max-w-[1220px]
+            px-5
+            sm:px-6
+            lg:px-8
           "
         >
 
-          {filteredItems.map((item, index) => {
 
-            /* ---------------------------------------------
-               GET MEDIA ARRAY
-            --------------------------------------------- */
+          {/* =================================================
+              HEADING
+          ================================================= */}
 
-            const images =
-              item.images?.length
-                ? item.images
-                : [item.img]
+          <Reveal>
 
+            <div className="max-w-[750px]">
 
-            /* ---------------------------------------------
-               CURRENT INDEX
-            --------------------------------------------- */
-
-            const currentIndex =
-              imageIndexes[index] || 0
-
-
-            /* ---------------------------------------------
-               CURRENT IMAGE / VIDEO
-            --------------------------------------------- */
-
-            const currentImage =
-              images[currentIndex]
-
-
-            /* ---------------------------------------------
-               CHECK IF CURRENT MEDIA IS VIDEO
-            --------------------------------------------- */
-
-            const isVideo =
-              isVideoFile(currentImage)
-
-
-            return (
-
-              <Reveal
-                key={`${item.title}-${index}`}
-                delay={index * 0.05}
+              <div
+                className="
+                  mb-4
+                  flex
+                  items-center
+                  gap-3
+                "
               >
 
-                <article
+                <span
                   className="
-                    group
-                    overflow-hidden
-                    rounded-[22px]
-                    border
-                    border-[#E8DCDD]
-                    bg-white
-                    shadow-[0_10px_35px_rgba(0,0,0,0.045)]
-                    transition-all
-                    duration-500
-                    hover:-translate-y-1
-                    hover:shadow-[0_20px_50px_rgba(0,0,0,0.09)]
+                    h-[2px]
+                    w-10
+                    bg-[#CF1B28]
+                  "
+                />
+
+                <span
+                  className="
+                    text-[10px]
+                    font-[900]
+                    uppercase
+                    tracking-[3px]
+                    text-[#CF1B28]
                   "
                 >
+                  OUR WORK
+                </span>
+
+              </div>
 
 
-                  {/* =========================================
-                      MEDIA AREA
-                  ========================================= */}
+              <h2
+                className="
+                  text-[42px]
+                  font-[900]
+                  leading-[1]
+                  tracking-[-2px]
+                  text-[#111820]
+                  sm:text-[58px]
+                  lg:text-[68px]
+                "
+              >
 
-                  <div
+                Brands we've built.
+
+                <br />
+
+                <span className="text-[#CF1B28]">
+                  Businesses we've helped grow
+                </span>
+
+              </h2>
+
+            </div>
+
+          </Reveal>
+
+
+          {/* =================================================
+              CATEGORY FILTER
+          ================================================= */}
+
+          <Reveal delay={0.1}>
+
+            <div
+              className="
+                mt-8
+                flex
+                gap-2
+                overflow-x-auto
+                pb-2
+                scrollbar-hide
+                sm:mt-10
+              "
+            >
+
+              {categories.map((category) => (
+
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() =>
+                    setActiveCategory(category)
+                  }
+                  className={`
+                    shrink-0
+                    rounded-full
+                    border
+                    px-5
+                    py-2.5
+                    text-[11px]
+                    font-[800]
+                    uppercase
+                    tracking-[1px]
+                    transition-all
+                    duration-300
+
+                    ${
+                      activeCategory === category
+                        ? `
+                          border-[#CF1B28]
+                          bg-[#CF1B28]
+                          text-white
+                          shadow-[0_8px_25px_rgba(207,27,40,0.18)]
+                        `
+                        : `
+                          border-[#E6D9DA]
+                          bg-white
+                          text-[#555]
+                          hover:border-[#CF1B28]/40
+                          hover:text-[#CF1B28]
+                        `
+                    }
+                  `}
+                >
+                  {category}
+                </button>
+
+              ))}
+
+            </div>
+
+          </Reveal>
+
+
+          {/* =================================================
+              PORTFOLIO GRID
+          ================================================= */}
+
+          <div
+            className="
+              mt-10
+              grid
+              grid-cols-1
+              gap-5
+              sm:grid-cols-2
+              lg:grid-cols-3
+            "
+          >
+
+            {filteredItems.map((item, index) => {
+
+              /* ---------------------------------------------
+                 GET MEDIA ARRAY
+              --------------------------------------------- */
+
+              const images =
+                item.images?.length
+                  ? item.images
+                  : [item.img]
+
+
+              /* ---------------------------------------------
+                 CURRENT INDEX
+              --------------------------------------------- */
+
+              const currentIndex =
+                imageIndexes[index] || 0
+
+
+              /* ---------------------------------------------
+                 CURRENT IMAGE / VIDEO
+              --------------------------------------------- */
+
+              const currentImage =
+                images[currentIndex]
+
+
+              /* ---------------------------------------------
+                 CHECK VIDEO
+              --------------------------------------------- */
+
+              const isVideo =
+                isVideoFile(currentImage)
+
+
+              return (
+
+                <Reveal
+                  key={`${item.title}-${index}`}
+                  delay={index * 0.05}
+                >
+
+                  <article
                     className="
-                      relative
-                      aspect-[4/3]
+                      group
                       overflow-hidden
-                      bg-[#F8F4F4]
+                      rounded-[22px]
+                      border
+                      border-[#E8DCDD]
+                      bg-white
+                      shadow-[0_10px_35px_rgba(0,0,0,0.045)]
+                      transition-all
+                      duration-500
+                      hover:-translate-y-1
+                      hover:shadow-[0_20px_50px_rgba(0,0,0,0.09)]
                     "
                   >
 
-                    {/* =======================================
-                        VIDEO
-                    ======================================= */}
 
-                    {isVideo ? (
-
-                      <video
-                        key={currentImage}
-                        src={currentImage}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        controls
-                        preload="metadata"
-                        className="
-                          h-full
-                          w-full
-                          object-cover
-                        "
-                      />
-
-                    ) : (
-
-                      /* =====================================
-                         IMAGE
-                      ===================================== */
-
-                      <img
-                        key={currentImage}
-                        src={currentImage}
-                        alt={item.title}
-                        className="
-                          h-full
-                          w-full
-                          object-cover
-                          transition-all
-                          duration-500
-                          group-hover:scale-[1.03]
-                        "
-                      />
-
-                    )}
-
-
-                    {/* =======================================
-                        DARK OVERLAY
-                    ======================================= */}
+                    {/* =====================================
+                        MEDIA AREA
+                    ===================================== */}
 
                     <div
                       className="
-                        pointer-events-none
-                        absolute
-                        inset-0
-                        bg-gradient-to-t
-                        from-black/25
-                        via-transparent
-                        to-transparent
-                      "
-                    />
-
-
-                    {/* =======================================
-                        CATEGORY
-                    ======================================= */}
-
-                    <div
-                      className="
-                        absolute
-                        left-4
-                        top-4
-                        z-20
-                        rounded-full
-                        border
-                        border-white/40
-                        bg-white/90
-                        px-3
-                        py-1.5
-                        text-[9px]
-                        font-[900]
-                        uppercase
-                        tracking-[1.5px]
-                        text-[#CF1B28]
-                        backdrop-blur-md
+                        relative
+                        aspect-[4/3]
+                        overflow-hidden
+                        bg-[#F8F4F4]
                       "
                     >
-                      {item.category}
-                    </div>
+
+                      {/* ===================================
+                          VIDEO
+                      =================================== */}
+
+                      {isVideo ? (
+
+                        <video
+                          key={currentImage}
+                          src={currentImage}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          controls
+                          preload="metadata"
+                          className="
+                            h-full
+                            w-full
+                            object-cover
+                          "
+                        />
+
+                      ) : (
+
+                        /* =================================
+                           IMAGE
+                        ================================= */
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            openLightbox(
+                              index,
+                              currentIndex
+                            )
+                          }
+                          aria-label={`Open ${item.title} image`}
+                          className="
+                            absolute
+                            inset-0
+                            block
+                            h-full
+                            w-full
+                            cursor-zoom-in
+                            border-0
+                            bg-transparent
+                            p-0
+                          "
+                        >
+
+                          <img
+                            key={currentImage}
+                            src={currentImage}
+                            alt={item.title}
+                            className="
+                              h-full
+                              w-full
+                              object-cover
+                              transition-all
+                              duration-500
+                              group-hover:scale-[1.03]
+                            "
+                          />
+
+                        </button>
+
+                      )}
 
 
-                    {/* =======================================
-                        VIDEO LABEL
-                    ======================================= */}
+                      {/* ===================================
+                          DARK OVERLAY
+                      =================================== */}
 
-                    {isVideo && (
+                      <div
+                        className="
+                          pointer-events-none
+                          absolute
+                          inset-0
+                          bg-gradient-to-t
+                          from-black/25
+                          via-transparent
+                          to-transparent
+                        "
+                      />
+
+
+                      {/* ===================================
+                          CATEGORY
+                      =================================== */}
 
                       <div
                         className="
                           absolute
-                          right-4
+                          left-4
                           top-4
                           z-20
                           rounded-full
                           border
-                          border-white/30
-                          bg-black/55
+                          border-white/40
+                          bg-white/90
                           px-3
                           py-1.5
                           text-[9px]
                           font-[900]
                           uppercase
                           tracking-[1.5px]
-                          text-white
+                          text-[#CF1B28]
                           backdrop-blur-md
                         "
                       >
-                        VIDEO
+                        {item.category}
                       </div>
 
-                    )}
 
+                      {/* ===================================
+                          VIDEO LABEL
+                      =================================== */}
 
-                    {/* =======================================
-                        CAROUSEL ARROWS
-                    ======================================= */}
+                      {isVideo && (
 
-                    {images.length > 1 && (
-
-                      <div
-                        className="
-                          absolute
-                          bottom-4
-                          right-4
-                          z-20
-                          flex
-                          items-center
-                          gap-2
-                        "
-                      >
-
-                        {/* PREVIOUS */}
-
-                        <button
-                          type="button"
-                          aria-label={`Previous ${item.title} media`}
-                          onClick={() =>
-                            previousImage(
-                              index,
-                              images.length
-                            )
-                          }
+                        <div
                           className="
-                            flex
-                            h-9
-                            w-9
-                            items-center
-                            justify-center
+                            absolute
+                            right-4
+                            top-4
+                            z-20
                             rounded-full
                             border
-                            border-white/50
-                            bg-white/90
-                            text-[#111820]
-                            shadow-lg
+                            border-white/30
+                            bg-black/55
+                            px-3
+                            py-1.5
+                            text-[9px]
+                            font-[900]
+                            uppercase
+                            tracking-[1.5px]
+                            text-white
                             backdrop-blur-md
-                            transition-all
-                            duration-300
-                            hover:bg-[#CF1B28]
-                            hover:text-white
+                          "
+                        >
+                          VIDEO
+                        </div>
+
+                      )}
+
+
+                      {/* ===================================
+                          CAROUSEL ARROWS
+                      =================================== */}
+
+                      {images.length > 1 && (
+
+                        <div
+                          className="
+                            absolute
+                            bottom-4
+                            right-4
+                            z-30
+                            flex
+                            items-center
+                            gap-2
                           "
                         >
 
-                          <ArrowLeft
-                            size={15}
-                            strokeWidth={2.2}
-                          />
+                          {/* PREVIOUS */}
 
-                        </button>
+                          <button
+                            type="button"
+                            aria-label={`Previous ${item.title} media`}
+                            onClick={(event) => {
+
+                              event.stopPropagation()
+
+                              previousImage(
+                                index,
+                                images.length
+                              )
+
+                            }}
+                            className="
+                              flex
+                              h-9
+                              w-9
+                              items-center
+                              justify-center
+                              rounded-full
+                              border
+                              border-white/50
+                              bg-white/90
+                              text-[#111820]
+                              shadow-lg
+                              backdrop-blur-md
+                              transition-all
+                              duration-300
+                              hover:bg-[#CF1B28]
+                              hover:text-white
+                            "
+                          >
+
+                            <ArrowLeft
+                              size={15}
+                              strokeWidth={2.2}
+                            />
+
+                          </button>
 
 
-                        {/* NEXT */}
+                          {/* NEXT */}
 
-                        <button
-                          type="button"
-                          aria-label={`Next ${item.title} media`}
-                          onClick={() =>
-                            nextImage(
-                              index,
-                              images.length
-                            )
-                          }
+                          <button
+                            type="button"
+                            aria-label={`Next ${item.title} media`}
+                            onClick={(event) => {
+
+                              event.stopPropagation()
+
+                              nextImage(
+                                index,
+                                images.length
+                              )
+
+                            }}
+                            className="
+                              flex
+                              h-9
+                              w-9
+                              items-center
+                              justify-center
+                              rounded-full
+                              border
+                              border-white/50
+                              bg-white/90
+                              text-[#111820]
+                              shadow-lg
+                              backdrop-blur-md
+                              transition-all
+                              duration-300
+                              hover:bg-[#CF1B28]
+                              hover:text-white
+                            "
+                          >
+
+                            <ArrowRight
+                              size={15}
+                              strokeWidth={2.2}
+                            />
+
+                          </button>
+
+                        </div>
+
+                      )}
+
+
+                      {/* ===================================
+                          MEDIA COUNTER
+                      =================================== */}
+
+                      {images.length > 1 && (
+
+                        <div
                           className="
-                            flex
-                            h-9
-                            w-9
-                            items-center
-                            justify-center
+                            absolute
+                            bottom-4
+                            left-4
+                            z-20
                             rounded-full
-                            border
-                            border-white/50
-                            bg-white/90
-                            text-[#111820]
-                            shadow-lg
-                            backdrop-blur-md
-                            transition-all
-                            duration-300
-                            hover:bg-[#CF1B28]
-                            hover:text-white
-                          "
-                        >
-
-                          <ArrowRight
-                            size={15}
-                            strokeWidth={2.2}
-                          />
-
-                        </button>
-
-                      </div>
-
-                    )}
-
-
-                    {/* =======================================
-                        MEDIA COUNTER
-                    ======================================= */}
-
-                    {images.length > 1 && (
-
-                      <div
-                        className="
-                          absolute
-                          bottom-4
-                          left-4
-                          z-20
-                          rounded-full
-                          bg-black/55
-                          px-3
-                          py-1.5
-                          text-[10px]
-                          font-[800]
-                          text-white
-                          backdrop-blur-md
-                        "
-                      >
-                        {currentIndex + 1} / {images.length}
-                      </div>
-
-                    )}
-
-                  </div>
-
-
-                  {/* =========================================
-                      CARD CONTENT
-                  ========================================= */}
-
-                  <div className="p-5 sm:p-6">
-
-                    <div
-                      className="
-                        flex
-                        items-center
-                        justify-between
-                        gap-4
-                      "
-                    >
-
-                      <div>
-
-                        <p
-                          className="
+                            bg-black/55
+                            px-3
+                            py-1.5
                             text-[10px]
                             font-[800]
-                            uppercase
-                            tracking-[2px]
-                            text-[#CF1B28]
+                            text-white
+                            backdrop-blur-md
                           "
                         >
-                          {item.category}
-                        </p>
+                          {currentIndex + 1} / {images.length}
+                        </div>
+
+                      )}
+
+                    </div>
 
 
-                        <h3
-                          className="
-                            mt-1.5
-                            text-[19px]
-                            font-[900]
-                            tracking-[-0.5px]
-                            text-[#111820]
-                          "
-                        >
-                          {item.title}
-                        </h3>
+                    {/* =====================================
+                        CARD CONTENT
+                    ===================================== */}
 
-                      </div>
-
+                    <div className="p-5 sm:p-6">
 
                       <div
                         className="
                           flex
-                          h-9
-                          w-9
-                          shrink-0
                           items-center
-                          justify-center
-                          rounded-full
-                          border
-                          border-[#E8DCDD]
-                          text-[#111820]/50
-                          transition-all
-                          duration-300
-                          group-hover:border-[#CF1B28]
-                          group-hover:bg-[#CF1B28]
-                          group-hover:text-white
+                          justify-between
+                          gap-4
                         "
                       >
 
-                        <ArrowUpRight
-                          size={15}
-                        />
+                        <div>
+
+                          <p
+                            className="
+                              text-[10px]
+                              font-[800]
+                              uppercase
+                              tracking-[2px]
+                              text-[#CF1B28]
+                            "
+                          >
+                            {item.category}
+                          </p>
+
+
+                          <h3
+                            className="
+                              mt-1.5
+                              text-[19px]
+                              font-[900]
+                              tracking-[-0.5px]
+                              text-[#111820]
+                            "
+                          >
+                            {item.title}
+                          </h3>
+
+                        </div>
+
+
+                        <div
+                          className="
+                            flex
+                            h-9
+                            w-9
+                            shrink-0
+                            items-center
+                            justify-center
+                            rounded-full
+                            border
+                            border-[#E8DCDD]
+                            text-[#111820]/50
+                            transition-all
+                            duration-300
+                            group-hover:border-[#CF1B28]
+                            group-hover:bg-[#CF1B28]
+                            group-hover:text-white
+                          "
+                        >
+
+                          <ArrowUpRight
+                            size={15}
+                          />
+
+                        </div>
 
                       </div>
 
                     </div>
 
-                  </div>
+                  </article>
 
-                </article>
+                </Reveal>
 
-              </Reveal>
+              )
 
-            )
+            })}
 
-          })}
+          </div>
+
+
+          {/* =================================================
+              EMPTY STATE
+          ================================================= */}
+
+          {filteredItems.length === 0 && (
+
+            <div
+              className="
+                py-20
+                text-center
+                text-[14px]
+                font-medium
+                text-[#777]
+              "
+            >
+              No portfolio items found in this category.
+            </div>
+
+          )}
 
         </div>
 
 
-        {/* =================================================
-            EMPTY STATE
-        ================================================= */}
+        {/* =====================================================
+            LIGHTBOX POPUP
+        ===================================================== */}
 
-        {filteredItems.length === 0 && (
+        {lightbox &&
+          lightboxItem &&
+          lightboxMedia && (
 
           <div
             className="
-              py-20
-              text-center
-              text-[14px]
-              font-medium
-              text-[#777]
+              fixed
+              inset-0
+              z-[9999]
+              flex
+              items-center
+              justify-center
+              bg-black/90
+              p-4
+              backdrop-blur-md
+              sm:p-8
             "
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${lightboxItem.title} preview`}
+            onClick={closeLightbox}
           >
-            No portfolio items found in this category.
+
+            {/* ===============================================
+                POPUP CONTAINER
+            =============================================== */}
+
+            <div
+              className="
+                relative
+                flex
+                h-full
+                w-full
+                max-w-[1400px]
+                items-center
+                justify-center
+              "
+              onClick={(event) =>
+                event.stopPropagation()
+              }
+            >
+
+
+              {/* =============================================
+                  CLOSE BUTTON
+              ============================================= */}
+
+              <button
+                type="button"
+                aria-label="Close image preview"
+                onClick={closeLightbox}
+                className="
+                  absolute
+                  right-1
+                  top-1
+                  z-[100]
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/20
+                  bg-white/10
+                  text-white
+                  backdrop-blur-md
+                  transition-all
+                  duration-300
+                  hover:bg-[#CF1B28]
+                  sm:right-2
+                  sm:top-2
+                "
+              >
+
+                <X
+                  size={22}
+                  strokeWidth={2}
+                />
+
+              </button>
+
+
+              {/* =============================================
+                  TOP TITLE
+              ============================================= */}
+
+              <div
+                className="
+                  absolute
+                  left-1
+                  top-2
+                  z-[90]
+                  max-w-[60%]
+                  sm:left-2
+                "
+              >
+
+                <div
+                  className="
+                    rounded-full
+                    border
+                    border-white/15
+                    bg-black/35
+                    px-4
+                    py-2
+                    text-[10px]
+                    font-[800]
+                    uppercase
+                    tracking-[2px]
+                    text-white
+                    backdrop-blur-md
+                  "
+                >
+                  {lightboxItem.category}
+                </div>
+
+              </div>
+
+
+              {/* =============================================
+                  PREVIOUS BUTTON
+              ============================================= */}
+
+              {lightboxImages.length > 1 && (
+
+                <button
+                  type="button"
+                  aria-label="Previous image"
+                  onClick={previousLightbox}
+                  className="
+                    absolute
+                    left-0
+                    z-[90]
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-white/20
+                    bg-white/10
+                    text-white
+                    backdrop-blur-md
+                    transition-all
+                    duration-300
+                    hover:bg-[#CF1B28]
+                    sm:left-2
+                    sm:h-12
+                    sm:w-12
+                  "
+                >
+
+                  <ArrowLeft
+                    size={20}
+                    strokeWidth={2}
+                  />
+
+                </button>
+
+              )}
+
+
+              {/* =============================================
+                  MEDIA
+              ============================================= */}
+
+              <div
+                className="
+                  flex
+                  max-h-[88vh]
+                  max-w-[88vw]
+                  items-center
+                  justify-center
+                  overflow-hidden
+                  rounded-[12px]
+                  sm:max-h-[90vh]
+                  sm:max-w-[86vw]
+                "
+              >
+
+                {lightboxIsVideo ? (
+
+                  <video
+                    key={lightboxMedia}
+                    src={lightboxMedia}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    controls
+                    className="
+                      max-h-[88vh]
+                      max-w-[88vw]
+                      rounded-[12px]
+                      object-contain
+                      shadow-[0_25px_100px_rgba(0,0,0,0.45)]
+                      sm:max-h-[90vh]
+                      sm:max-w-[86vw]
+                    "
+                  />
+
+                ) : (
+
+                  <img
+                    key={lightboxMedia}
+                    src={lightboxMedia}
+                    alt={lightboxItem.title}
+                    className="
+                      max-h-[88vh]
+                      max-w-[88vw]
+                      rounded-[12px]
+                      object-contain
+                      shadow-[0_25px_100px_rgba(0,0,0,0.45)]
+                      sm:max-h-[90vh]
+                      sm:max-w-[86vw]
+                    "
+                  />
+
+                )}
+
+              </div>
+
+
+              {/* =============================================
+                  NEXT BUTTON
+              ============================================= */}
+
+              {lightboxImages.length > 1 && (
+
+                <button
+                  type="button"
+                  aria-label="Next image"
+                  onClick={nextLightbox}
+                  className="
+                    absolute
+                    right-0
+                    z-[90]
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-white/20
+                    bg-white/10
+                    text-white
+                    backdrop-blur-md
+                    transition-all
+                    duration-300
+                    hover:bg-[#CF1B28]
+                    sm:right-2
+                    sm:h-12
+                    sm:w-12
+                  "
+                >
+
+                  <ArrowRight
+                    size={20}
+                    strokeWidth={2}
+                  />
+
+                </button>
+
+              )}
+
+
+              {/* =============================================
+                  BOTTOM INFO / COUNTER
+              ============================================= */}
+
+              <div
+                className="
+                  absolute
+                  bottom-1
+                  left-1/2
+                  z-[90]
+                  -translate-x-1/2
+                  sm:bottom-2
+                "
+              >
+
+                <div
+                  className="
+                    flex
+                    items-center
+                    gap-3
+                    rounded-full
+                    border
+                    border-white/15
+                    bg-black/45
+                    px-4
+                    py-2
+                    text-[11px]
+                    font-[800]
+                    text-white
+                    backdrop-blur-md
+                  "
+                >
+
+                  <span>
+                    {lightbox.mediaIndex + 1}
+                  </span>
+
+                  <span className="text-white/40">
+                    /
+                  </span>
+
+                  <span>
+                    {lightboxImages.length}
+                  </span>
+
+                  <span className="mx-1 h-3 w-px bg-white/20" />
+
+                  <span className="max-w-[160px] truncate text-white/70">
+                    {lightboxItem.title}
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
           </div>
 
         )}
 
-      </div>
+      </section>
 
 
       {/* =====================================================
@@ -741,6 +1293,7 @@ export default function PortfolioSection() {
 
       `}</style>
 
-    </section>
+    </>
+
   )
 }
