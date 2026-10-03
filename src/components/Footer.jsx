@@ -84,12 +84,13 @@ export default function Footer() {
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </a>
-          </div>
-
+          
           <div>
             Get in Touch
             mobile: <a href="tel:+919536404366" className="text-white/70 hover:text-white">+91 95364 04366</a>  
           </div>
+          </div>
+
 
           {/* Navigation Columns */}
           {footerColumns.map((col) => (

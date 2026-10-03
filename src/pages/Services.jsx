@@ -1,71 +1,17 @@
-import {
-  Rocket,
-  Share2,
-  Globe,
-  Code2,
-} from 'lucide-react'
-
 import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
-import SectionHeading from '../components/SectionHeading'
 
 /* =========================================================
-   BRAND MASTER SERVICES DATA
+   SERVICE CATEGORIES
 ========================================================= */
 
-const brandMasterServices = [
-  {
-    n: '01',
-    title: 'Brand Strategy',
-    tagline: 'Build a brand with direction.',
-    desc: 'Define a clear brand foundation that connects your vision, audience, positioning and long-term business goals.',
-    features: [
-      'Brand Positioning',
-      'Market Research',
-      'Target Audience',
-      'Brand Direction',
-    ],
-    icon: Rocket,
-  },
-  {
-    n: '02',
-    title: 'Brand Identity',
-    tagline: 'Make your brand instantly recognizable.',
-    desc: 'Create a distinctive visual identity that communicates who you are and gives your brand a consistent presence everywhere.',
-    features: [
-      'Logo Design',
-      'Color System',
-      'Typography',
-      'Brand Guidelines',
-    ],
-    icon: Share2,
-  },
-  {
-    n: '03',
-    title: 'Digital Presence',
-    tagline: 'Turn your brand into a digital experience.',
-    desc: 'Design a premium digital presence that builds trust, communicates value and turns visitors into meaningful opportunities.',
-    features: [
-      'Website Design',
-      'Landing Pages',
-      'UI / UX',
-      'Responsive Design',
-    ],
-    icon: Globe,
-  },
-  {
-    n: '04',
-    title: 'Brand Growth',
-    tagline: 'Turn attention into business growth.',
-    desc: 'Build systems and creative assets that help your brand stay consistent, visible and relevant as your business grows.',
-    features: [
-      'Social Media',
-      'Campaign Design',
-      'Creative Strategy',
-      'Growth Assets',
-    ],
-    icon: Code2,
-  },
+const serviceCategories = [
+  { label: 'Logo Design', highlighted: false },
+  { label: 'Brand Identity', highlighted: false },
+  { label: 'Social Media', highlighted: false },
+  { label: 'Packaging', highlighted: true },
+  { label: 'Pitch Decks', highlighted: true },
+  { label: 'More...', highlighted: true },
 ]
 
 /* =========================================================
@@ -87,135 +33,131 @@ export default function Services() {
 function Hero() {
   return (
     <section
+      aria-labelledby="services-hero-title"
       className="
-        relative
-        isolate
+        relative isolate
+        w-full min-w-0
         overflow-hidden
-        bg-[#760006]
+        bg-[#B50916]
+        px-4
         py-[20px]
-        px-5
         sm:px-6
         lg:px-8
       "
     >
-
-      {/* MAIN DEEP RED GRADIENT */}
-
+      {/* RED GRADIENT — NO BLACK */}
       <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          bg-[radial-gradient(circle_at_78%_25%,#D61521_0%,#9C050C_33%,#500006_68%,#220003_100%)]
-        "
-      />
-
-      {/* DARK OVERLAY */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          bg-[linear-gradient(135deg,rgba(0,0,0,0.12)_0%,transparent_42%,rgba(0,0,0,0.20)_100%)]
-        "
-      />
-
-      {/* RED GLOW */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -right-[150px]
-          -top-[150px]
-          h-[500px]
-          w-[500px]
-          rounded-full
-          bg-[#D61521]/45
-          blur-[130px]
-        "
-      />
-
-      {/* BOTTOM BLACK GLOW */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -bottom-[180px]
-          left-1/2
-          h-[420px]
-          w-[700px]
-          -translate-x-1/2
-          rounded-full
-          bg-black/30
-          blur-[120px]
-        "
-      />
-
-      {/* DIAGONAL SHINE */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-[-20%_-10%]
-          bg-[linear-gradient(135deg,transparent_45%,rgba(255,255,255,0.045)_45%,rgba(255,255,255,0.045)_56%,transparent_56%)]
-        "
-      />
-
-      {/* DOT GRID */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          opacity-[0.07]
-          bg-[radial-gradient(circle,rgba(255,255,255,0.9)_1px,transparent_1px)]
-          bg-[length:28px_28px]
-        "
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
         style={{
-          maskImage:
-            'radial-gradient(ellipse at center, black 0%, transparent 75%)',
-          WebkitMaskImage:
-            'radial-gradient(ellipse at center, black 0%, transparent 75%)',
+          background:
+            'radial-gradient(ellipse at 82% 18%, #EF3340 0%, #D61521 32%, #B50916 68%, #980812 100%)',
         }}
       />
 
-      {/* CONTENT */}
-
-      <Reveal
+      {/* SOFT LIGHT GLOW */}
+      <div
+        aria-hidden="true"
         className="
-          relative
-          z-10
-          mx-auto
-          w-full
-          max-w-[820px]
-          text-center
+          pointer-events-none absolute
+          -right-24 -top-24
+          h-64 w-64
+          rounded-full bg-white/10
+          blur-[80px]
+          sm:h-96 sm:w-96
         "
-      >
+      />
 
-        <SectionHeading
-          eyebrow="Our Services"
-          title="Everything your brand needs,"
-          accent="in one place."
-          dark
-          align="center"
-        />
+      {/* WARM RED GLOW */}
+      <div
+        aria-hidden="true"
+        className="
+          pointer-events-none absolute
+          -bottom-32 -left-24
+          h-72 w-72
+          rounded-full bg-[#FF5260]/25
+          blur-[90px]
+          sm:h-96 sm:w-96
+        "
+      />
 
-        {/* DESCRIPTION */}
+      {/* SUBTLE DIAGONAL LIGHT */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(125deg, transparent 30%, rgba(255,255,255,0.055) 30%, rgba(255,255,255,0.055) 52%, transparent 52%)',
+        }}
+      />
+
+      {/* SOFT DOT PATTERN */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle, #FFFFFF 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+          maskImage:
+            'radial-gradient(ellipse at center, black 10%, transparent 78%)',
+          WebkitMaskImage:
+            'radial-gradient(ellipse at center, black 10%, transparent 78%)',
+        }}
+      />
+
+      {/* HERO CONTENT */}
+      <Reveal className="relative z-10 mx-auto w-full min-w-0 max-w-5xl text-center">
+        <div
+          className="
+            inline-flex max-w-full
+            items-center justify-center gap-2
+            rounded-full
+            border border-white/25
+            bg-white/10
+            px-4 py-2
+            text-[10px] font-bold
+            uppercase tracking-[0.18em]
+            text-white
+            backdrop-blur-md
+            sm:px-5 sm:text-xs
+          "
+        >
+          <span
+            aria-hidden="true"
+            className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FFD800]"
+          />
+          Our Services
+        </div>
+
+        <h1
+          id="services-hero-title"
+          className="
+            mx-auto mt-6
+            max-w-[900px]
+            break-words
+            text-[clamp(2rem,6vw,4.5rem)]
+            font-extrabold
+            leading-[1.12]
+            tracking-[-0.035em]
+            text-white
+          "
+        >
+          Everything your brand needs,
+          <span className="mt-2 block text-[#FFD800]">
+            in one place.
+          </span>
+        </h1>
 
         <p
           className="
-            mx-auto
-            mt-6
+            mx-auto mt-5
             max-w-[680px]
             text-[15px]
-            leading-[1.7]
-            text-white/70
-            sm:text-[17px]
+            leading-[1.8]
+            text-white/85
+            sm:mt-6 sm:text-base
+            lg:text-lg
           "
         >
           From logo design and brand identity to social media, packaging and
@@ -223,149 +165,54 @@ function Hero() {
           present a consistent, professional brand.
         </p>
 
-        {/* SERVICE CATEGORIES */}
-
-        <div
+        {/* RESPONSIVE SERVICE CATEGORIES */}
+        <ul
+          aria-label="Our service categories"
           className="
-            mt-8
-            flex
-            flex-wrap
-            items-center
-            justify-center
-            gap-3
+            m-0 mt-7
+            flex list-none flex-wrap
+            items-center justify-center
+            gap-2 p-0
+            sm:mt-9 sm:gap-3
           "
         >
+          {serviceCategories.map(({ label, highlighted }) => (
+            <li key={label} className="max-w-full">
+              <span
+                className={`
+                  inline-flex max-w-full
+                  items-center justify-center
+                  rounded-full border
+                  px-3 py-2.5
+                  text-center text-[10px]
+                  font-bold uppercase
+                  leading-normal tracking-[0.1em]
+                  backdrop-blur-md
+                  sm:px-5 sm:text-[11px]
+                  ${
+                    highlighted
+                      ? 'border-[#FFD800]/40 bg-[#FFD800]/10 text-[#FFD800]'
+                      : 'border-white/25 bg-white/10 text-white'
+                  }
+                `}
+              >
+                {label}
+              </span>
+            </li>
+          ))}
+        </ul>
 
-          {/* LOGO DESIGN */}
-
-          <span
-            className="
-              rounded-full
-              border
-              border-white/15
-              bg-white/[0.06]
-              px-4
-              py-2
-              text-[10px]
-              font-[800]
-              uppercase
-              tracking-[2px]
-              text-white/70
-              backdrop-blur-sm
-            "
-          >
-            Logo Design
-          </span>
-
-          {/* BRAND IDENTITY */}
-
-          <span
-            className="
-              rounded-full
-              border
-              border-white/15
-              bg-white/[0.06]
-              px-4
-              py-2
-              text-[10px]
-              font-[800]
-              uppercase
-              tracking-[2px]
-              text-white/70
-              backdrop-blur-sm
-            "
-          >
-            Brand Identity
-          </span>
-
-          {/* SOCIAL MEDIA */}
-
-          <span
-            className="
-              rounded-full
-              border
-              border-white/15
-              bg-white/[0.06]
-              px-4
-              py-2
-              text-[10px]
-              font-[800]
-              uppercase
-              tracking-[2px]
-              text-white/70
-              backdrop-blur-sm
-            "
-          >
-            Social Media
-          </span>
-
-          {/* PACKAGING */}
-
-          <span
-            className="
-              rounded-full
-              border
-              border-[#FFD800]/30
-              bg-[#FFD800]/10
-              px-4
-              py-2
-              text-[10px]
-              font-[800]
-              uppercase
-              tracking-[2px]
-              text-[#FFD800]
-              backdrop-blur-sm
-            "
-          >
-            Packaging
-          </span>
-
-          {/* PITCH DECKS */}
-
-          <span
-            className="
-              rounded-full
-              border
-              border-[#FFD800]/30
-              bg-[#FFD800]/10
-              px-4
-              py-2
-              text-[10px]
-              font-[800]
-              uppercase
-              tracking-[2px]
-              text-[#FFD800]
-              backdrop-blur-sm
-            "
-          >
-            Pitch Decks
-          </span>
-
-          {/* MORE */}
-
-          <span
-            className="
-              rounded-full
-              border
-              border-[#FFD800]/30
-              bg-[#FFD800]/10
-              px-4
-              py-2
-              text-[10px]
-              font-[800]
-              uppercase
-              tracking-[2px]
-              text-[#FFD800]
-              backdrop-blur-sm
-            "
-          >
-            More...
-          </span>
-
-        </div>
-
+        {/* SMALL DECORATIVE ACCENT */}
+        <div
+          aria-hidden="true"
+          className="
+            mx-auto mt-8
+            h-1 w-12
+            rounded-full bg-[#FFD800]
+            sm:mt-10
+          "
+        />
       </Reveal>
-
     </section>
   )
 }

@@ -301,6 +301,7 @@ export default function PortfolioSection() {
           overflow-hidden
           bg-white
           p-0
+          pb-[20px]
           font-['Inter',Arial,Helvetica,sans-serif]
         "
       >
@@ -538,7 +539,6 @@ export default function PortfolioSection() {
                       hover:shadow-[0_20px_50px_rgba(0,0,0,0.09)]
                     "
                   >
-
 
                     {/* =====================================
                         MEDIA AREA
@@ -1308,7 +1308,7 @@ export default function PortfolioSection() {
           margin-top: 0 !important;
           margin-bottom: 0 !important;
           padding-top: 0 !important;
-          padding-bottom: 0 !important;
+          
         }
 
         #portfolio > div {
