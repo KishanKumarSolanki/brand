@@ -1,11 +1,14 @@
+import { useState } from 'react'
+
 import {
   Users,
   Star,
-  MapPin,
-  Gem,
   ArrowUpRight,
+  ArrowLeft,
+  ArrowRight,
 } from 'lucide-react'
 
+import { officeItems } from '../data/siteData'
 import Reveal from './Reveal'
 
 
@@ -23,7 +26,14 @@ const GOOGLE_RATING_URL =
 export default function TestimonialsSection() {
 
   /* =======================================================
-     FOUR BRAND PROOF CARDS
+     OFFICE CAROUSEL
+  ======================================================= */
+
+  const [officeIndex, setOfficeIndex] = useState(0)
+
+
+  /* =======================================================
+     TWO BRAND PROOF CARDS
   ======================================================= */
 
   const proofCards = [
@@ -42,32 +52,68 @@ export default function TestimonialsSection() {
       icon: Star,
       clickable: true,
     },
-
-    {
-      id: 'india',
-      value: 'Pan India',
-      description: (
-        <>
-          Serving businesses across
-          <br />
-          India
-        </>
-      ),
-      icon: MapPin,
-      clickable: false,
-    },
-
-    {
-      id: 'support',
-      value: '360°',
-      description: 'Design support',
-      icon: Gem,
-      clickable: false,
-    },
   ]
 
 
+  /* =======================================================
+     OFFICE DATA
+  ======================================================= */
+
+  const office = officeItems?.[0]
+
+  const officeImages = office?.images || []
+
+  const currentOfficeMedia =
+    officeImages.length > 0
+      ? officeImages[
+          Math.min(officeIndex, officeImages.length - 1)
+        ]
+      : null
+
+
+  /* =======================================================
+     CHECK IF MEDIA IS VIDEO
+  ======================================================= */
+
+  const isOfficeVideo =
+    typeof currentOfficeMedia === 'string' &&
+    /\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i.test(
+      currentOfficeMedia
+    )
+
+
+  /* =======================================================
+     PREVIOUS OFFICE MEDIA
+  ======================================================= */
+
+  const handlePreviousOffice = () => {
+
+    if (officeImages.length <= 1) return
+
+    setOfficeIndex((prev) =>
+      prev === 0
+        ? officeImages.length - 1
+        : prev - 1
+    )
+  }
+
+
+  /* =======================================================
+     NEXT OFFICE MEDIA
+  ======================================================= */
+
+  const handleNextOffice = () => {
+
+    if (officeImages.length <= 1) return
+
+    setOfficeIndex((prev) =>
+      (prev + 1) % officeImages.length
+    )
+  }
+
+
   return (
+
     <section
       className="
         relative
@@ -93,6 +139,7 @@ export default function TestimonialsSection() {
           bg-[radial-gradient(circle_at_85%_8%,rgba(207,27,40,0.055),transparent_34%)]
         "
       />
+
 
       {/* =====================================================
           DIAGONAL BACKGROUND SHINE
@@ -218,7 +265,7 @@ export default function TestimonialsSection() {
 
 
         {/* ===================================================
-            FOUR CARDS
+            BRAND PROOF CARDS
         =================================================== */}
 
         <div
@@ -230,8 +277,8 @@ export default function TestimonialsSection() {
             sm:mt-12
             sm:grid-cols-2
             sm:gap-5
-            lg:grid-cols-4
-            lg:gap-4
+            lg:grid-cols-2
+            lg:gap-5
           "
         >
 
@@ -267,7 +314,7 @@ export default function TestimonialsSection() {
                   hover:shadow-[0_18px_45px_rgba(207,27,40,0.08)]
                   sm:min-h-[220px]
                   sm:p-6
-                  lg:min-h-[145px]
+                  lg:min-h-[180px]
                   lg:p-7
                 "
               >
@@ -384,6 +431,7 @@ export default function TestimonialsSection() {
                 =========================================== */}
 
                 {card.clickable && (
+
                   <div
                     className="
                       absolute
@@ -414,6 +462,7 @@ export default function TestimonialsSection() {
                     />
 
                   </div>
+
                 )}
 
               </div>
@@ -428,6 +477,7 @@ export default function TestimonialsSection() {
             if (card.clickable) {
 
               return (
+
                 <Reveal
                   key={card.id}
                   delay={0.08 + index * 0.06}
@@ -463,6 +513,7 @@ export default function TestimonialsSection() {
                   </a>
 
                 </Reveal>
+
               )
             }
 
@@ -472,6 +523,7 @@ export default function TestimonialsSection() {
             ================================================= */
 
             return (
+
               <Reveal
                 key={card.id}
                 delay={0.08 + index * 0.06}
@@ -480,11 +532,378 @@ export default function TestimonialsSection() {
                 {cardContent}
 
               </Reveal>
+
             )
 
           })}
 
         </div>
+
+
+        {/* ===================================================
+            OUR OFFICE
+        =================================================== */}
+
+        {office && officeImages.length > 0 && (
+
+          <Reveal delay={0.2}>
+
+            <div
+              className="
+                mt-6
+                overflow-hidden
+                rounded-[22px]
+                border
+                border-[#E8DCDD]
+                bg-white
+                shadow-[0_10px_35px_rgba(0,0,0,0.045)]
+                sm:mt-8
+              "
+            >
+
+              {/* =============================================
+                  MEDIA AREA
+              ============================================= */}
+
+              <div
+                className="
+                  relative
+                  aspect-[4/3]
+                  overflow-hidden
+                  bg-[#F8F4F4]
+                  sm:aspect-[16/7]
+                  lg:aspect-[16/6]
+                "
+              >
+
+                {/* =========================================
+                    VIDEO
+                ========================================= */}
+
+                {isOfficeVideo ? (
+
+                  <video
+                    key={currentOfficeMedia}
+                    src={currentOfficeMedia}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    controls
+                    preload="metadata"
+                    className="
+                      h-full
+                      w-full
+                      object-cover
+                    "
+                  />
+
+                ) : (
+
+                  /* =======================================
+                     IMAGE
+                  ======================================= */
+
+                  <img
+                    key={currentOfficeMedia}
+                    src={currentOfficeMedia}
+                    alt={office.title || 'Our Office'}
+                    className="
+                      h-full
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-500
+                    "
+                  />
+
+                )}
+
+
+                {/* =========================================
+                    DARK OVERLAY
+                ========================================= */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-black/25
+                    via-transparent
+                    to-transparent
+                  "
+                />
+
+
+                {/* =========================================
+                    OUR OFFICE LABEL
+                ========================================= */}
+
+                <div
+                  className="
+                    absolute
+                    left-4
+                    top-4
+                    z-20
+                    rounded-full
+                    border
+                    border-white/40
+                    bg-white/90
+                    px-3
+                    py-1.5
+                    text-[9px]
+                    font-[900]
+                    uppercase
+                    tracking-[1.5px]
+                    text-[#CF1B28]
+                    backdrop-blur-md
+                    sm:left-5
+                    sm:top-5
+                  "
+                >
+                  OUR OFFICE
+                </div>
+
+
+                {/* =========================================
+                    VIDEO LABEL
+                ========================================= */}
+
+                {isOfficeVideo && (
+
+                  <div
+                    className="
+                      absolute
+                      right-4
+                      top-4
+                      z-20
+                      rounded-full
+                      border
+                      border-white/30
+                      bg-black/55
+                      px-3
+                      py-1.5
+                      text-[9px]
+                      font-[900]
+                      uppercase
+                      tracking-[1.5px]
+                      text-white
+                      backdrop-blur-md
+                      sm:right-5
+                      sm:top-5
+                    "
+                  >
+                    VIDEO
+                  </div>
+
+                )}
+
+
+                {/* =========================================
+                    COUNTER
+                ========================================= */}
+
+                {officeImages.length > 1 && (
+
+                  <div
+                    className="
+                      absolute
+                      bottom-4
+                      left-4
+                      z-20
+                      rounded-full
+                      bg-black/55
+                      px-3
+                      py-1.5
+                      text-[10px]
+                      font-[800]
+                      text-white
+                      backdrop-blur-md
+                      sm:bottom-5
+                      sm:left-5
+                    "
+                  >
+                    {officeIndex + 1}/{officeImages.length}
+                  </div>
+
+                )}
+
+
+                {/* =========================================
+                    NAVIGATION ARROWS
+                ========================================= */}
+
+                {officeImages.length > 1 && (
+
+                  <div
+                    className="
+                      absolute
+                      bottom-4
+                      right-4
+                      z-20
+                      flex
+                      items-center
+                      gap-2
+                      sm:bottom-5
+                      sm:right-5
+                    "
+                  >
+
+                    {/* PREVIOUS */}
+
+                    <button
+                      type="button"
+                      aria-label="Previous office media"
+                      onClick={handlePreviousOffice}
+                      className="
+                        flex
+                        h-9
+                        w-9
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-white/50
+                        bg-white/90
+                        text-[#111820]
+                        shadow-lg
+                        backdrop-blur-md
+                        transition-all
+                        duration-300
+                        hover:bg-[#CF1B28]
+                        hover:text-white
+                        sm:h-10
+                        sm:w-10
+                      "
+                    >
+
+                      <ArrowLeft size={15} />
+
+                    </button>
+
+
+                    {/* NEXT */}
+
+                    <button
+                      type="button"
+                      aria-label="Next office media"
+                      onClick={handleNextOffice}
+                      className="
+                        flex
+                        h-9
+                        w-9
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-white/50
+                        bg-white/90
+                        text-[#111820]
+                        shadow-lg
+                        backdrop-blur-md
+                        transition-all
+                        duration-300
+                        hover:bg-[#CF1B28]
+                        hover:text-white
+                        sm:h-10
+                        sm:w-10
+                      "
+                    >
+
+                      <ArrowRight size={15} />
+
+                    </button>
+
+                  </div>
+
+                )}
+
+              </div>
+
+
+              {/* =============================================
+                  OFFICE CONTENT
+              ============================================= */}
+
+              <div
+                className="
+                  flex
+                  items-center
+                  justify-between
+                  gap-4
+                  p-5
+                  sm:p-6
+                  lg:p-7
+                "
+              >
+
+                <div>
+
+                  <p
+                    className="
+                      text-[10px]
+                      font-[800]
+                      uppercase
+                      tracking-[2px]
+                      text-[#CF1B28]
+                    "
+                  >
+                    OUR OFFICE
+                  </p>
+
+                  <h3
+                    className="
+                      mt-1.5
+                      text-[20px]
+                      font-[900]
+                      tracking-[-0.5px]
+                      text-[#111820]
+                      sm:text-[22px]
+                    "
+                  >
+                    {office.title || 'Our Office'}
+                  </h3>
+
+                </div>
+
+
+                {/* =========================================
+                    ARROW ICON
+                ========================================= */}
+
+                <div
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-[#E8DCDD]
+                    text-[#111820]/50
+                    transition-all
+                    duration-300
+                    hover:border-[#CF1B28]
+                    hover:bg-[#CF1B28]
+                    hover:text-white
+                  "
+                >
+
+                  <ArrowUpRight size={16} />
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </Reveal>
+
+        )}
 
 
         {/* ===================================================
@@ -582,5 +1001,6 @@ export default function TestimonialsSection() {
       `}</style>
 
     </section>
+
   )
 }

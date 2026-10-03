@@ -327,21 +327,24 @@ export const testimonials = [
 //   { title: 'Software Development', category: 'Software', img: Software },
 //   { title: 'NCF Funnel', category: 'Marketing', img: Ncf },
 // ]
-
-export const portfolioItems = [
+export const officeItems = [
   {
     title: 'Our Office',
     category: 'Our Office',
 
     images: [
-    OurOffice,
-    Video2,
-    Video3,
-    Video4,
-    Video5,
-  ],
+      OurOffice,
+      Video2,
+      Video3,
+      Video4,
+      Video5,
+    ],
   },
+]
 
+
+export const portfolioItems = [
+  
   {
     title: 'Logo Design',
     category: 'Logo',
