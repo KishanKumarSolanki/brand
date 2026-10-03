@@ -263,7 +263,8 @@ function Hero() {
         }
 
         .bm-hero__tail {
-          margin-left: .16em;
+          // margin-left: .16em;
+          color: #f9ca14;
           animation-delay: .8s;
         }
 
@@ -704,8 +705,8 @@ function Hero() {
               <span className="bm-hero__line">We Build</span>
 
               <span className="bm-hero__line">
-                <span className="bm-hero__accent">Brands That </span>{" "}
-                <br />
+                <span className="bm-hero__accent">Brands That</span>{" "}
+                <br></br>
                 <span className="bm-hero__tail">Mean Business
 
                 </span>
