@@ -1,50 +1,24 @@
-// ────────────────────────────────────────────────────────────
-// SITE CONTENT — edit everything here, no need to touch components
-// ────────────────────────────────────────────────────────────
-// ────────────────────────────────────────────────────────────
-// SITE CONTENT — edit everything here, no need to touch components
-// ────────────────────────────────────────────────────────────
-
-// import img1 from '../assets/webp/1.webp'
-// import img2 from '../assets/webp/2.webp'
-// import img3 from '../assets/webp/3.webp'
-// import img4 from '../assets/webp/4.webp'
-// import img5 from '../assets/webp/5.webp'
-// import img6 from '../assets/webp/6.webp'
-// import img7 from '../assets/webp/7.webp'
-// import img9 from '../assets/webp/9.webp'
-// import img9Webp from '../assets/webp/9.webp'
-// import akashImg from '../assets/webp/akash.webp'
-// import Neeraj from '../assets/webp/Neeraj.webp'
-// import SohilSir from '../assets/webp/SohilSir.webp'
-// import Pawan from '../assets/webp/Pawan.webp'
-// import Samar from '../assets/webp/Samar.webp'
-// import Chandu from '../assets/webp/Chandu.webp'
-// import Arman from '../assets/webp/Arman.webp'
-// import Salman from '../assets/webp/Salman.webp'
-// import ArjunSir from '../assets/webp/arjunsir.webp'
-// import Abhishek from '../assets/webp/Abhishek.webp'
-// import ccLogo from '../assets/webp/cc.webp'
-// import Ncf from '../assets/webp/NCF.webp'
-// import SocialMedia from '../assets/webp/SocialMedia.webp'
-// import Software from '../assets/webp/Software.webp'
-// import Website from '../assets/webp/Website.webp'
-// import exploreLottie from '../assets/LottiFIles/Explore.lottie?url'
-// import strategyLottie from '../assets/LottiFIles/Strategy.lottie?url'
-// import designDevLottie from '../assets/LottiFIles/Design&Development.lottie?url'
-// import launchLottie from '../assets/LottiFIles/Lounch.lottie?url'
-// import growthLottie from '../assets/LottiFIles/Growth.lottie?url'
-
-import AadyaGrand from '../assets/logos/Aadya-Grand.png'
-import AllAboutFurniture from '../assets/logos/All-About-Furniture.png'
-import AnytimeAnywhere from '../assets/logos/Anytime-Anywhere...png'
-import Aquahex from '../assets/logos/Aquahex.png'
-import Collections4u from '../assets/logos/Collections4u.png'
-import Harshni from '../assets/logos/Harshni.png'
-import Hightech from '../assets/logos/Hightech.png'
-import Modsik from '../assets/logos/Modsik.png'
-import ShreeMoming from '../assets/logos/Shree-Momai.png'
-import TheLeafCafe from '../assets/logos/The-Leaf-Cafe.png'  
+// import AadyaGrand from '../assets/logos/Aadya-Grand.png'
+// import AllAboutFurniture from '../assets/logos/All-About-Furniture.png'
+// import AnytimeAnywhere from '../assets/logos/Anytime-Anywhere...png'
+// import Aquahex from '../assets/logos/Aquahex.png'
+// import Collections4u from '../assets/logos/Collections4u.png'
+// import Harshni from '../assets/logos/Harshni.png'
+// import Hightech from '../assets/logos/Hightech.png'
+// import Modsik from '../assets/logos/Modsik.png'
+// import ShreeMoming from '../assets/logos/Shree-Momai.png'
+// import TheLeafCafe from '../assets/logos/The-Leaf-Cafe.png'  
+import  I1 from '../assets/logos/01.png'
+import I2 from '../assets/logos/02.png'
+import I3 from '../assets/logos/03.png'
+import I4 from '../assets/logos/04.png'
+import I5 from '../assets/logos/05.png'
+import I6 from '../assets/logos/06.png'
+import I7 from '../assets/logos/07.png'
+import II8 from '../assets/logos/08.png'
+import I9 from '../assets/logos/09.png'
+import II10 from '../assets/logos/10.png'
+import II11 from '../assets/logos/11.png'
 
 import OurOffice from '../assets/Videos/1.mp4'
 import Video2 from '../assets/Videos/2.mp4'
@@ -63,27 +37,27 @@ import I16 from '../assets/COMPLETE BRANDING/16.png'
 import I17 from '../assets/COMPLETE BRANDING/17.png'
 import I18 from '../assets/COMPLETE BRANDING/18.png'
 
-import WebsiteBanner1 from '../assets/WEBSITE BANNER/Untitled-1.jpg'
-import WebsiteBanner2 from '../assets/WEBSITE BANNER/Untitled-2.png'
-import WebsiteBanner3 from '../assets/WEBSITE BANNER/Untitled-3.jpg'
-import WebsiteBanner4 from '../assets/WEBSITE BANNER/Untitled-4.png'
-import WebsiteBanner5 from '../assets/WEBSITE BANNER/Untitled-5.png'
-import WebsiteBanner6 from '../assets/WEBSITE BANNER/Untitled-6.png'
-import WebsiteBanner7 from '../assets/WEBSITE BANNER/Untitled-7.png'
-import WebsiteBanner8 from '../assets/WEBSITE BANNER/Untitled-8.png'
-import WebsiteBanner9 from '../assets/WEBSITE BANNER/Untitled-9.png'
-import WebsiteBanner10 from '../assets/WEBSITE BANNER/Untitled-10.png'
+// import WebsiteBanner1 from '../assets/WEBSITE BANNER/Untitled-1.jpg'
+// import WebsiteBanner2 from '../assets/WEBSITE BANNER/Untitled-2.png'
+// import WebsiteBanner3 from '../assets/WEBSITE BANNER/Untitled-3.jpg'
+// import WebsiteBanner4 from '../assets/WEBSITE BANNER/Untitled-4.png'
+// import WebsiteBanner5 from '../assets/WEBSITE BANNER/Untitled-5.png'
+// import WebsiteBanner6 from '../assets/WEBSITE BANNER/Untitled-6.png'
+// import WebsiteBanner7 from '../assets/WEBSITE BANNER/Untitled-7.png'
+// import WebsiteBanner8 from '../assets/WEBSITE BANNER/Untitled-8.png'
+// import WebsiteBanner9 from '../assets/WEBSITE BANNER/Untitled-9.png'
+// import WebsiteBanner10 from '../assets/WEBSITE BANNER/Untitled-10.png'
 
-import Thumbnail1 from '../assets/Thumbnails_/brochors.jpg'
-import Thumbnail2 from '../assets/Thumbnails_/company profiles.jpg'
-import Thumbnail3 from '../assets/Thumbnails_/E commers prisentation.jpg'
-import Thumbnail4 from '../assets/Thumbnails_/flyars.jpg'
-import Thumbnail5 from '../assets/Thumbnails_/letter heads.jpg'
-import Thumbnail6 from '../assets/Thumbnails_/logo.jpg'
-import Thumbnail7 from '../assets/Thumbnails_/menu.jpg'
-import Thumbnail8 from '../assets/Thumbnails_/product packging.jpg'
-import Thumbnail9 from '../assets/Thumbnails_/social media ports.jpg'
-import Thumbnail10 from '../assets/Thumbnails_/visitng cards.jpg'
+// import Thumbnail1 from '../assets/Thumbnails_/brochors.jpg'
+// import Thumbnail2 from '../assets/Thumbnails_/company profiles.jpg'
+// import Thumbnail3 from '../assets/Thumbnails_/E commers prisentation.jpg'
+// import Thumbnail4 from '../assets/Thumbnails_/flyars.jpg'
+// import Thumbnail5 from '../assets/Thumbnails_/letter heads.jpg'
+// import Thumbnail6 from '../assets/Thumbnails_/logo.jpg'
+// import Thumbnail7 from '../assets/Thumbnails_/menu.jpg'
+// import Thumbnail8 from '../assets/Thumbnails_/product packging.jpg'
+// import Thumbnail9 from '../assets/Thumbnails_/social media ports.jpg'
+// import Thumbnail10 from '../assets/Thumbnails_/visitng cards.jpg'
 // import Thumbnail11 from '../assets/Thumbnails_/web banners.jpg'
 
 import SocialMedia1 from '../assets/SOCIAL MEDIA/01.jpg'
@@ -131,16 +105,14 @@ import CATALOGUE8 from '../assets/CATALOGUE/Untitled-8.png'
 import CATALOGUE9 from '../assets/CATALOGUE/Untitled-9.png'
 import CATALOGUE10 from '../assets/CATALOGUE/Untitled-10.png' 
 
-import ProductPackaging1 from '../assets/PRODUCT PACKAGING/Untitled-1.png'
-import ProductPackaging2 from '../assets/PRODUCT PACKAGING/Untitled-2.png'
-import ProductPackaging3 from '../assets/PRODUCT PACKAGING/Untitled-3.png'
-import ProductPackaging4 from '../assets/PRODUCT PACKAGING/Untitled-4.png'
-import ProductPackaging5 from '../assets/PRODUCT PACKAGING/Untitled-5.png'
-import ProductPackaging6 from '../assets/PRODUCT PACKAGING/Untitled-6.png'
-import ProductPackaging7 from '../assets/PRODUCT PACKAGING/Untitled-7.png'
-import ProductPackaging8 from '../assets/PRODUCT PACKAGING/Untitled-8.png'
-import ProductPackaging9 from '../assets/PRODUCT PACKAGING/Untitled-9.png'
-import ProductPackaging10 from '../assets/PRODUCT PACKAGING/Untitled-10.png'
+import ProductPackaging1 from '../assets/PRODUCT PACKAGING/1.jpg'
+import ProductPackaging2 from '../assets/PRODUCT PACKAGING/5.jpg'
+import ProductPackaging3 from '../assets/PRODUCT PACKAGING/18.jpg'
+import ProductPackaging4 from '../assets/PRODUCT PACKAGING/90.png'
+import ProductPackaging5 from '../assets/PRODUCT PACKAGING/Box.png'
+import ProductPackaging6 from '../assets/PRODUCT PACKAGING/Chew.png'
+import ProductPackaging7 from '../assets/PRODUCT PACKAGING/jar.png'
+import ProductPackaging8 from '../assets/PRODUCT PACKAGING/k-9.png'
 
 export const siteConfig = {
   name: 'Brands Master',
@@ -350,16 +322,27 @@ export const portfolioItems = [
     category: 'Logo',
 
     images: [
-      AadyaGrand,
-      AllAboutFurniture,
-      AnytimeAnywhere,
-      Aquahex,
-      Collections4u,
-      Harshni,
-      Hightech,
-      Modsik,
-      ShreeMoming,
-      TheLeafCafe,
+      // AadyaGrand,
+      // AllAboutFurniture,
+      // AnytimeAnywhere,
+      // Aquahex,
+      // Collections4u,
+      // Harshni,
+      // Hightech,
+      // Modsik,
+      // ShreeMoming,
+      // TheLeafCafe,
+      I1,
+      I2,
+      I3,
+      I4,
+      I5,
+      I6,
+      I7,
+      I9,
+      II8,
+      II10,
+      II11,
     ],
   },
 
@@ -459,8 +442,6 @@ export const portfolioItems = [
       ProductPackaging6,
       ProductPackaging7,
       ProductPackaging8,
-      ProductPackaging9,
-      ProductPackaging10,
     ],
   }
 
