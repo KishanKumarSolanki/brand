@@ -111,7 +111,7 @@ import ProductPackaging3 from '../assets/PRODUCT PACKAGING/18.jpg'
 import ProductPackaging4 from '../assets/PRODUCT PACKAGING/90.png'
 import ProductPackaging5 from '../assets/PRODUCT PACKAGING/Box.png'
 import ProductPackaging6 from '../assets/PRODUCT PACKAGING/Chew.png'
-import ProductPackaging7 from '../assets/PRODUCT PACKAGING/jar.png'
+import ProductPackaging7 from '../assets/PRODUCT PACKAGING/Jar.png'
 import ProductPackaging8 from '../assets/PRODUCT PACKAGING/k-9.png'
 
 export const siteConfig = {
