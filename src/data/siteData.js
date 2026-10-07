@@ -128,7 +128,7 @@ export const navLinks = [
   { label: 'Home', to: '/#home' },
   { label: 'Portfolio', to: '/#portfolio' },
   { label: 'Services', to: '/#services' },
-  { label: 'About', to: '/#about' },
+  // { label: 'About', to: '/#about' },
   { label: 'Contact', to: '/#contact' },
 ]
 
@@ -142,7 +142,7 @@ export const footerColumns = [
     heading: 'Company',
     links: [
       { label: 'Home', to: '/#home' },
-      { label: 'About', to: '/#about' },
+      // { label: 'About', to: '/#about' },
       { label: 'Services', to: '/#services' },
       { label: 'Portfolio', to: '/#portfolio' },
       { label: 'Contact', to: '/#contact' },
